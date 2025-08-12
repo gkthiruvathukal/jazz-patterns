@@ -2,7 +2,7 @@
 
 This script generates printable charts of common jazz scales—one chart per key.
 Each chart shows two scales per staff line, beamed 8ths, the scale/chord name above the first note, and the step pattern under the notes.
-It’s meant to be a practical practice aid, not a disseration on music theory. (I already have a PhD with so much to learn.)
+It’s meant to be a practical practice aid, not a dissertation on music theory. (I already have a PhD but with so much to learn about music. Wish me luck!)
 
 ## Why this exists
 
@@ -14,6 +14,8 @@ Jazz practice is faster when you can:
 - and **transpose** through keys (e.g., by fourths) without re-engraving.
 
 This project automates that via one command line interface that produces clean charts in every key.
+
+Please note that the present focus of this is mostly pedagogical in nature and focused on scales. Scales are one basic type of pattern but jazz is about vocabulary and incorporating patterns (also known as licks) in your playing to create texture, color, etc.
 
 ## How jazz players learn scales (and the exceptions)
 
