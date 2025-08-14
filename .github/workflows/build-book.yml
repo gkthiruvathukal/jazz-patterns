@@ -1,0 +1,53 @@
+name: Build & Release Jazz Scales Book
+
+on:
+  push:
+    tags:
+      - 'v*'  # for semantic versioning, e.g. v1.0
+
+permissions:
+  contents: write     # needed to create a release & upload assets
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system deps (LilyPond)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lilypond
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install abjad==3.25.0 matplotlib pypdf reportlab
+
+      - name: Build outputs
+        run: |
+          mkdir -p out
+          python scripts/generate_scales.py
+          lilypond -o out/jazz_scales_abjad out/jazz_scales_abjad.ly
+          python scripts/make_cover.py
+          python scripts/make_book.py
+
+      - name: Create GitHub Release & upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            out/jazz_scales_abjad.pdf
+            out/jazz_scales_abjad.ly
+            out/cover.pdf
+            out/toc.pdf
+            out/Jazz-Scales-Book.pdf
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
