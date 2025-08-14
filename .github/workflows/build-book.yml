@@ -1,19 +1,19 @@
-name: Build & Release Jazz Scales Book
+name: Build Jazz Scales Book
 
 on:
   push:
+    branches: ['**']  # run on all branches
+    tags: ['v*']      # and also when pushing tags like v1.0.0
+  pull_request:
     branches: ['**']
-    tags: ['v*']
   workflow_dispatch: {}
 
-
 permissions:
-  contents: write     # needed to create a release & upload assets
+  contents: write     # required to create a Release & upload assets
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,6 +42,7 @@ jobs:
           python scripts/make_book.py
 
       - name: Create GitHub Release & upload assets
+        if: ${{ github.ref_type == 'tag' }}
         uses: softprops/action-gh-release@v2
         with:
           files: |
@@ -53,3 +54,13 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload CI artifacts (non-release runs)
+        if: ${{ github.ref_type != 'tag' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: jazz-scales-book
+          path: |
+            out/jazz_scales_abjad.pdf
+            out/Jazz-Scales-Book.pdf
+
