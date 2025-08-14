@@ -1,6 +1,8 @@
-# scripts/make_cover.py
 import matplotlib.pyplot as plt
 from datetime import date
+import os
+
+os.makedirs("out", exist_ok=True)
 
 TITLE = "JAZZ SCALES"
 SUBTITLE = "Practice Book"
@@ -40,3 +42,4 @@ ax.text(0.08,0.14,f"Compiled {today}",fontsize=12,color="#9fb0d8")
 ax.add_patch(plt.Rectangle((0,0.04),1,0.03,color="#24314b"))
 fig.savefig("out/cover.pdf", format="pdf")
 print("Wrote out/cover.pdf")
+

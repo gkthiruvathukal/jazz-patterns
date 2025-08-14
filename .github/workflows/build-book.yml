@@ -2,14 +2,14 @@ name: Build Jazz Scales Book
 
 on:
   push:
-    branches: ['**']  # run on all branches
-    tags: ['v*']      # and also when pushing tags like v1.0.0
+    branches: ['**']      # run on all branches
+    tags: ['v*']          # also run on tags like v1.0.0
   pull_request:
     branches: ['**']
   workflow_dispatch: {}
 
 permissions:
-  contents: write     # required to create a Release & upload assets
+  contents: write         # required to create a Release & upload assets
 
 jobs:
   build:
@@ -21,46 +21,54 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: '3.11'
 
       - name: Install system deps (LilyPond)
         run: |
           sudo apt-get update
-          sudo apt-get install -y lilypond
+          sudo apt-get install -y lilypond zip
 
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install abjad==3.25.0 matplotlib pypdf reportlab
 
-      - name: Build outputs
+      - name: Generate all keys (LY & PDF)
+        run: |
+          python scripts/jazz_scales_abjad_keys.py --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major --pdf
+
+      - name: Stage outputs
         run: |
           mkdir -p out
-          python scripts/generate_scales.py
-          lilypond -o out/jazz_scales_abjad out/jazz_scales_abjad.ly
+          mv jazz_scales_abjad_*.ly out/ || true
+          mv jazz_scales_abjad_*.pdf out/ || true
           python scripts/make_cover.py
-          python scripts/make_book.py
+          python scripts/make_book_keys.py
 
+      - name: Package single download (ZIP)
+        run: |
+          cd out
+          zip -r jazz-scales-all-keys.zip jazz_scales_abjad_*.pdf cover.pdf toc.pdf Jazz-Scales-Book.pdf
+
+      # Only publish a Release on tag builds
       - name: Create GitHub Release & upload assets
         if: ${{ github.ref_type == 'tag' }}
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            out/jazz_scales_abjad.pdf
-            out/jazz_scales_abjad.ly
-            out/cover.pdf
-            out/toc.pdf
+            out/jazz-scales-all-keys.zip
             out/Jazz-Scales-Book.pdf
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Optional: CI artifacts on non-tag runs (remove if you don't want them)
       - name: Upload CI artifacts (non-release runs)
         if: ${{ github.ref_type != 'tag' }}
         uses: actions/upload-artifact@v4
         with:
-          name: jazz-scales-book
+          name: jazz-scales-ci
           path: |
-            out/jazz_scales_abjad.pdf
+            out/jazz-scales-all-keys.zip
             out/Jazz-Scales-Book.pdf
 
