@@ -105,7 +105,7 @@ def make_bar(pitches, intervals, chord_text, scale_name):
     i = 0
     for leaf in abjad.select.leaves(container):
         if isinstance(leaf, abjad.Note):
-            label = "-" if i == 0 else (intervals[i - 1] if i - 1 < len(intervals) else "")
+            label = "N" if i == 0 else (intervals[i - 1] if i - 1 < len(intervals) else "")
             if label:
                 abjad.attach(abjad.Markup(f'"{label}"'), leaf, direction=abjad.DOWN)
             i += 1
