@@ -2,8 +2,10 @@ name: Build & Release Jazz Scales Book
 
 on:
   push:
-    tags:
-      - 'v*'  # for semantic versioning, e.g. v1.0
+    branches: ['**']
+    tags: ['v*']
+  workflow_dispatch: {}
+
 
 permissions:
   contents: write     # needed to create a release & upload assets
