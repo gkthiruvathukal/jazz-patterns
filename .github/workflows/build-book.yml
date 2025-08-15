@@ -61,7 +61,7 @@ jobs:
           zip -r jazz-scales-pdf.zip \
             jazz_scales_abjad_*.pdf \
             cover.pdf toc.pdf Jazz-Scales-Book.pdf
-          zip -r jazz-scales-midi.zip \
+          zip -r jazz-scales-sound.zip \
             jazz_scales_abjad_*.midi \
             jazz_scales_abjad_*.mid
 
@@ -71,7 +71,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            out/jazz-scales-all-keys.zip
+            out/jazz-scales-pdf.zip
+            out/jazz-scales-sound.zip
             out/Jazz-Scales-Book.pdf
           generate_release_notes: true
         env:
