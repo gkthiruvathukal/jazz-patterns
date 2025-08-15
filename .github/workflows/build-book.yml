@@ -58,11 +58,12 @@ jobs:
       - name: Package single download (ZIP)
         run: |
           cd out
-          zip -r jazz-scales-all-keys.zip \
+          zip -r jazz-scales-pdf.zip \
             jazz_scales_abjad_*.pdf \
-            jazz_scales_abjad_*.midi \
-            jazz_scales_abjad_*.mid \
             cover.pdf toc.pdf Jazz-Scales-Book.pdf
+          zip -r jazz-scales-midi.zip \
+            jazz_scales_abjad_*.midi \
+            jazz_scales_abjad_*.mid
 
       # Only publish a Release on tag builds
       - name: Create GitHub Release & upload assets
