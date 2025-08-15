@@ -38,7 +38,10 @@ jobs:
         run: |
           python scripts/jazz_scales_abjad_keys.py \
             --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
-            --pdf --midi --bpm 96
+            --pdf --bpm 96
+          python scripts/jazz_scales_abjad_keys.py \
+            --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
+            --midi --bpm 96
 
       # ➕ Collect .midi/.mid into out/
       - name: Stage outputs
