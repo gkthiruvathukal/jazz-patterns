@@ -33,22 +33,33 @@ jobs:
           python -m pip install --upgrade pip
           pip install abjad==3.25.0 matplotlib pypdf reportlab
 
-      - name: Generate all keys (LY & PDF)
+      # ➕ Add --midi to actually render MIDI as well as PDF
+      - name: Generate all keys (LY, PDF & MIDI)
         run: |
-          python scripts/jazz_scales_abjad_keys.py --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major --pdf
+          python scripts/jazz_scales_abjad_keys.py \
+            --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
+            --pdf --midi --bpm 96
 
+      # ➕ Collect .midi/.mid into out/
       - name: Stage outputs
         run: |
           mkdir -p out
           mv jazz_scales_abjad_*.ly out/ || true
           mv jazz_scales_abjad_*.pdf out/ || true
+          mv jazz_scales_abjad_*.midi out/ 2>/dev/null || true
+          mv jazz_scales_abjad_*.mid  out/ 2>/dev/null || true
           python scripts/make_cover.py
           python scripts/make_book_keys.py
 
+      # ➕ Include MIDI files in the single ZIP
       - name: Package single download (ZIP)
         run: |
           cd out
-          zip -r jazz-scales-all-keys.zip jazz_scales_abjad_*.pdf cover.pdf toc.pdf Jazz-Scales-Book.pdf
+          zip -r jazz-scales-all-keys.zip \
+            jazz_scales_abjad_*.pdf \
+            jazz_scales_abjad_*.midi \
+            jazz_scales_abjad_*.mid \
+            cover.pdf toc.pdf Jazz-Scales-Book.pdf
 
       # Only publish a Release on tag builds
       - name: Create GitHub Release & upload assets
@@ -71,4 +82,3 @@ jobs:
           path: |
             out/jazz-scales-all-keys.zip
             out/Jazz-Scales-Book.pdf
-

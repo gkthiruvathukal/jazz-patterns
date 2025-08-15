@@ -1,8 +1,19 @@
-# Abjad 3.25 — one LilyPond file (and optional PDF) per key,
-# two bars per system, beamed 8ths, chord & scale names above, interval labels below.
+# jazz_scales_abjad_keys.py
+# Abjad 3.25 — one LilyPond file (and optional PDF/MIDI) per key.
+# Two bars per system, beamed 8ths, chord & scale names above, interval labels below.
+#
+# CLI:
+#   --pdf   (compile each .ly to PDF via lilypond)
+#   --midi  (also produce .midi; lilypond run is explicit)
+#   --bpm   (tempo for MIDI/print; default 120)
+#
+# Python 3.13 + Abjad 3.25
 
 import argparse
-import os
+import shutil
+import subprocess
+from pathlib import Path
+
 import abjad
 
 TITLE_BASE = "Common Jazz Scales in Key of {key}"
@@ -12,10 +23,10 @@ TOP_SYSTEM_DISTANCE = 18
 # ---------- pitch helpers (NumberedPitch with C4 == 0) ----------
 LETTER_TO_PC = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}
 
-SHARP_NAMES = {0:"C",1:"C#",2:"D",3:"D#",4:"E",5:"F",6:"F#",7:"G",8:"G#",9:"A",10:"A#",11:"B"}
-FLAT_NAMES  = {0:"C",1:"Db",2:"D",3:"Eb",4:"E",5:"F",6:"Gb",7:"G",8:"Ab",9:"A",10:"Bb",11:"B"}
+SHARP_NAMES = {0: "C", 1: "C#", 2: "D", 3: "D#", 4: "E", 5: "F", 6: "F#", 7: "G", 8: "G#", 9: "A", 10: "A#", 11: "B"}
+FLAT_NAMES  = {0: "C", 1: "Db", 2: "D", 3: "Eb", 4: "E", 5: "F", 6: "Gb", 7: "G", 8: "Ab", 9: "A", 10: "Bb", 11: "B"}
 
-# LilyPond english tokens for key signatures (\key <token> \major/\minor)
+# LilyPond tokens for key signatures (\key <token> \major/\minor)
 SHARP_KEYS = {0:"c",1:"cis",2:"d",3:"dis",4:"e",5:"f",6:"fis",7:"g",8:"gis",9:"a",10:"ais",11:"b"}
 FLAT_KEYS  = {0:"c",1:"des",2:"d",3:"ees",4:"e",5:"f",6:"ges",7:"g",8:"aes",9:"a",10:"bes",11:"b"}
 
@@ -90,7 +101,7 @@ def transpose_chord_text(chord_text_c_root: str, key_name: str) -> str:
 def make_bar(pitches, intervals, chord_text, scale_name):
     leaves = [abjad.Note(p, (1, 8)) for p in pitches]
     while len(leaves) < 8:
-        leaves.append(abjad.Rest((1, 8)))  # pad at end if pentatonic/blues
+        leaves.append(abjad.Rest((1, 8)))  # pad if pentatonic/blues
     container = abjad.Container(leaves)
 
     pitched = [l for l in abjad.select.leaves(container) if isinstance(l, abjad.Note)]
@@ -105,13 +116,13 @@ def make_bar(pitches, intervals, chord_text, scale_name):
     i = 0
     for leaf in abjad.select.leaves(container):
         if isinstance(leaf, abjad.Note):
-            label = "N" if i == 0 else (intervals[i - 1] if i - 1 < len(intervals) else "")
+            label = "-" if i == 0 else (intervals[i - 1] if i - 1 < len(intervals) else "")
             if label:
                 abjad.attach(abjad.Markup(f'"{label}"'), leaf, direction=abjad.DOWN)
             i += 1
     return container
 
-def build_score_for_key(pc: int, prefer_names: str, anchor: str, mode: str):
+def build_score_for_key(pc: int, prefer_names: str, anchor: str, mode: str, bpm: int):
     """Return (score, title, printable_key_name)."""
     key_name = pc_to_name(pc, prefer_names)
     lily_key = pc_to_lily_key(pc, prefer_names)
@@ -130,43 +141,114 @@ def build_score_for_key(pc: int, prefer_names: str, anchor: str, mode: str):
 
     staff = abjad.Staff([voice], name="Staff")
 
-    # Meter, clef, and KEY SIGNATURE at the start (mode: major|minor)
+    # Meter, clef, KEY SIGNATURE, and TEMPO at the start
     first_leaf = abjad.select.leaf(staff, 0)
     abjad.attach(abjad.TimeSignature((4, 4)), first_leaf)
     abjad.attach(abjad.Clef("treble"), first_leaf)
     abjad.attach(abjad.LilyPondLiteral(rf"\key {lily_key} \{mode}"), first_leaf)
+    if bpm:
+        abjad.attach(abjad.MetronomeMark(abjad.Duration(1, 4), bpm), first_leaf)
 
     score = abjad.Score([staff], name="Score")
     title = TITLE_BASE.format(key=key_name)
     return score, title, key_name
 
+# ---------- lilypond execution & verification ----------
+def _tail(text: str, n: int = 30) -> str:
+    lines = (text or "").splitlines()
+    return "\n".join(lines[-n:])
+
+def _compile_with_lilypond(ly_path: Path, want_pdf: bool, want_midi: bool):
+    """Run lilypond and return a result dict with existence checks and log tails."""
+    lilypond_exe = shutil.which("lilypond")
+    result = {
+        "pdf_ok": False, "midi_ok": False,
+        "pdf_path": None, "midi_path": None,
+        "stdout_tail": "", "stderr_tail": "", "cmd": None,
+    }
+    if lilypond_exe is None:
+        result["stderr_tail"] = "ERROR: lilypond not found in PATH."
+        return result
+
+    out_dir = ly_path.parent if ly_path.parent != Path("") else Path(".")
+    base = out_dir / ly_path.stem
+    cmd = [lilypond_exe, "-o", str(base), str(ly_path)]
+    result["cmd"] = " ".join(cmd)
+
+    try:
+        cp = subprocess.run(cmd, check=True, text=True, capture_output=True)
+        result["stdout_tail"] = _tail(cp.stdout)
+        result["stderr_tail"] = _tail(cp.stderr)
+    except subprocess.CalledProcessError as e:
+        result["stdout_tail"] = _tail(e.stdout)
+        result["stderr_tail"] = _tail(e.stderr or f"Exited with {e.returncode}")
+        # still fall through to check any produced files
+
+    pdf_path  = base.with_suffix(".pdf")
+    midi_path = base.with_suffix(".midi")
+    mid_path  = base.with_suffix(".mid")   # some LilyPond versions emit .mid
+
+    if want_pdf and pdf_path.exists():
+        result["pdf_ok"] = True
+        result["pdf_path"] = str(pdf_path)
+    if want_midi and (midi_path.exists() or mid_path.exists()):
+        result["midi_ok"] = True
+        result["midi_path"] = str(midi_path if midi_path.exists() else mid_path)
+
+    return result
+
 def write_lilypond(score, title: str, outfile: str,
                    make_pdf: bool = False,
                    author: str | None = None,
-                   license_text: str | None = None):
-    lily = abjad.LilyPondFile([score])
-
-    # Header
+                   license_text: str | None = None,
+                   midi: bool = False):
+    """
+    Write .ly and, if requested, compile with lilypond; return a result dict:
+      {ly_path, pdf_ok, midi_ok, pdf_path, midi_path, cmd, stdout_tail, stderr_tail}
+    """
+    # --- top-level header & paper ---
     header_items = [rf'title = \markup {{ \bold "{title}" }}']
     if author:
         header_items.append(rf'composer = "{author}"')
     if license_text:
         header_items.append(rf'copyright = "{license_text}"')
     header_items.append('tagline = ""')
-
     header = abjad.Block("header", items=header_items)
+
     paper = abjad.Block("paper", items=[
         f"system-system-spacing.basic-distance = #{SYSTEM_DISTANCE}",
         f"top-system-spacing.basic-distance = #{TOP_SYSTEM_DISTANCE}",
     ])
-    lily.items.insert(0, paper)
-    lily.items.insert(0, header)
 
-    # Write .ly (and optional .pdf)
+    # --- score block (music) ---
+    score_block = abjad.Block("score", items=[score])
+    # Put \midi INSIDE the score when requested
+    if midi:
+        score_block.items.append(abjad.Block("midi"))
+
+    # Include a TOP-LEVEL \layout { } so it’s unmistakably present
+    layout_top = abjad.Block("layout")
+
+    # Assemble LilyPond file
+    lily = abjad.LilyPondFile(items=[header, paper, layout_top, score_block])
+
+    # Always write the .ly
     abjad.persist.as_ly(lily, outfile)
-    if make_pdf:
-        pdf_path = os.path.splitext(outfile)[0] + ".pdf"
-        abjad.persist.as_pdf(lily, pdf_path)
+
+    # Default result dict
+    result = {
+        "ly_path": str(outfile),
+        "pdf_ok": False, "midi_ok": False,
+        "pdf_path": None, "midi_path": None,
+        "cmd": None, "stdout_tail": "", "stderr_tail": "",
+    }
+
+    # Compile with lilypond if PDF or MIDI requested; verify outputs
+    if make_pdf or midi:
+        r = _compile_with_lilypond(Path(outfile), want_pdf=make_pdf, want_midi=midi)
+        result.update(r)
+
+    return result
 
 # ---------- CLI ----------
 def main():
@@ -181,7 +263,11 @@ def main():
     ap.add_argument("--mode", type=str, choices=["major","minor"], default="major",
                     help="Key signature mode for each chart (major or minor).")
     ap.add_argument("--pdf", action="store_true",
-                    help="Also compile a PDF for each chart (requires LilyPond).")
+                    help="Compile a PDF for each chart (runs lilypond).")
+    ap.add_argument("--midi", action="store_true",
+                    help="Also produce a .midi for each chart (runs lilypond).")
+    ap.add_argument("--bpm", type=int, default=120,
+                    help="MIDI tempo in quarter-notes per minute (default 120).")
     ap.add_argument("--author", type=str, default="George K. Thiruvathukal",
                     help="Author/composer name printed under the title.")
     ap.add_argument("--license", type=str, default="Creative Commons 4.0 International",
@@ -195,26 +281,58 @@ def main():
 
     if args.start not in NAME_TO_PC:
         raise SystemExit(f"Unknown start key: {args.start}")
-    start_pc = NAME_TO_PC[args.start]
+    pc = NAME_TO_PC[args.start]
 
-    pc = start_pc
-    written = []
+    results = []
     for _ in range(args.count):
-        score, title, key_name = build_score_for_key(pc, prefer, args.anchor, args.mode)
+        score, title, key_name = build_score_for_key(pc, prefer, args.anchor, args.mode, args.bpm)
         safe_key = sanitize_key_for_filename(key_name)
         outfile = f"jazz_scales_abjad_{safe_key}.ly"
-        write_lilypond(score, title, outfile,
-                       make_pdf=args.pdf,
-                       author=args.author,
-                       license_text=args.license)
-        written.append(outfile)
+        res = write_lilypond(score, title, outfile,
+                             make_pdf=args.pdf,
+                             author=args.author,
+                             license_text=args.license,
+                             midi=args.midi)
+        res["key"] = key_name
+        results.append(res)
         pc = (pc + args.step) % 12
 
-    print("Wrote:")
-    for f in written:
-        print("  ", f)
+    # --------- Summary ---------
+    print("Wrote .ly files:")
+    for r in results:
+        print("  ", r["ly_path"])
+
     if args.pdf:
-        print("(PDFs written alongside the .ly files)")
+        ok_pdf = sum(1 for r in results if r["pdf_ok"])
+        print(f"\nPDF summary: {ok_pdf}/{len(results)} OK")
+        for r in results:
+            if r["pdf_ok"]:
+                print(f"  [OK]  {r['pdf_path']}")
+            else:
+                print(f"  [MISS] (Key {r['key']}) — no PDF.")
+                if r.get("cmd"): print(f"         Command: {r['cmd']}")
+                if r.get("stderr_tail"):
+                    print("         lilypond stderr (tail):")
+                    print("         " + "\n         ".join(r["stderr_tail"].splitlines()))
+
+    if args.midi:
+        ok_midi = sum(1 for r in results if r["midi_ok"])
+        print(f"\nMIDI summary: {ok_midi}/{len(results)} OK")
+        for r in results:
+            if r["midi_ok"]:
+                print(f"  [OK]  {r['midi_path']}")
+            else:
+                print(f"  [MISS] (Key {r['key']}) — no MIDI.")
+                # confirm the .ly actually contains \midi
+                try:
+                    has_midi = "\\midi" in Path(r["ly_path"]).read_text(encoding="utf-8", errors="ignore")
+                except Exception:
+                    has_midi = False
+                print(f"         midi block present in .ly: {has_midi}")
+                if r.get("cmd"): print(f"         Command: {r['cmd']}")
+                if r.get("stderr_tail"):
+                    print("         lilypond stderr (tail):")
+                    print("         " + "\n         ".join(r["stderr_tail"].splitlines()))
 
 if __name__ == "__main__":
     main()
