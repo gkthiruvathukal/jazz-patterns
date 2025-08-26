@@ -139,3 +139,9 @@ Open the `.ly` in LilyPond or import into notation software that understands Mus
 ## Future
 
 - Package + installer and CI/release automation can come later. For now, the script is simple to run as-is.
+
+## Acknowledgment
+
+I wish to acknowledge one of the great masters of jazz pedagogy, Jamey Aebersold, whose Jazz handbook (a.k.a. the "red book") at https://www.jazzbooks.com/jazz/FQBK is a great inspiration to all of us.
+
+
