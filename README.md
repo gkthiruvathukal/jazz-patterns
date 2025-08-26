@@ -9,6 +9,8 @@ It’s meant to be a practical practice aid, not a dissertation on music theory.
 If you find my work useful, please consider citing it.
 *(Even if you don't like it, I'd welcome your feedback.)*
 
+Thiruvathukal, George K. “Jazz Scale Patterns with Abjad and Lilypond”. 12 August 2025. Web. 26 August 2025. https://doi.org/10.6084/m9.figshare.29887028
+
 ```bibtex
 @article{Thiruvathukal-Jazz-2025,
 author = "George K. Thiruvathukal",
