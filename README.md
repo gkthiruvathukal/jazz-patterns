@@ -4,6 +4,21 @@ This script generates printable charts of common jazz scales—one chart per key
 Each chart shows two scales per staff line, beamed 8ths, the scale/chord name above the first note, and the step pattern under the notes.
 It’s meant to be a practical practice aid, not a dissertation on music theory. (I already have a PhD but with so much to learn about music. Wish me luck!)
 
+## Citation
+
+If you find my work useful, please consider citing it.
+*(Even if you don't like it, I'd welcome your feedback.)*
+
+```bibtex
+@article{Thiruvathukal-Jazz-2025,
+author = "George K. Thiruvathukal",
+title = "{Jazz Scale Patterns with Abjad and Lilypond}",
+year = "2025",
+month = "8",
+url = "https://figshare.com/articles/dataset/Jazz_Scale_Patterns_with_Abjad_and_Lilypond/29887028",
+doi = "10.6084/m9.figshare.29887028.v5"
+}
+```
 ## Why this exists
 
 Jazz practice is faster when you can:
