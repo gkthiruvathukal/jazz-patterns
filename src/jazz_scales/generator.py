@@ -205,6 +205,18 @@ SCALES = [
         "Cmaj7(#11)",
     ),
     (
+        "Lydian Dominant",
+        ["C", "D", "E", "F#", "G", "A", "Bb", "C5"],
+        ["W", "W", "W", "H", "W", "H", "W"],
+        "C7(#11)",
+    ),
+    (
+        "Altered (Super Locrian)",
+        ["C", "Db", "Eb", "Fb", "Gb", "Ab", "Bb", "C5"],
+        ["H", "W", "H", "W", "W", "W", "W"],
+        "C7alt",
+    ),
+    (
         "Locrian",
         ["C", "Db", "Eb", "F", "Gb", "Ab", "Bb", "C5"],
         ["H", "W", "W", "H", "W", "W", "W"],
