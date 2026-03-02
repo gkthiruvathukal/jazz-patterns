@@ -1,0 +1,28 @@
+# Virtual environments
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tool caches
+.ruff_cache/
+
+# Generated outputs (LilyPond, PDF, MIDI)
+*.ly
+*.pdf
+*.midi
+*.mid
+out/

@@ -74,31 +74,47 @@ And others can easily be added.
 ## Requirements
 
 - **Python 3.9+**
-- **Abjad 3.25**
+- **Abjad >= 3.31**
 - **LilyPond** only if you want PDFs (the script always writes `.ly`; PDFs are optional)
 
-Install Abjad:
+### Install as a package
+
 ```bash
-pip install abjad==3.25
+pip install .
 ```
 
-Install LilyPond (for PDFs):
+This installs the `jazz-scales` package (importable as `jazz_scales`) along with all Python dependencies (abjad, matplotlib, pypdf, reportlab).
+
+### Install LilyPond (for PDFs)
+
 - macOS: `brew install lilypond`
 - Ubuntu/Debian: `sudo apt-get install -y lilypond`
 - Windows: download from lilypond.org and add to PATH
 
+## Project structure
+
+```
+src/jazz_scales/
+    __init__.py          # package version
+    generator.py         # multi-key scale chart generator (main entry point)
+    generate_single.py   # single-key (C only) generator
+    cover.py             # cover page PDF (matplotlib)
+    book.py              # multi-key book assembler (pypdf + reportlab)
+    book_single.py       # single-key book assembler
+```
+
 ## Usage
 
-Run from the folder containing `jazz_scales_abjad_keys.py`:
+All modules are run with `python -m`:
 
 ```bash
 # default: start at C, go by fourths through 12 keys, major key signatures, write .ly (no pdf)
-python jazz_scales_abjad_keys.py
+python -m jazz_scales.generator
 ```
 
 Generate PDFs as well:
 ```bash
-python jazz_scales_abjad_keys.py --pdf
+python -m jazz_scales.generator --pdf
 ```
 
 Common options:
@@ -112,6 +128,8 @@ Common options:
   *(keeps notes near middle C for readability)*
 - `--mode` key-signature mode for each chart: `major` or `minor`
 - `--pdf` also render PDFs (needs LilyPond)
+- `--midi` render MIDI files
+- `--bpm` tempo in BPM for MIDI output (default **120**)
 - `--author` printed under the title (default **George K. Thiruvathukal**)
 - `--license` footer text (default **Creative Commons 4.0 International**)
 
@@ -119,10 +137,14 @@ Examples:
 
 ```bash
 # All 12 keys by fourths (C→F→Bb…), with PDFs:
-python jazz_scales_abjad_keys.py --pdf
+python -m jazz_scales.generator --pdf
 
 # Fifths, starting on G, prefer sharps, minor key signatures:
-python jazz_scales_abjad_keys.py --step 7 --start G --prefer sharps --mode minor --pdf
+python -m jazz_scales.generator --step 7 --start G --prefer sharps --mode minor --pdf
+
+# Build the cover page and assembled book (after generating PDFs):
+python -m jazz_scales.cover
+python -m jazz_scales.book
 ```
 
 ## Output files
@@ -140,7 +162,8 @@ Open the `.ly` in LilyPond or import into notation software that understands Mus
 
 ## Future
 
-- Package + installer and CI/release automation can come later. For now, the script is simple to run as-is.
+- PyPI publishing via CI tags
+- Additional scale types and pattern generators
 
 ## Acknowledgment
 

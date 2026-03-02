@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jazz-scales"
+version = "0.3.0"
+description = "Jazz scale chart generator using Abjad and LilyPond"
+readme = "README.md"
+license = "CC-BY-4.0"
+requires-python = ">=3.9"
+authors = [
+    { name = "George K. Thiruvathukal" },
+]
+keywords = ["jazz", "scales", "music", "abjad", "lilypond", "notation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Topic :: Multimedia :: Sound/Audio",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "abjad>=3.31",
+    "matplotlib",
+    "pypdf",
+    "reportlab",
+]
+
+[project.urls]
+Homepage = "https://github.com/gkthiruvathukal/jazz-patterns"
+Repository = "https://github.com/gkthiruvathukal/jazz-patterns"

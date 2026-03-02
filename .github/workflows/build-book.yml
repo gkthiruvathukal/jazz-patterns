@@ -31,15 +31,15 @@ jobs:
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          pip install abjad==3.25.0 matplotlib pypdf reportlab
+          pip install .
 
       # ➕ Add --midi to actually render MIDI as well as PDF
       - name: Generate all keys (LY, PDF & MIDI)
         run: |
-          python scripts/jazz_scales_abjad_keys.py \
+          python -m jazz_scales.generator \
             --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
             --pdf --bpm 96
-          python scripts/jazz_scales_abjad_keys.py \
+          python -m jazz_scales.generator \
             --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
             --midi --bpm 96
 
@@ -51,8 +51,8 @@ jobs:
           mv jazz_scales_abjad_*.pdf out/ || true
           mv jazz_scales_abjad_*.midi out/ 2>/dev/null || true
           mv jazz_scales_abjad_*.mid  out/ 2>/dev/null || true
-          python scripts/make_cover.py
-          python scripts/make_book_keys.py
+          python -m jazz_scales.cover
+          python -m jazz_scales.book
 
       # ➕ Include MIDI files in the single ZIP
       - name: Package single download (ZIP)
@@ -85,5 +85,6 @@ jobs:
         with:
           name: jazz-scales-ci
           path: |
-            out/jazz-scales-all-keys.zip
+            out/jazz-scales-pdf.zip
+            out/jazz-scales-sound.zip
             out/Jazz-Scales-Book.pdf
