@@ -157,6 +157,12 @@ SCALES = [
         "Cm7",
     ),
     (
+        "Blues (Major)",
+        ["C", "D", "Eb", "E", "G", "A", "C5"],
+        ["W", "H", "H", "m3", "W", "m3"],
+        "C6",
+    ),
+    (
         "Pentatonic Major",
         ["C", "D", "E", "G", "A", "C5"],
         ["W", "W", "W+H", "W", "W+H"],
