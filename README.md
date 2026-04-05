@@ -1,13 +1,10 @@
 # Common Jazz Scales (Abjad + LilyPond)
 
-This script generates printable charts of common jazz scales—one chart per key.
-Each chart shows two scales per staff line, beamed 8ths, the scale/chord name above the first note, and the step pattern under the notes.
-It’s meant to be a practical practice aid, not a dissertation on music theory. (I already have a PhD but with so much to learn about music. Wish me luck!)
+This project generates printable jazz scale charts, one chart per key. Each system shows a scale in forward form followed by its retrograde. Notes are beamed 8ths, the scale and chord labels appear above the staff, and the forward bar includes step-pattern labels underneath.
 
 ## Citation
 
-If you find my work useful, please consider citing it.
-*(Even if you don't like it, I'd welcome your feedback.)*
+If you find this useful, please consider citing it.
 
 Thiruvathukal, George K. “Jazz Scale Patterns with Abjad and Lilypond”. 12 August 2025. Web. 26 August 2025. https://doi.org/10.6084/m9.figshare.29887028
 
@@ -21,152 +18,110 @@ url = "https://figshare.com/articles/dataset/Jazz_Scale_Patterns_with_Abjad_and_
 doi = "10.6084/m9.figshare.29887028.v5"
 }
 ```
-## Why this exists
 
-Jazz practice is faster when you can:
+## What Gets Generated
 
-- see the **step pattern** (whole/half) while you play,
-- anchor the sound with a **chord symbol** that fits the scale,
-- read a consistent **two-bars-per-system** layout,
-- and **transpose** through keys (e.g., by fourths) without re-engraving.
+- One 2-measure system per pattern: forward bar, then retrograde bar
+- Beamed 8th notes
+- Scale name and compatible chord symbol above the line
+- Step pattern below the forward form
+- Key-aware respelling so flat-signature charts use flats and sharp-signature charts use sharps
+- Per-key `.ly`, `.pdf`, `.midi`, and `.wav` outputs in `build/`
+- Combined book assets: `build/cover.pdf`, `build/toc.pdf`, `build/Jazz-Scales-Book.pdf`
 
-This project automates that via one command line interface that produces clean charts in every key.
-
-Please note that the present focus of this is mostly pedagogical in nature and focused on scales. Scales are one basic type of pattern but jazz is about vocabulary and incorporating patterns (also known as licks) in your playing to create texture, color, etc.
-
-## How jazz players learn scales (and the exceptions)
-
-Most tonal scales can be learned as a **pattern of Whole (W) and Half (H) steps** from the root:
-
-- **Major (Ionian):** W W H W W W H  
-- **Natural minor (Aeolian):** W H W W H W W  
-- **Dorian:** W H W W W H W  
-- **Mixolydian (dominant 7th):** W W H W W H W  
-- **Lydian:** W W W H W W H  
-- **Phrygian:** H W W W H W W  
-- **Locrian:** H W W H W W W  
-
-Some important scales bend or extend that simple idea:
-
-- **Melodic minor (jazz ascending):** W H W W W W H (minor 3rd then mostly whole steps)  
-- **Harmonic minor:** includes a **W+H** (augmented second) between ♭6 and 7 → W H W W H **W+H** H  
-- **Whole tone:** all **W** steps (6 notes total)  
-- **Octatonic / diminished:** alternates **H–W–H–W…** (Half–Whole) or **W–H–W–H…** (Whole–Half), giving 8 notes  
-- **Blues (minor):** a 6-note color scale with **blue notes** (1 ♭3 4 ♭5 5 ♭7 1); stepwise it’s **m3–W–H–H–m3–W**  
-- **Pentatonic (major/minor):** 5-note scales; can be described with steps (e.g., Major: W W W+H W W+H), but most players memorize the tones (e.g., major: 1 2 3 5 6; minor: 1 ♭3 4 5 ♭7).
-
-This script prints the step pattern under the notes so your fingers can do their magic in every key!
-
-## What gets generated
-
-- **Two scales per staff line** (`\break` in Lilypond after every second bar).  
-- **Beamed 8th notes.**  
-- **Scale name** and a **compatible chord symbol** above bar 1.  
-- **Step pattern** below each note (first note shows “–”, then W/H/etc.).  
-- **Sensible key signatures** (major or minor mode, your choice).  
-- One **.ly** per key, and **.pdf** too if LilyPond is installed.
-
-Included scales (rooted on the chosen key):  
-Major (Ionian), Natural Minor (Aeolian), Harmonic Minor, Melodic Minor (Jazz), Mixolydian, Dorian, Phrygian, Lydian, Locrian, Locrian ♮2 (Half-Dim #2), Whole Tone, Octatonic (Half–Whole), Octatonic (Whole–Half), Blues (minor), Pentatonic Major, Pentatonic Minor.
-
-And others can easily be added.
+Included scales:
+Major (Ionian), Natural Minor (Aeolian), Harmonic Minor, Melodic Minor (Jazz), Mixolydian, Dorian, Phrygian, Lydian, Locrian, Locrian ♮2 (Half-Dim #2), Whole Tone, Octatonic (Half–Whole), Octatonic (Whole–Half), Blues (major), Blues (minor), Pentatonic Major, Pentatonic Minor, Altered, Lydian Dominant, Bebop Dominant, Mixolydian b6, Minor Pentatonic b5, Dorian b2, Bebop Major, Lydian Augmented, Dominant Pentatonic.
 
 ## Requirements
 
-- **Python 3.9+**
-- **Abjad >= 3.31**
-- **LilyPond** only if you want PDFs (the script always writes `.ly`; PDFs are optional)
+- Python 3.9+
+- Abjad 3.31 or newer
+- LilyPond for PDF / MIDI rendering
+- FluidSynth for WAV rendering
+- `matplotlib`, `pypdf`, and `reportlab` for cover/book assembly
 
-### Install as a package
+## Setup
+
+Install the package in a virtual environment:
 
 ```bash
-pip install .
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
 ```
 
-This installs the `jazz-scales` package (importable as `jazz_scales`) along with all Python dependencies (abjad, matplotlib, pypdf, reportlab).
+You can also use the pinned helper file if you prefer:
 
-### Install LilyPond (for PDFs)
-
-- macOS: `brew install lilypond`
-- Ubuntu/Debian: `sudo apt-get install -y lilypond`
-- Windows: download from lilypond.org and add to PATH
-
-## Project structure
-
+```bash
+pip install -r requirements.txt
 ```
+
+Install system tools:
+
+- macOS: `brew install lilypond fluidsynth`
+- Ubuntu/Debian: `sudo apt-get install -y lilypond fluidsynth`
+
+The repo fetches the Salamander Yamaha piano soundfont (`SalamanderGrandPiano-SF2-V3+20200602.sf2`) from FreePats on demand and caches it under `.cache/soundfonts/`.
+
+## Project Structure
+
+```text
 src/jazz_scales/
-    __init__.py          # package version
-    generator.py         # multi-key scale chart generator (main entry point)
-    generate_single.py   # single-key (C only) generator
-    cover.py             # cover page PDF (matplotlib)
-    book.py              # multi-key book assembler (pypdf + reportlab)
-    book_single.py       # single-key book assembler
+  generator.py                  multi-key chart generator
+  cover.py                      cover PDF generator
+  book.py                       merged book / TOC generator
+  generate_single.py            legacy single-key generator
+  book_single.py                legacy single-book assembler
+  fetch_salamander_soundfont.sh download/cache Salamander SF2
+  render_wavs.sh                render WAVs from generated MIDI via FluidSynth
 ```
 
 ## Usage
 
-All modules are run with `python -m`:
+Run from the repo root.
+
+Generate all keys:
 
 ```bash
-# default: start at C, go by fourths through 12 keys, major key signatures, write .ly (no pdf)
-python -m jazz_scales.generator
+python -m jazz_scales.generator \
+  --output-dir build \
+  --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
+  --pdf --midi --bpm 96
 ```
 
-Generate PDFs as well:
+Render WAVs with Salamander:
+
 ```bash
-python -m jazz_scales.generator --pdf
+bash src/jazz_scales/render_wavs.sh build build
 ```
 
-Common options:
+Build the cover and merged book:
 
-- `--step` semitone step between keys (default **5** for fourths; use **7** for fifths)
-- `--count` how many keys (default **12**)
+```bash
+MPLCONFIGDIR="$PWD/.matplotlib" MPLBACKEND=Agg python -m jazz_scales.cover --output-dir build
+python -m jazz_scales.book --output-dir build
+```
+
+Common generator options:
+
+- `--step` semitone step between keys
+- `--count` number of keys
 - `--start` starting key name (`C`, `F#`, `Bb`, etc.)
-- `--prefer` accidental style: `auto` (default), `flats`, or `sharps`  
-  *(auto picks flats when cycling by fourths, sharps when cycling by fifths)*
-- `--anchor` register anchoring: `nearest` (default), `up`, `down`  
-  *(keeps notes near middle C for readability)*
-- `--mode` key-signature mode for each chart: `major` or `minor`
-- `--pdf` also render PDFs (needs LilyPond)
-- `--midi` render MIDI files
-- `--bpm` tempo in BPM for MIDI output (default **120**)
-- `--author` printed under the title (default **George K. Thiruvathukal**)
-- `--license` footer text (default **Creative Commons 4.0 International**)
-
-Examples:
-
-```bash
-# All 12 keys by fourths (C→F→Bb…), with PDFs:
-python -m jazz_scales.generator --pdf
-
-# Fifths, starting on G, prefer sharps, minor key signatures:
-python -m jazz_scales.generator --step 7 --start G --prefer sharps --mode minor --pdf
-
-# Build the cover page and assembled book (after generating PDFs):
-python -m jazz_scales.cover
-python -m jazz_scales.book
-```
-
-## Output files
-
-- `jazz_scales_abjad_<Key>.ly` (always)
-- `jazz_scales_abjad_<Key>.pdf` (if `--pdf` and LilyPond is installed)
-
-Open the `.ly` in LilyPond or import into notation software that understands MusicXML via LilyPond export.
+- `--prefer` accidental style: `auto`, `flats`, or `sharps`
+- `--anchor` register anchoring: `nearest`, `up`, or `down`
+- `--mode` key-signature mode: `major` or `minor`
+- `--pdf` compile PDFs
+- `--midi` compile MIDI
+- `--bpm` set print/MIDI tempo
+- `--output-dir` destination for generated files, default `build`
 
 ## Notes
 
-- Two bars per system is enforced by inserting a system break after every second measure.  
-- The first note of each scale lands on **beat 1**.  
-- Shorter scales (e.g., pentatonics) are padded with rests to fill the bar so beaming and spacing stay consistent.
-
-## Future
-
-- PyPI publishing via CI tags
-- Additional scale types and pattern generators
+- `--prefer auto` chooses flats or sharps per key signature, not once for the whole batch.
+- Shorter patterns such as pentatonics and blues scales are padded with rests to fill a bar cleanly.
+- In headless or sandboxed environments, `python -m jazz_scales.cover` is most reliable with `MPLCONFIGDIR="$PWD/.matplotlib"` and `MPLBACKEND=Agg`.
+- `bash src/jazz_scales/render_wavs.sh` fetches Salamander automatically if the soundfont is not already cached.
 
 ## Acknowledgment
 
-I wish to acknowledge one of the great masters of jazz pedagogy, Jamey Aebersold, whose Jazz handbook (a.k.a. the "red book") at https://www.jazzbooks.com/jazz/FQBK is a great inspiration to all of us.
-
-
+I wish to acknowledge one of the great masters of jazz pedagogy, Jamey Aebersold, whose Jazz handbook (the "red book") at https://www.jazzbooks.com/jazz/FQBK is a great inspiration.

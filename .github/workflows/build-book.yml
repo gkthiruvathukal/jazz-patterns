@@ -2,14 +2,14 @@ name: Build Jazz Scales Book
 
 on:
   push:
-    branches: ['**']      # run on all branches
-    tags: ['v*']          # also run on tags like v1.0.0
+    branches: ["**"]
+    tags: ["v*"]
   pull_request:
-    branches: ['**']
+    branches: ["**"]
   workflow_dispatch: {}
 
 permissions:
-  contents: write         # required to create a Release & upload assets
+  contents: write
 
 jobs:
   build:
@@ -21,70 +21,69 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: "3.14"
+          cache: pip
 
-      - name: Install system deps (LilyPond)
+      - name: Cache Salamander Yamaha Piano soundfont
+        uses: actions/cache@v4
+        with:
+          path: .cache/soundfonts
+          key: salamander-sf2-v1
+
+      - name: Install system deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y lilypond zip
+          sudo apt-get install -y curl fluidsynth lilypond xz-utils
 
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install .
 
-      # ➕ Add --midi to actually render MIDI as well as PDF
       - name: Generate all keys (LY, PDF & MIDI)
         run: |
           python -m jazz_scales.generator \
+            --output-dir build \
             --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
-            --pdf --bpm 96
-          python -m jazz_scales.generator \
-            --step 5 --count 12 --start C --prefer auto --anchor nearest --mode major \
-            --midi --bpm 96
+            --pdf --midi --bpm 96
 
-      # ➕ Collect .midi/.mid into out/
-      - name: Stage outputs
+      - name: Fetch Salamander Yamaha Piano soundfont
         run: |
-          mkdir -p out
-          mv jazz_scales_abjad_*.ly out/ || true
-          mv jazz_scales_abjad_*.pdf out/ || true
-          mv jazz_scales_abjad_*.midi out/ 2>/dev/null || true
-          mv jazz_scales_abjad_*.mid  out/ 2>/dev/null || true
-          python -m jazz_scales.cover
-          python -m jazz_scales.book
+          bash src/jazz_scales/fetch_salamander_soundfont.sh
 
-      # ➕ Include MIDI files in the single ZIP
-      - name: Package single download (ZIP)
+      - name: Render WAV audio from MIDI
+        env:
+          SALAMANDER_SF2: ${{ github.workspace }}/.cache/soundfonts/SalamanderGrandPiano-SF2-V3+20200602.sf2
         run: |
-          cd out
-          zip -r jazz-scales-pdf.zip \
-            jazz_scales_abjad_*.pdf \
-            cover.pdf toc.pdf Jazz-Scales-Book.pdf
-          zip -r jazz-scales-sound.zip \
-            jazz_scales_abjad_*.midi \
-            jazz_scales_abjad_*.mid
+          bash src/jazz_scales/render_wavs.sh build build
 
-      # Only publish a Release on tag builds
+      - name: Build cover and merged book
+        env:
+          MPLCONFIGDIR: ${{ github.workspace }}/.matplotlib
+          MPLBACKEND: Agg
+        run: |
+          python -m jazz_scales.cover --output-dir build
+          python -m jazz_scales.book --output-dir build
+
       - name: Create GitHub Release & upload assets
         if: ${{ github.ref_type == 'tag' }}
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            out/jazz-scales-pdf.zip
-            out/jazz-scales-sound.zip
-            out/Jazz-Scales-Book.pdf
+            build/Jazz-Scales-Book.pdf
+            build/jazz_scales_abjad_*.pdf
+            build/jazz_scales_abjad_*.wav
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Optional: CI artifacts on non-tag runs (remove if you don't want them)
       - name: Upload CI artifacts (non-release runs)
         if: ${{ github.ref_type != 'tag' }}
         uses: actions/upload-artifact@v4
         with:
           name: jazz-scales-ci
+          if-no-files-found: error
           path: |
-            out/jazz-scales-pdf.zip
-            out/jazz-scales-sound.zip
-            out/Jazz-Scales-Book.pdf
+            build/Jazz-Scales-Book.pdf
+            build/jazz_scales_abjad_*.pdf
+            build/jazz_scales_abjad_*.wav

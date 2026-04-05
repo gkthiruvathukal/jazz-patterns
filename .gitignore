@@ -1,28 +1,24 @@
-# Virtual environments
 .venv/
+.matplotlib/
+.cache/
 
-# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
 dist/
 build/
 
-# Editors
 .idea/
 .vscode/
 *.swp
 
-# OS
 .DS_Store
 Thumbs.db
 
-# Tool caches
 .ruff_cache/
 
-# Generated outputs (LilyPond, PDF, MIDI)
-*.ly
-*.pdf
-*.midi
-*.mid
-out/
+jazz_scales_abjad_*.ly
+jazz_scales_abjad_*.pdf
+jazz_scales_abjad_*.midi
+jazz_scales_abjad_*.mid
+jazz_scales_abjad_*.wav

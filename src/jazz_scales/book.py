@@ -1,10 +1,8 @@
+import argparse
 from pathlib import Path
 from pypdf import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
-OUT = Path("out")
-OUT.mkdir(exist_ok=True)
 
 def pretty_from_filename(fn: str) -> str:
     base = Path(fn).stem  # jazz_scales_abjad_<key>
@@ -14,14 +12,14 @@ def pretty_from_filename(fn: str) -> str:
     key_part = key_part.replace("sharp", "#").replace("flat", "b")
     return key_part
 
-def collect_key_pdfs():
-    files = sorted([str(p) for p in OUT.glob("jazz_scales_abjad_*.pdf")])
+def collect_key_pdfs(out_dir: Path):
+    files = sorted([str(p) for p in out_dir.glob("jazz_scales_abjad_*.pdf")])
     # Alphabetical by pretty key
     files = sorted(files, key=lambda f: pretty_from_filename(f))
     return files
 
-def make_toc(entries):
-    toc_path = OUT / "toc.pdf"
+def make_toc(entries, out_dir: Path):
+    toc_path = out_dir / "toc.pdf"
     c = canvas.Canvas(str(toc_path), pagesize=letter)
     W, H = letter
     y = H - 72
@@ -41,13 +39,20 @@ def make_toc(entries):
     return toc_path
 
 def main():
-    cover = OUT / "cover.pdf"
-    if not cover.exists():
-        raise FileNotFoundError("Missing cover.pdf in out/ — run make_cover.py first.")
+    ap = argparse.ArgumentParser(description="Merge per-key PDFs into the combined jazz scales book.")
+    ap.add_argument("--output-dir", type=Path, default=Path("build"),
+                    help="Directory containing per-key PDFs and receiving the merged book (default: build).")
+    args = ap.parse_args()
+    out_dir = args.output_dir
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-    key_pdfs = collect_key_pdfs()
+    cover = out_dir / "cover.pdf"
+    if not cover.exists():
+        raise FileNotFoundError(f"Missing cover.pdf in {out_dir}/ — run make_cover.py first.")
+
+    key_pdfs = collect_key_pdfs(out_dir)
     if not key_pdfs:
-        raise FileNotFoundError("No key PDFs found in out/ (expected jazz_scales_abjad_*.pdf).")
+        raise FileNotFoundError(f"No key PDFs found in {out_dir}/ (expected jazz_scales_abjad_*.pdf).")
 
     writer = PdfWriter()
     # Add cover
@@ -58,7 +63,7 @@ def main():
     # Placeholder TOC to compute page numbers
     toc_entries = []
     current_display_page = len(writer.pages) + 1  # 1-based display numbering
-    toc_dummy_path = make_toc([])
+    toc_dummy_path = make_toc([], out_dir)
     toc_dummy = PdfReader(str(toc_dummy_path))
     for p in toc_dummy.pages:
         writer.add_page(p)
@@ -75,7 +80,7 @@ def main():
         current_display_page += len(r.pages)
 
     # Rebuild TOC with real entries
-    toc_path = make_toc(toc_entries)
+    toc_path = make_toc(toc_entries, out_dir)
     final = PdfWriter()
     # cover
     for p in cover_reader.pages:
@@ -95,11 +100,10 @@ def main():
     for fp, idx in zip(key_pdfs, start_indices):
         final.add_outline_item(f"Key of {pretty_from_filename(fp)}", idx + shift)
 
-    book = OUT / "Jazz-Scales-Book.pdf"
+    book = out_dir / "Jazz-Scales-Book.pdf"
     with open(book, "wb") as f:
         final.write(f)
     print("Wrote", book)
 
 if __name__ == "__main__":
     main()
-
