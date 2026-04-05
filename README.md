@@ -80,6 +80,12 @@ src/jazz_scales/
 
 Run from the repo root.
 
+Full local build with venv bootstrap:
+
+```bash
+bash build.sh
+```
+
 Generate all keys:
 
 ```bash
