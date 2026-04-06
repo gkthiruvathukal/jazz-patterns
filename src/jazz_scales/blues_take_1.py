@@ -264,13 +264,18 @@ def write_blues_lilypond(scores, title: str, outfile: str, make_pdf: bool = Fals
     paper = abjad.Block(
         "paper",
         items=[
-            f"system-system-spacing.basic-distance = #{SYSTEM_DISTANCE}",
-            f"top-system-spacing.basic-distance = #{TOP_SYSTEM_DISTANCE}",
+            "page-breaking = #ly:one-page-breaking",
+            "ragged-bottom = ##t",
+            "ragged-last-bottom = ##t",
+            "system-system-spacing.basic-distance = #14",
+            "top-system-spacing.basic-distance = #12",
         ],
     )
 
     items = [header, paper]
-    for chorus_name, score, footnotes in scores:
+    for index, (chorus_name, score, footnotes) in enumerate(scores):
+        if index:
+            items.append(r"\pageBreak")
         items.append(abjad.Block("markup", items=[rf'\fill-line {{ \fontsize #2 \bold "{chorus_name}" }}']))
         layout_block = abjad.Block("layout", items=["indent = 0", "short-indent = 0"])
         score_block = abjad.Block("score", items=[score, layout_block])
