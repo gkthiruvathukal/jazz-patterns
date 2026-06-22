@@ -1,4 +1,4 @@
-name: Build Jazz Scales Book
+name: Build Jazz Patterns
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  scales:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,9 +38,10 @@ jobs:
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          pip install .
+          pip install ./common ./projects/scales
 
       - name: Generate all keys (LY, PDF & MIDI)
+        working-directory: projects/scales
         run: |
           python -m jazz_scales.generator \
             --output-dir build \
@@ -49,15 +50,16 @@ jobs:
 
       - name: Fetch Salamander Yamaha Piano soundfont
         run: |
-          bash src/jazz_scales/fetch_salamander_soundfont.sh
+          bash projects/scales/src/jazz_scales/fetch_salamander_soundfont.sh
 
       - name: Render WAV audio from MIDI
         env:
           SALAMANDER_SF2: ${{ github.workspace }}/.cache/soundfonts/SalamanderGrandPiano-SF2-V3+20200602.sf2
         run: |
-          bash src/jazz_scales/render_wavs.sh build build
+          bash projects/scales/src/jazz_scales/render_wavs.sh projects/scales/build projects/scales/build
 
       - name: Build cover and merged book
+        working-directory: projects/scales
         env:
           MPLCONFIGDIR: ${{ github.workspace }}/.matplotlib
           MPLBACKEND: Agg
@@ -65,14 +67,14 @@ jobs:
           python -m jazz_scales.cover --output-dir build
           python -m jazz_scales.book --output-dir build
 
-      - name: Create GitHub Release & upload assets
+      - name: Create GitHub Release & upload scales assets
         if: ${{ github.ref_type == 'tag' }}
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            build/Jazz-Scales-Book.pdf
-            build/jazz_scales_abjad_*.pdf
-            build/jazz_scales_abjad_*.wav
+            projects/scales/build/Jazz-Scales-Book.pdf
+            projects/scales/build/jazz_scales_abjad_*.pdf
+            projects/scales/build/jazz_scales_abjad_*.wav
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -84,6 +86,48 @@ jobs:
           name: jazz-scales-ci
           if-no-files-found: error
           path: |
-            build/Jazz-Scales-Book.pdf
-            build/jazz_scales_abjad_*.pdf
-            build/jazz_scales_abjad_*.wav
+            projects/scales/build/Jazz-Scales-Book.pdf
+            projects/scales/build/jazz_scales_abjad_*.pdf
+            projects/scales/build/jazz_scales_abjad_*.wav
+
+  blues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lilypond
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install ./common ./projects/blues
+
+      - name: Generate blues studies (LY, PDF & MIDI)
+        working-directory: projects/blues
+        run: |
+          python -m jazz_blues.blues_take_1 \
+            --keys Bb F C \
+            --output-dir build \
+            --pdf --midi --bpm 112
+
+      # Blues builds on every push/PR (and on tags, to verify it still builds) but
+      # is intentionally NOT attached to GitHub Releases — it is uploaded only as a
+      # CI artifact on non-tag runs.
+      - name: Upload CI artifacts (non-release runs)
+        if: ${{ github.ref_type != 'tag' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: jazz-blues-ci
+          if-no-files-found: error
+          path: |
+            projects/blues/build/blues_take_1_*.pdf

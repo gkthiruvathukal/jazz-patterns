@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jazz-common"
+version = "0.1.0"
+description = "Shared pitch-class, note-naming, and LilyPond helpers for jazz-patterns"
+requires-python = ">=3.9"
+authors = [
+    { name = "George K. Thiruvathukal" },
+]
+dependencies = [
+    "abjad>=3.31",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jazz_common"]

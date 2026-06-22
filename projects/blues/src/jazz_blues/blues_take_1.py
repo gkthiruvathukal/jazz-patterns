@@ -5,12 +5,11 @@ from pathlib import Path
 
 import abjad
 
-from .generator import (
+from jazz_common.lilypond import compile_with_lilypond
+from jazz_common.pitch import (
     NAME_TO_PC,
-    SYSTEM_DISTANCE,
-    TOP_SYSTEM_DISTANCE,
-    _compile_with_lilypond,
     auto_prefer_for_pc,
+    pc_to_lily_key,
     pc_to_name,
     sanitize_key_for_filename,
 )
@@ -239,8 +238,7 @@ def build_blues_score(key_name: str, chorus: dict, bpm: int = 112):
 
     rh_first = abjad.select.leaf(rh_voice, 0)
 
-    key_lily = {"flats": {0: "c", 1: "df", 2: "d", 3: "ef", 4: "e", 5: "f", 6: "gf", 7: "g", 8: "af", 9: "a", 10: "bf", 11: "b"},
-                "sharps": {0: "c", 1: "cs", 2: "d", 3: "ds", 4: "e", 5: "f", 6: "fs", 7: "g", 8: "gs", 9: "a", 10: "as", 11: "b"}}[prefer_names][key_pc]
+    key_lily = pc_to_lily_key(key_pc, prefer_names)
 
     abjad.attach(abjad.TimeSignature((4, 4)), rh_first)
     abjad.attach(abjad.Clef("treble"), rh_first)
@@ -300,7 +298,7 @@ def write_blues_lilypond(scores, title: str, outfile: str, make_pdf: bool = Fals
         "stderr_tail": "",
     }
     if make_pdf or midi:
-        result.update(_compile_with_lilypond(Path(outfile), want_pdf=make_pdf, want_midi=midi))
+        result.update(compile_with_lilypond(Path(outfile), want_pdf=make_pdf, want_midi=midi))
     return result
 
 

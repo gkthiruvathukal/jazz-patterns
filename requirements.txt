@@ -1,4 +1,0 @@
-abjad==3.31
-matplotlib
-pypdf
-reportlab
