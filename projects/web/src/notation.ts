@@ -1,5 +1,7 @@
-// Render a scale chart on a single treble stave using VexFlow.
-import { Renderer, Stave, StaveNote, Accidental, Formatter } from "vexflow";
+// Render a scale chart on a treble stave using VexFlow: a 4/4 time signature,
+// notes grouped into measures (padded with rests like the print book), and the
+// W/H/m3 step labels written under each note.
+import { Renderer, Stave, StaveNote, Accidental, Formatter, Annotation, BarNote, Voice } from "vexflow";
 import type { Chart } from "./data/scales";
 import type { NoteValue } from "./player";
 
@@ -12,28 +14,57 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
   container.innerHTML = "";
 
   const notes = opts.retrograde ? [...chart.notes].reverse() : chart.notes;
-  const duration = opts.noteValue === "quarter" ? "4" : "8";
+  const intervals = opts.retrograde ? [...chart.intervals].reverse() : chart.intervals;
+  // First note has no preceding interval ("-"), then one label per step.
+  const labels = ["-", ...intervals];
 
-  const noteWidth = 56;
-  const width = Math.max(360, notes.length * noteWidth + 90);
-  const height = 150;
+  const durationBase = opts.noteValue === "quarter" ? "4" : "8";
+  const slotsPerMeasure = opts.noteValue === "quarter" ? 4 : 8; // 4/4
+  const totalSlots = Math.ceil(notes.length / slotsPerMeasure) * slotsPerMeasure;
+
+  const tickables = [];
+  for (let i = 0; i < totalSlots; i++) {
+    if (i > 0 && i % slotsPerMeasure === 0) {
+      tickables.push(new BarNote()); // barline between measures
+    }
+    if (i < notes.length) {
+      const n = notes[i];
+      const key = `${n.name.toLowerCase()}${n.accidental}/${n.octave}`;
+      const staveNote = new StaveNote({ keys: [key], duration: durationBase });
+      if (n.accidental) {
+        staveNote.addModifier(new Accidental(n.accidental), 0);
+      }
+      const label = labels[i];
+      if (label) {
+        const annotation = new Annotation(label);
+        annotation.setVerticalJustification(Annotation.VerticalJustify.BOTTOM);
+        staveNote.addModifier(annotation, 0);
+      }
+      tickables.push(staveNote);
+    } else {
+      // Pad the final measure with rests so it is complete in 4/4.
+      tickables.push(new StaveNote({ keys: ["b/4"], duration: `${durationBase}r` }));
+    }
+  }
+
+  const noteWidth = 48;
+  const width = Math.max(380, totalSlots * noteWidth + 130);
+  const height = 200;
 
   const renderer = new Renderer(container, Renderer.Backends.SVG);
   renderer.resize(width, height);
   const context = renderer.getContext();
 
-  const stave = new Stave(10, 30, width - 20);
+  const stave = new Stave(10, 25, width - 20);
   stave.addClef("treble");
+  stave.addTimeSignature("4/4");
   stave.setContext(context).draw();
 
-  const staveNotes = notes.map((n) => {
-    const key = `${n.name.toLowerCase()}${n.accidental}/${n.octave}`;
-    const staveNote = new StaveNote({ keys: [key], duration });
-    if (n.accidental) {
-      staveNote.addModifier(new Accidental(n.accidental), 0);
-    }
-    return staveNote;
-  });
-
-  Formatter.FormatAndDraw(context, stave, staveNotes);
+  // SOFT mode lets a single voice carry rests, barlines, and multiple measures
+  // without strict tick-total checks.
+  const voice = new Voice({ numBeats: 4, beatValue: 4 });
+  voice.setMode(Voice.Mode.SOFT);
+  voice.addTickables(tickables);
+  new Formatter().joinVoices([voice]).format([voice], width - 90);
+  voice.draw(context, stave);
 }
