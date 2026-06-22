@@ -45,6 +45,7 @@ const scaleSelect = el<HTMLSelectElement>("scale");
 const instrumentSelect = el<HTMLSelectElement>("instrument");
 const bpmInput = el<HTMLInputElement>("bpm");
 const noteValueSelect = el<HTMLSelectElement>("note-value");
+const preferSelect = el<HTMLSelectElement>("prefer");
 const retrogradeInput = el<HTMLInputElement>("retrograde");
 const playButton = el<HTMLButtonElement>("play");
 const stopButton = el<HTMLButtonElement>("stop");
@@ -89,6 +90,7 @@ function render(): void {
   renderChart(notation, chart, {
     noteValue: noteValueSelect.value as NoteValue,
     retrograde,
+    prefer: preferSelect.value as "auto" | "sharps" | "flats",
   });
 }
 
@@ -121,6 +123,7 @@ stopButton.addEventListener("click", () => {
 keySelect.addEventListener("change", render);
 scaleSelect.addEventListener("change", render);
 noteValueSelect.addEventListener("change", render);
+preferSelect.addEventListener("change", render);
 retrogradeInput.addEventListener("change", render);
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint

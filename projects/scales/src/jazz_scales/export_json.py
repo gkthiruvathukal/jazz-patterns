@@ -30,12 +30,19 @@ MIDDLE_C_MIDI = 60
 
 
 def note_from_midi(midi: int, prefer: str) -> dict:
-    spelled = (FLAT_NAMES if prefer == "flats" else SHARP_NAMES)[midi % 12]
+    pc = midi % 12
+    flat_spelled = FLAT_NAMES[pc]
+    sharp_spelled = SHARP_NAMES[pc]
+    spelled = flat_spelled if prefer == "flats" else sharp_spelled
     return {
         "name": spelled[0],
         "accidental": spelled[1:],  # "", "#", or "b"
         "octave": midi // 12 - 1,   # scientific pitch notation
         "midi": midi,
+        "flat_name": flat_spelled[0],
+        "flat_accidental": flat_spelled[1:],
+        "sharp_name": sharp_spelled[0],
+        "sharp_accidental": sharp_spelled[1:],
     }
 
 

@@ -8,6 +8,7 @@ import type { NoteValue } from "./player";
 export interface RenderOptions {
   noteValue: NoteValue;
   retrograde: boolean;
+  prefer: "auto" | "sharps" | "flats";
 }
 
 export function renderChart(container: HTMLDivElement, chart: Chart, opts: RenderOptions): void {
@@ -29,10 +30,12 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
     }
     if (i < notes.length) {
       const n = notes[i];
-      const key = `${n.name.toLowerCase()}${n.accidental}/${n.octave}`;
+      const noteName = opts.prefer === "sharps" ? n.sharp_name : opts.prefer === "flats" ? n.flat_name : n.name;
+      const noteAcc  = opts.prefer === "sharps" ? n.sharp_accidental : opts.prefer === "flats" ? n.flat_accidental : n.accidental;
+      const key = `${noteName.toLowerCase()}${noteAcc}/${n.octave}`;
       const staveNote = new StaveNote({ keys: [key], duration: durationBase });
-      if (n.accidental) {
-        staveNote.addModifier(new Accidental(n.accidental), 0);
+      if (noteAcc) {
+        staveNote.addModifier(new Accidental(noteAcc), 0);
       }
       const label = labels[i];
       if (label) {

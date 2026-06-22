@@ -3,10 +3,14 @@
 import data from "./scales.json";
 
 export interface Note {
-  name: string;        // letter, e.g. "C", "E"
-  accidental: string;  // "", "#", or "b"
-  octave: number;      // scientific pitch notation, e.g. 4
+  name: string;           // letter, e.g. "C", "E" (auto/key-based spelling)
+  accidental: string;     // "", "#", or "b"
+  octave: number;         // scientific pitch notation, e.g. 4
   midi: number;
+  sharp_name: string;
+  sharp_accidental: string;
+  flat_name: string;
+  flat_accidental: string;
 }
 
 export interface Chart {
