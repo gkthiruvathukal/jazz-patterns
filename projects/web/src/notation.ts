@@ -67,4 +67,12 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
   voice.addTickables(tickables);
   new Formatter().joinVoices([voice]).format([voice], width - 90);
   voice.draw(context, stave);
+
+  // Make the SVG scale to fit its container instead of overflowing on narrow screens.
+  const svg = container.querySelector("svg");
+  if (svg) {
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.setAttribute("width", "100%");
+    svg.removeAttribute("height");
+  }
 }
