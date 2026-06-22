@@ -19,6 +19,27 @@ function el<T extends HTMLElement>(id: string): T {
   return node as T;
 }
 
+// Theme toggle — defaults to system preference, persists in localStorage.
+const themeToggle = el<HTMLButtonElement>("theme-toggle");
+const root = document.documentElement;
+
+function applyTheme(dark: boolean): void {
+  root.dataset.theme = dark ? "dark" : "light";
+  themeToggle.textContent = dark ? "☀️" : "🌙";
+}
+
+const storedTheme = localStorage.getItem("theme");
+const prefersDark = storedTheme
+  ? storedTheme === "dark"
+  : window.matchMedia("(prefers-color-scheme: dark)").matches;
+applyTheme(prefersDark);
+
+themeToggle.addEventListener("click", () => {
+  const dark = root.dataset.theme !== "dark";
+  applyTheme(dark);
+  localStorage.setItem("theme", dark ? "dark" : "light");
+});
+
 const keySelect = el<HTMLSelectElement>("key");
 const scaleSelect = el<HTMLSelectElement>("scale");
 const instrumentSelect = el<HTMLSelectElement>("instrument");

@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jazz Scales — Interactive</title>
     <style>
-      :root { color-scheme: light dark; }
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --fg: #111111;
+        --notation-bg: #ffffff;
+        --control-bg: #f5f5f5;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #1a1a1a;
+        --fg: #e8e8e8;
+        --notation-bg: #ffffff;
+        --control-bg: #2a2a2a;
+      }
       body {
         font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
         margin: 0; padding: 1.5rem;
         max-width: 920px; margin-inline: auto;
+        background: var(--bg); color: var(--fg);
       }
       h1 { font-size: 1.4rem; margin: 0 0 1rem; }
       .controls {
@@ -18,13 +32,14 @@
       }
       .field { display: flex; flex-direction: column; gap: 0.25rem; }
       .field label { font-size: 0.8rem; opacity: 0.75; }
-      select, input[type="number"] { padding: 0.35rem 0.4rem; font-size: 1rem; }
+      select, input[type="number"] { padding: 0.35rem 0.4rem; font-size: 1rem; background: var(--control-bg); color: var(--fg); border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; }
       .checkbox { flex-direction: row; align-items: center; gap: 0.4rem; }
       .buttons { display: flex; gap: 0.5rem; }
       button { padding: 0.45rem 1.1rem; font-size: 1rem; cursor: pointer; }
+      #theme-toggle { padding: 0.3rem 0.7rem; font-size: 0.95rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); margin-left: auto; align-self: flex-start; }
       #now-playing { font-size: 1.1rem; margin: 0.5rem 0; min-height: 1.4em; }
       #now-playing .chord { font-weight: 700; }
-      #notation { overflow-x: auto; background: #fff; border-radius: 6px; }
+      #notation { overflow-x: auto; background: var(--notation-bg); border-radius: 6px; }
       #status { font-size: 0.85rem; opacity: 0.7; min-height: 1.2em; margin-top: 0.5rem; }
     </style>
   </head>
@@ -63,6 +78,7 @@
         <button id="play" type="button">Play</button>
         <button id="stop" type="button">Stop</button>
       </div>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode">☀️</button>
     </div>
 
     <p id="now-playing"></p>
