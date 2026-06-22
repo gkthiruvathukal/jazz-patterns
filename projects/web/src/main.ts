@@ -102,4 +102,7 @@ scaleSelect.addEventListener("change", render);
 noteValueSelect.addEventListener("change", render);
 retrogradeInput.addEventListener("change", render);
 
+// Initial render. VexFlow loads its music font asynchronously, so the first paint
+// can be wrong until the font is ready — re-render once fonts have settled.
 render();
+document.fonts.ready.then(render);
