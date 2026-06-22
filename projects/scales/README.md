@@ -21,13 +21,16 @@ doi = "10.6084/m9.figshare.29887028.v5"
 
 ## What Gets Generated
 
-- One 2-measure system per pattern: forward bar, then retrograde bar
+- Two book organizations (`--sections`, default both):
+  - **By key** — one chapter per key showing all scales; each pattern is a 2-measure system (forward bar, then retrograde bar)
+  - **By scale** — one chapter per scale showing it across all 12 keys, each key a self-contained 2-measure "movement"
 - Beamed 8th notes
 - Scale name and compatible chord symbol above the line
-- Step pattern below the forward form
+- Step pattern (W / H / W+H / m3) below **both** the forward and retrograde forms
 - Key-aware respelling so flat-signature charts use flats and sharp-signature charts use sharps
-- Per-key `.ly`, `.pdf`, `.midi`, and `.wav` outputs in `build/`
+- Per-key `.ly`, `.pdf`, `.midi`, and `.wav` outputs in `build/`; per-scale `.pdf` chapters
 - Combined book assets: `build/cover.pdf`, `build/toc.pdf`, `build/Jazz-Scales-Book.pdf`
+- JSON export of the resolved model for the web app (`jazz_scales.export_json`)
 
 Included scales:
 Major (Ionian), Natural Minor (Aeolian), Harmonic Minor, Melodic Minor (Jazz), Mixolydian, Dorian, Phrygian, Lydian, Locrian, Locrian ♮2 (Half-Dim #2), Whole Tone, Octatonic (Half–Whole), Octatonic (Whole–Half), Blues (major), Blues (minor), Pentatonic Major, Pentatonic Minor, Altered, Lydian Dominant, Bebop Dominant, Mixolydian b6, Minor Pentatonic b5, Dorian b2, Bebop Major, Lydian Augmented, Dominant Pentatonic.
@@ -116,10 +119,17 @@ Common generator options:
 - `--prefer` accidental style: `auto`, `flats`, or `sharps`
 - `--anchor` register anchoring: `nearest`, `up`, or `down`
 - `--mode` key-signature mode: `major` or `minor`
+- `--sections` which chapters to generate: `key`, `scale`, or `both` (default `both`)
 - `--pdf` compile PDFs
 - `--midi` compile MIDI
 - `--bpm` set print/MIDI tempo
 - `--output-dir` destination for generated files, default `build`
+
+Export the resolved model as JSON for the web app:
+
+```bash
+python -m jazz_scales.export_json --output ../web/src/data/scales.json
+```
 
 ## Notes
 

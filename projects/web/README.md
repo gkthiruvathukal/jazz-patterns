@@ -6,6 +6,12 @@ hear it. Built with Vite + TypeScript, [VexFlow](https://vexflow.com) for
 notation, and [smplr](https://github.com/danigb/smplr) for sampled-instrument
 playback.
 
+**Live:** https://gkt.sh/jazz-patterns/
+
+The notation shows a 4/4 time signature with the scale grouped into measures
+(short scales padded with rests, like the print book) and the W / H / W+H / m3
+step labels written under each note — matching the Python/Abjad book.
+
 ## Data
 
 The scale data is **generated from the Python model** (the single source of
@@ -40,5 +46,12 @@ npm run build      # type check + vite build -> dist/
 npm run preview    # serve the production build
 ```
 
-The build is fully static (`dist/`) and can be hosted anywhere (e.g. GitHub
-Pages later). Instrument samples are fetched on demand from a CDN.
+The build is fully static (`dist/`); instrument samples are fetched on demand
+from a CDN. `vite.config.ts` sets `base: "./"` so it works under a subpath.
+
+## Deploy
+
+`.github/workflows/deploy-web.yml` builds this app and deploys `dist/` to GitHub
+Pages (Actions source) automatically on pushes to `main` that touch
+`projects/web` (and on manual dispatch). The site is served under the verified
+`gkt.sh` domain at https://gkt.sh/jazz-patterns/.

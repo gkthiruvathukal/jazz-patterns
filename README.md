@@ -1,6 +1,8 @@
 # Jazz Patterns
 
-A monorepo of jazz practice material generated with [Abjad](https://abjad.github.io/) and [LilyPond](https://lilypond.org/). It contains two independent subprojects plus a small shared helper package.
+A monorepo of jazz practice material: static notation/audio generated with [Abjad](https://abjad.github.io/) and [LilyPond](https://lilypond.org/), plus an interactive web app. It contains three independent subprojects and a small shared helper package.
+
+**Interactive app (live):** https://gkt.sh/jazz-patterns/
 
 ```text
 jazz-patterns/
@@ -29,11 +31,13 @@ bash projects/blues/build.sh
 
 Each Python script bootstraps a local `.venv`, installs `jazz-common` and the subproject, and writes outputs to that subproject's `build/` directory.
 
-**Web** (interactive app):
+**Web** (interactive app — [live at gkt.sh/jazz-patterns](https://gkt.sh/jazz-patterns/)):
 
 ```bash
 cd projects/web && npm install && npm run dev
 ```
+
+The web app auto-deploys to GitHub Pages on pushes to `main` that touch `projects/web` (`.github/workflows/deploy-web.yml`).
 
 See each subproject's README for requirements, options, and details:
 
@@ -43,10 +47,11 @@ See each subproject's README for requirements, options, and details:
 
 ## Requirements
 
-- Python 3.9+ and Abjad 3.31+
+- Python 3.9+ and Abjad 3.31+ (scales, blues)
 - LilyPond (PDF / MIDI); FluidSynth (WAV, scales only)
 - macOS: `brew install lilypond fluidsynth`
 - Ubuntu/Debian: `sudo apt-get install -y lilypond fluidsynth`
+- Node.js 18+ (web app only)
 
 ## Citation
 
