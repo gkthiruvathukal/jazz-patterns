@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jazz Scales — Interactive</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        margin: 0; padding: 1.5rem;
+        max-width: 920px; margin-inline: auto;
+      }
+      h1 { font-size: 1.4rem; margin: 0 0 1rem; }
+      .controls {
+        display: flex; flex-wrap: wrap; gap: 1rem 1.25rem;
+        align-items: flex-end; margin-bottom: 1.25rem;
+      }
+      .field { display: flex; flex-direction: column; gap: 0.25rem; }
+      .field label { font-size: 0.8rem; opacity: 0.75; }
+      select, input[type="number"] { padding: 0.35rem 0.4rem; font-size: 1rem; }
+      .checkbox { flex-direction: row; align-items: center; gap: 0.4rem; }
+      .buttons { display: flex; gap: 0.5rem; }
+      button { padding: 0.45rem 1.1rem; font-size: 1rem; cursor: pointer; }
+      #now-playing { font-size: 1.1rem; margin: 0.5rem 0; min-height: 1.4em; }
+      #now-playing .chord { font-weight: 700; }
+      #notation { overflow-x: auto; background: #fff; border-radius: 6px; }
+      #status { font-size: 0.85rem; opacity: 0.7; min-height: 1.2em; margin-top: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Jazz Scales — Interactive</h1>
+
+    <div class="controls">
+      <div class="field">
+        <label for="key">Key</label>
+        <select id="key"></select>
+      </div>
+      <div class="field">
+        <label for="scale">Scale</label>
+        <select id="scale"></select>
+      </div>
+      <div class="field">
+        <label for="instrument">Sound</label>
+        <select id="instrument"></select>
+      </div>
+      <div class="field">
+        <label for="bpm">Tempo (BPM, quarter note)</label>
+        <input id="bpm" type="number" min="40" max="240" step="1" value="96" />
+      </div>
+      <div class="field">
+        <label for="note-value">Note value</label>
+        <select id="note-value">
+          <option value="eighth" selected>Eighth notes</option>
+          <option value="quarter">Quarter notes</option>
+        </select>
+      </div>
+      <div class="field checkbox">
+        <input id="retrograde" type="checkbox" />
+        <label for="retrograde">Retrograde (play backwards)</label>
+      </div>
+      <div class="buttons">
+        <button id="play" type="button">Play</button>
+        <button id="stop" type="button">Stop</button>
+      </div>
+    </div>
+
+    <p id="now-playing"></p>
+    <div id="notation"></div>
+    <p id="status"></p>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

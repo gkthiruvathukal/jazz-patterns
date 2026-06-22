@@ -8,6 +8,9 @@ __pycache__/
 dist/
 build/
 
+node_modules/
+*.tsbuildinfo
+
 .idea/
 .vscode/
 *.swp

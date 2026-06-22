@@ -8,9 +8,10 @@ jazz-patterns/
   projects/
     scales/          jazz_scales — multi-key scale charts (forward + retrograde) and a merged book
     blues/           jazz_blues  — annotated 12-bar blues studies
+    web/             interactive client-side web app (TypeScript + Vite)
 ```
 
-Each subproject has its own `pyproject.toml`, `build.sh`, and CI job, and depends on `jazz_common` (installed from the local path). Neither subproject depends on the other.
+The Python subprojects each have their own `pyproject.toml`, `build.sh`, and CI job, and depend on `jazz_common` (installed from the local path). The `web` app is an independent TypeScript subproject (Vite) that renders and plays a JSON exported from the Python scales model. No subproject depends on another's code.
 
 ## Build
 
@@ -26,10 +27,19 @@ bash projects/scales/build.sh
 bash projects/blues/build.sh
 ```
 
-Each script bootstraps a local `.venv`, installs `jazz-common` and the subproject, and writes outputs to that subproject's `build/` directory. See each subproject's README for requirements, options, and details:
+Each Python script bootstraps a local `.venv`, installs `jazz-common` and the subproject, and writes outputs to that subproject's `build/` directory.
+
+**Web** (interactive app):
+
+```bash
+cd projects/web && npm install && npm run dev
+```
+
+See each subproject's README for requirements, options, and details:
 
 - [`projects/scales/README.md`](projects/scales/README.md)
 - [`projects/blues/README.md`](projects/blues/README.md)
+- [`projects/web/README.md`](projects/web/README.md)
 
 ## Requirements
 

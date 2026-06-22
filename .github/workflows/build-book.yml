@@ -131,3 +131,36 @@ jobs:
           if-no-files-found: error
           path: |
             projects/blues/build/blues_take_1_*.pdf
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: projects/web/package-lock.json
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload built site (non-release runs)
+        if: ${{ github.ref_type != 'tag' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: jazz-web-ci
+          if-no-files-found: error
+          path: projects/web/dist
