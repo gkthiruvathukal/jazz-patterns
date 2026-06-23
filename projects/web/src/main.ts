@@ -80,6 +80,14 @@ const octaveSelect = el<HTMLSelectElement>("octave");
 const bpmInput = el<HTMLInputElement>("bpm");
 const preferSelect = el<HTMLSelectElement>("prefer");
 const retrogradeInput = el<HTMLInputElement>("retrograde");
+const swingInput = el<HTMLInputElement>("swing");
+const swingNumInput = el<HTMLInputElement>("swing-num");
+const swingDenInput = el<HTMLInputElement>("swing-den");
+const swingRatioVal = el<HTMLSpanElement>("swing-ratio-val");
+const accentInput = el<HTMLInputElement>("accent");
+const accentVal = el<HTMLSpanElement>("accent-val");
+const downbeatInput = el<HTMLInputElement>("downbeat");
+const downbeatVal = el<HTMLSpanElement>("downbeat-val");
 const playButton = el<HTMLButtonElement>("play");
 const stopButton = el<HTMLButtonElement>("stop");
 const loopButton = el<HTMLButtonElement>("loop");
@@ -159,6 +167,10 @@ function currentSpec(): SequenceSpec | undefined {
     instrument: instrumentSelect.value,
     loop: loopOn,
     octaveShift: Number(octaveSelect.value),
+    swing: swingInput.checked,
+    swingRatio: Number(swingNumInput.value) / Number(swingDenInput.value),
+    accent: Number(accentInput.value),
+    downbeat: Number(downbeatInput.value),
   };
 }
 
@@ -232,6 +244,34 @@ instrumentSelect.addEventListener("change", () => {
 octaveSelect.addEventListener("change", stop);
 bpmInput.addEventListener("change", stop);
 preferSelect.addEventListener("change", render); // spelling only — no audio impact
+
+// Swing: checkbox enables the ratio/accent sliders; all three are audio-only.
+function syncSwingEnabled(): void {
+  swingNumInput.disabled = !swingInput.checked;
+  swingDenInput.disabled = !swingInput.checked;
+  accentInput.disabled = !swingInput.checked;
+  downbeatInput.disabled = !swingInput.checked;
+}
+swingInput.addEventListener("change", () => {
+  syncSwingEnabled();
+  stop();
+});
+function updateSwingRatioLabel(): void {
+  swingRatioVal.textContent = `${Number(swingNumInput.value).toFixed(1)} : ${Number(swingDenInput.value).toFixed(1)}`;
+}
+swingNumInput.addEventListener("input", updateSwingRatioLabel);
+swingDenInput.addEventListener("input", updateSwingRatioLabel);
+accentInput.addEventListener("input", () => {
+  accentVal.textContent = accentInput.value;
+});
+downbeatInput.addEventListener("input", () => {
+  downbeatVal.textContent = downbeatInput.value;
+});
+swingNumInput.addEventListener("change", stop);
+swingDenInput.addEventListener("change", stop);
+accentInput.addEventListener("change", stop);
+downbeatInput.addEventListener("change", stop);
+syncSwingEnabled(); // sliders start disabled (swing off by default)
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint
 // can be wrong until the font is ready — re-render once fonts have settled.

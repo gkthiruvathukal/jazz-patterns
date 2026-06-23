@@ -43,6 +43,9 @@
       .field label { font-size: 0.8rem; opacity: 0.75; }
       select, input[type="number"] { padding: 0.35rem 0.4rem; font-size: 1rem; background: var(--control-bg); color: var(--fg); border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; }
       .checkbox { flex-direction: row; align-items: center; gap: 0.4rem; }
+      input[type="range"] { width: 150px; accent-color: var(--fg); }
+      input[type="range"]:disabled { opacity: 0.4; }
+      .field:has(input:disabled) label { opacity: 0.5; }
       .buttons { display: flex; gap: 0.5rem; }
       button { padding: 0.45rem 1.1rem; font-size: 1rem; cursor: pointer; }
       #loop { border: 1px solid color-mix(in srgb, var(--fg) 40%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); }
@@ -100,6 +103,26 @@
       <div class="field checkbox">
         <input id="retrograde" type="checkbox" />
         <label for="retrograde">Retrograde (play backwards)</label>
+      </div>
+      <div class="field checkbox">
+        <input id="swing" type="checkbox" />
+        <label for="swing">Swing eighths</label>
+      </div>
+      <div class="field">
+        <label for="swing-num">Swing ratio (<span id="swing-ratio-val">2.0 : 1.0</span>)</label>
+        <input id="swing-num" type="range" min="0.5" max="4" step="0.1" value="2" />
+      </div>
+      <div class="field">
+        <label for="swing-den">&nbsp;&nbsp;↳ denominator</label>
+        <input id="swing-den" type="range" min="0.5" max="4" step="0.1" value="1" />
+      </div>
+      <div class="field">
+        <label for="accent">Off-beat accent (<span id="accent-val">20</span>)</label>
+        <input id="accent" type="range" min="0" max="60" step="1" value="20" />
+      </div>
+      <div class="field">
+        <label for="downbeat">Down-beat level (<span id="downbeat-val">100</span>)</label>
+        <input id="downbeat" type="range" min="30" max="120" step="1" value="100" />
       </div>
       <div class="buttons">
         <button id="play" type="button">Play</button>

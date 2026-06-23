@@ -14,10 +14,18 @@ export interface SequenceSpec {
   loop: boolean;
   /** Playback-only transposition in octaves (does not affect the notation). */
   octaveShift: number;
+  /** Swing the eighth notes (delay + accent the off-beat "and"). */
+  swing: boolean;
+  /** Long:short ratio of the swung pair (e.g. 2 = 2:1 triplet feel). */
+  swingRatio: number;
+  /** Extra MIDI velocity added to the off-beat note (over the down-beat) when swinging. */
+  accent: number;
+  /** MIDI velocity of the down-beat note when swinging (lower it to make the off-beat pop). */
+  downbeat: number;
 }
 
-const PPQ = 480;
-const EIGHTH = PPQ / 2; // eighth-note grid: two notes per quarter-note beat
+const PPQ = 480; // ticks per quarter-note beat
+const BASE_VELOCITY = 100;
 
 let context: AudioContext | null = null;
 const cache = new Map<string, Soundfont>();
@@ -76,10 +84,27 @@ export async function play(spec: SequenceSpec): Promise<void> {
   });
   const sequence = spec.retrograde ? [...spec.notes].reverse() : spec.notes;
   const transpose = spec.octaveShift * 12; // semitones; playback only
+
+  // Eighth-note pairs: the on-beat note starts the beat, the off-beat ("and")
+  // falls at fraction f of the beat. Straight = 0.5; swing pushes it later so the
+  // pair plays long-short (f = ratio/(ratio+1)). The off-beat gets a velocity
+  // accent. Nothing here touches the notation — it's purely how we play it.
+  const f = spec.swing ? spec.swingRatio / (spec.swingRatio + 1) : 0.5;
+  const downVel = spec.swing ? spec.downbeat : BASE_VELOCITY;
+  const offVel = spec.swing ? Math.min(127, spec.downbeat + spec.accent) : BASE_VELOCITY;
   seq.addTrack(
     instrument,
-    sequence.map((note, i) => ({ note: note.midi + transpose, at: i * EIGHTH, duration: EIGHTH })),
+    sequence.map((note, i) => {
+      const beat = Math.floor(i / 2);
+      const offbeat = i % 2 === 1;
+      const at = beat * PPQ + (offbeat ? Math.round(f * PPQ) : 0);
+      const duration = Math.round((offbeat ? 1 - f : f) * PPQ);
+      const velocity = offbeat ? offVel : downVel;
+      return { note: note.midi + transpose, at, duration, velocity };
+    }),
   );
+  // Snap the loop to the next whole beat so swung (or odd-length) loops stay even.
+  seq.loopEnd = Math.ceil(sequence.length / 2) * PPQ;
   seq.on("statechange", (state: TransportState) => stateListener?.(state));
   seq.on("end", () => stateListener?.("stopped")); // non-looping sequence finished
   seq.on("noteOn", (e: SequencerNoteEvent) => noteListener?.(e.noteIndex));
