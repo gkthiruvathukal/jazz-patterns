@@ -9,9 +9,6 @@ export interface RenderOptions {
   noteValue: NoteValue;
   retrograde: boolean;
   prefer: "auto" | "sharps" | "flats";
-  // When true, scale the SVG to the container width (smaller but no scrolling);
-  // when false, keep natural size and let the #notation box scroll horizontally.
-  fitWidth: boolean;
 }
 
 export function renderChart(container: HTMLDivElement, chart: Chart, opts: RenderOptions): void {
@@ -74,19 +71,21 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
   new Formatter().joinVoices([voice]).format([voice], width - 90);
   voice.draw(context, stave);
 
-  // The viewBox lets the SVG scale cleanly either way. With fitWidth, force it to
-  // the container width (scales down, no scroll). Otherwise keep its natural pixel
-  // size so wide scores overflow the #notation box and scroll horizontally
-  // (the box has overflow-x:auto) on narrow screens.
+  // Make the SVG responsive: the viewBox carries the intrinsic geometry, and we
+  // drive the rendered size with inline *style* properties. VexFlow sets the
+  // SVG's size via its own inline style, which beats presentation attributes —
+  // so setting style here (not setAttribute) is what actually takes effect. The
+  // graphic scales down to the display width (crisp, since it's vector) and is
+  // capped at its natural width so it doesn't upscale on wide screens.
   const svg = container.querySelector("svg");
   if (svg) {
     svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-    if (opts.fitWidth) {
-      svg.setAttribute("width", "100%");
-      svg.removeAttribute("height");
-    } else {
-      svg.setAttribute("width", `${width}`);
-      svg.setAttribute("height", `${height}`);
-    }
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.removeAttribute("width");
+    svg.removeAttribute("height");
+    svg.style.width = "100%";
+    svg.style.height = "auto";
+    svg.style.maxWidth = `${width}px`;
+    svg.style.display = "block";
   }
 }

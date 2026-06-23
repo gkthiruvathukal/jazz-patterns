@@ -50,7 +50,6 @@ const bpmInput = el<HTMLInputElement>("bpm");
 const noteValueSelect = el<HTMLSelectElement>("note-value");
 const preferSelect = el<HTMLSelectElement>("prefer");
 const retrogradeInput = el<HTMLInputElement>("retrograde");
-const fitWidthInput = el<HTMLInputElement>("fit-width");
 const playButton = el<HTMLButtonElement>("play");
 const stopButton = el<HTMLButtonElement>("stop");
 const nowPlaying = el<HTMLParagraphElement>("now-playing");
@@ -70,9 +69,6 @@ function fillSelect(select: HTMLSelectElement, options: { value: string; label: 
 fillSelect(keySelect, scalesData.keys.map((k) => ({ value: k, label: k })));
 fillSelect(scaleSelect, scalesData.scales.map((s) => ({ value: s.name, label: s.name })));
 fillSelect(instrumentSelect, INSTRUMENTS.map((i) => ({ value: i.name, label: i.label })));
-
-// Restore the "fit to width" preference (defaults to off — natural size + scroll).
-fitWidthInput.checked = localStorage.getItem("fitWidth") === "true";
 
 function setStatus(message: string): void {
   status.textContent = message;
@@ -98,7 +94,6 @@ function render(): void {
     noteValue: noteValueSelect.value as NoteValue,
     retrograde,
     prefer: preferSelect.value as "auto" | "sharps" | "flats",
-    fitWidth: fitWidthInput.checked,
   });
 }
 
@@ -133,10 +128,6 @@ scaleSelect.addEventListener("change", render);
 noteValueSelect.addEventListener("change", render);
 preferSelect.addEventListener("change", render);
 retrogradeInput.addEventListener("change", render);
-fitWidthInput.addEventListener("change", () => {
-  localStorage.setItem("fitWidth", fitWidthInput.checked ? "true" : "false");
-  render();
-});
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint
 // can be wrong until the font is ready — re-render once fonts have settled.
