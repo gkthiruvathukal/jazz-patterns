@@ -10,6 +10,7 @@ A monorepo of two **independent** subprojects that generate printable jazz pract
 - `projects/scales/` → **`jazz_scales`** — multi-key scale charts (forward + retrograde) and a merged book.
 - `projects/blues/` → **`jazz_blues`** — annotated 12-bar blues studies (separate work; keep it decoupled from scales).
 - `projects/web/` → **interactive web app** (TypeScript + Vite + VexFlow + smplr) — client-side only, renders/plays a JSON exported from the scales model.
+- `projects/presentation/` → **Marp (Markdown) slide deck** about the project. Source is `slides.md` + `theme.css`; `npm run build` → static `dist/index.html`. Notation images in `assets/` are generated from the project (LilyPond engravings + web-app screenshots) and committed. Deployed to **`/slides`** on the Pages site (via `deploy-web.yml`) and attached as a PDF to GitHub Releases on `v*` tags (via `build-book.yml`).
 
 The Python subprojects depend on `jazz_common` (installed from the local path); **none of the subprojects depend on another's code**, and that boundary is intentional — do not add cross-subproject imports. Each has its own build (`build.sh` for Python, `npm`/Vite for web) and CI job. Outputs land in each subproject's own `build/` (or `dist/` for web).
 
@@ -86,6 +87,6 @@ Vanilla TS + Vite, no UI framework. Renders/plays the JSON contract `src/data/sc
 
 ## CI / releases
 
-`.github/workflows/build-book.yml` has three parallel jobs — `scales`, `blues`, `web` — each independent. `scales`/`blues` install `./common` + their subproject; `web` does `npm ci` + typecheck + build. All run on every push/PR. On a `v*` tag, **only `scales`** attaches assets to the GitHub Release (book PDF + per-key PDFs/WAVs); **blues is intentionally excluded from releases** (it still builds, and uploads a CI artifact on non-tag runs). Non-tag runs upload artifacts `jazz-scales-ci`, `jazz-blues-ci`, `jazz-web-ci`.
+`.github/workflows/build-book.yml` has four parallel jobs — `scales`, `blues`, `web`, `presentation` — each independent. `scales`/`blues` install `./common` + their subproject; `web` does `npm ci` + typecheck + build; `presentation` does `npm ci` + `npm run build` (HTML, no browser). All run on every push/PR. On a `v*` tag, `scales` attaches its assets (book PDF + per-key PDFs/WAVs) and `presentation` attaches the slides **PDF** (built with a headless Chrome step) to the GitHub Release; **blues is intentionally excluded from releases**. Non-tag runs upload artifacts `jazz-scales-ci`, `jazz-blues-ci`, `jazz-web-ci`, `jazz-presentation-ci`.
 
-`.github/workflows/deploy-web.yml` deploys the web app to **GitHub Pages** (Actions source) on pushes to `main` touching `projects/web` (and manual dispatch). Live at **https://jazz-scales.gkt.sh/** (custom subdomain via `public/CNAME`). `vite.config.ts` sets `base: "/"` for root-relative asset paths.
+`.github/workflows/deploy-web.yml` deploys to **GitHub Pages** (Actions source) on pushes to `main` touching `projects/web` **or `projects/presentation`** (and manual dispatch). It builds the web app **and** the slide deck, placing the deck under `dist/slides`, so the app is live at **https://jazz-scales.gkt.sh/** and the deck at **https://jazz-scales.gkt.sh/slides/** (custom subdomain via `public/CNAME`). `vite.config.ts` sets `base: "/"` for root-relative asset paths.

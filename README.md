@@ -2,7 +2,7 @@
 
 A monorepo of jazz practice material: static notation/audio generated with [Abjad](https://abjad.github.io/) and [LilyPond](https://lilypond.org/), plus an interactive web app. It contains three independent subprojects and a small shared helper package.
 
-**Interactive app (live):** https://jazz-scales.gkt.sh/
+**Interactive app (live):** https://jazz-scales.gkt.sh/ · **Slides (work in progress):** https://jazz-scales.gkt.sh/slides/
 
 ```text
 jazz-patterns/
@@ -11,6 +11,7 @@ jazz-patterns/
     scales/          jazz_scales — multi-key scale charts (forward + retrograde) and a merged book
     blues/           jazz_blues  — annotated 12-bar blues studies
     web/             interactive client-side web app (TypeScript + Vite)
+    presentation/    Marp (Markdown) slide deck about the project → /slides
 ```
 
 The Python subprojects each have their own `pyproject.toml`, `build.sh`, and CI job, and depend on `jazz_common` (installed from the local path). The `web` app is an independent TypeScript subproject (Vite) that renders and plays a JSON exported from the Python scales model. No subproject depends on another's code.

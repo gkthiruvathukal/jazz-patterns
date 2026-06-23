@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "projects/web/**"
+      - "projects/presentation/**"
       - ".github/workflows/deploy-web.yml"
   workflow_dispatch: {}
 
@@ -41,6 +42,19 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # Build the Markdown slide deck and serve it at /slides on the same Pages
+      # site. HTML build needs no browser; notation assets are committed.
+      - name: Build presentation (slides)
+        working-directory: projects/presentation
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+        run: |
+          npm ci
+          npm run build
+
+      - name: Place slides under /slides
+        run: cp -r ../presentation/dist ./dist/slides
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
