@@ -1,6 +1,6 @@
 // Entry point: populate controls, render notation, and drive playback.
 import { scalesData, findChart, type Chart } from "./data/scales";
-import { renderChart } from "./notation";
+import { renderChart, type NoteHighlighter } from "./notation";
 import {
   play,
   stop,
@@ -8,6 +8,7 @@ import {
   setLoop,
   getState,
   onStateChange,
+  onNote,
   type SequenceSpec,
   type TransportState,
 } from "./player";
@@ -107,22 +108,29 @@ function currentSpec(): SequenceSpec | undefined {
   };
 }
 
+// Current score's highlighter, replaced on every render. Drives the playhead.
+let highlighter: NoteHighlighter | null = null;
+
 function render(): void {
   const chart = currentChart();
   if (!chart) return;
   const retrograde = retrogradeInput.checked;
   const suffix = retrograde ? " (retrograde)" : "";
   nowPlaying.innerHTML = `<span class="chord">${chart.chord}</span> &mdash; ${chart.key} ${chart.scale}${suffix}`;
-  renderChart(notation, chart, {
+  highlighter = renderChart(notation, chart, {
     retrograde,
     prefer: preferSelect.value as "auto" | "sharps" | "flats",
   });
 }
 
+// Light up the note as it sounds (index is in playback order).
+onNote((index) => highlighter?.highlight(index));
+
 // Keep the Play/Pause button label and status in sync with the transport.
 function reflectState(state: TransportState): void {
   playButton.textContent = state === "playing" ? "Pause" : state === "paused" ? "Resume" : "Play";
   setStatus(state === "playing" ? "Playing…" : state === "paused" ? "Paused" : "");
+  if (state === "stopped") highlighter?.clear(); // paused holds on the current note
 }
 onStateChange(reflectState);
 

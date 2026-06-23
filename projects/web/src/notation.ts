@@ -9,7 +9,15 @@ export interface RenderOptions {
   prefer: "auto" | "sharps" | "flats";
 }
 
-export function renderChart(container: HTMLDivElement, chart: Chart, opts: RenderOptions): void {
+/** Controls the playback highlight overlay for the rendered score. */
+export interface NoteHighlighter {
+  /** Highlight the note at this playback index (left-to-right order). */
+  highlight(index: number): void;
+  /** Hide the highlight. */
+  clear(): void;
+}
+
+export function renderChart(container: HTMLDivElement, chart: Chart, opts: RenderOptions): NoteHighlighter {
   container.innerHTML = "";
 
   const notes = opts.retrograde ? [...chart.notes].reverse() : chart.notes;
@@ -22,6 +30,7 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
   const totalSlots = Math.ceil(notes.length / slotsPerMeasure) * slotsPerMeasure;
 
   const tickables = [];
+  const noteEls: StaveNote[] = []; // playback notes in order, for highlighting
   for (let i = 0; i < totalSlots; i++) {
     if (i > 0 && i % slotsPerMeasure === 0) {
       tickables.push(new BarNote()); // barline between measures
@@ -42,6 +51,7 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
         staveNote.addModifier(annotation, 0);
       }
       tickables.push(staveNote);
+      noteEls.push(staveNote);
     } else {
       // Pad the final measure with rests so it is complete in 4/4.
       tickables.push(new StaveNote({ keys: ["b/4"], duration: `${durationBase}r` }));
@@ -86,4 +96,39 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
     svg.style.maxWidth = `${width}px`;
     svg.style.display = "block";
   }
+
+  // Per-note horizontal boxes (viewBox units) + one shared vertical band covering
+  // the tallest note's extent, used to position the playback highlight overlay.
+  const boxes = noteEls.map((n) => {
+    const bb = n.getBoundingBox();
+    return { x: bb.getX(), w: bb.getW(), y: bb.getY(), h: bb.getH() };
+  });
+  const bandTop = boxes.length ? Math.min(...boxes.map((b) => b.y)) - 6 : 0;
+  const bandBottom = boxes.length ? Math.max(...boxes.map((b) => b.y + b.h)) + 6 : height;
+  const bandHeight = bandBottom - bandTop;
+
+  // A DOM overlay (sibling of the SVG) — outside the dark-mode invert filter on
+  // the SVG, so its accent color is predictable in both themes. Positioned by
+  // scaling the viewBox-unit boxes to the SVG's live on-screen width.
+  const highlightEl = document.createElement("div");
+  highlightEl.className = "note-highlight";
+  highlightEl.style.display = "none";
+  container.append(highlightEl);
+
+  return {
+    highlight(index: number): void {
+      const box = boxes[index];
+      if (!box || !svg) return;
+      const scale = svg.clientWidth / width; // live → tracks responsive width/resize
+      const pad = 4;
+      highlightEl.style.left = `${(box.x - pad) * scale}px`;
+      highlightEl.style.width = `${(box.w + pad * 2) * scale}px`;
+      highlightEl.style.top = `${bandTop * scale}px`;
+      highlightEl.style.height = `${bandHeight * scale}px`;
+      highlightEl.style.display = "block";
+    },
+    clear(): void {
+      highlightEl.style.display = "none";
+    },
+  };
 }

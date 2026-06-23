@@ -2,7 +2,7 @@
 // network — static fetch, no server state). One AudioContext, instruments cached
 // by name so switching sounds is cheap. Transport (play/pause/resume/stop/loop)
 // runs through smplr's Sequencer, which owns the scheduling and state machine.
-import { Soundfont, Sequencer } from "smplr";
+import { Soundfont, Sequencer, type SequencerNoteEvent } from "smplr";
 
 export type TransportState = "stopped" | "playing" | "paused";
 
@@ -21,6 +21,7 @@ let context: AudioContext | null = null;
 const cache = new Map<string, Soundfont>();
 let sequencer: Sequencer | null = null;
 let stateListener: ((state: TransportState) => void) | null = null;
+let noteListener: ((index: number) => void) | null = null;
 
 function getContext(): AudioContext {
   if (!context) {
@@ -49,6 +50,11 @@ export function getState(): TransportState {
   return sequencer?.state ?? "stopped";
 }
 
+/** Register a callback fired as each note sounds, with its index in playback order. */
+export function onNote(cb: (index: number) => void): void {
+  noteListener = cb;
+}
+
 /** Build a fresh sequence from the spec and start playing from the beginning. */
 export async function play(spec: SequenceSpec): Promise<void> {
   const ctx = getContext();
@@ -57,7 +63,15 @@ export async function play(spec: SequenceSpec): Promise<void> {
 
   sequencer?.stop(); // tear down any previous run
 
-  const seq = new Sequencer(ctx, { bpm: spec.bpm, ppq: PPQ, loop: spec.loop });
+  // Small lookahead keeps noteOn (which fires at dispatch) close to actual audio
+  // time, so the on-screen highlight stays in sync rather than leading the sound.
+  const seq = new Sequencer(ctx, {
+    bpm: spec.bpm,
+    ppq: PPQ,
+    loop: spec.loop,
+    lookaheadMs: 25,
+    intervalMs: 25,
+  });
   const sequence = spec.retrograde ? [...spec.notes].reverse() : spec.notes;
   seq.addTrack(
     instrument,
@@ -65,6 +79,7 @@ export async function play(spec: SequenceSpec): Promise<void> {
   );
   seq.on("statechange", (state: TransportState) => stateListener?.(state));
   seq.on("end", () => stateListener?.("stopped")); // non-looping sequence finished
+  seq.on("noteOn", (e: SequencerNoteEvent) => noteListener?.(e.noteIndex));
 
   sequencer = seq;
   seq.start();
