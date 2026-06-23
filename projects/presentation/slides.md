@@ -116,7 +116,6 @@ Every label must equal the real gap between notes — a correctness check, not d
 <div>
 
 - `Gb → Bb` is **4 semitones** — a *major* third.
-- It had been mislabeled **`m3`**; the model made the mismatch obvious.
 - Fix flows everywhere at once: **book, MIDI, and app**.
 
 </div>
