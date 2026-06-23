@@ -86,6 +86,40 @@ def auto_prefer_for_pc(pc: int) -> str:
     return "flats" if pc in {0, 1, 3, 5, 6, 8, 10} else "sharps"
 
 
+# Enharmonic sharp keys to emit *in addition* to the flat-spelled cycle entries.
+# Jazz lead sheets routinely write F# and C# even though they sound identical to
+# Gb and Db, so we surface both spellings. Maps each flat key name to its
+# (sharp name, pitch class); the sharp spelling is inserted right after its flat
+# twin so the two sit side by side in dropdowns and the printed book.
+ENHARMONIC_EXTRAS = {
+    "Db": ("C#", 1),
+    "Gb": ("F#", 6),
+}
+
+
+def key_cycle(start: str, step: int, count: int, prefer_arg: str, extras: bool = True):
+    """Resolve the ordered list of keys to render.
+
+    Cycles pitch classes from ``start`` in ``step``-semitone increments for
+    ``count`` keys, returning ``(pc, prefer, name)`` tuples. With ``extras``
+    set, any key that resolves to a flat spelling with a common sharp
+    enharmonic (Db, Gb) is followed by that sharp spelling (C#, F#), so both
+    appear — the sharp one spelled with sharps. This is the single source of
+    key ordering shared by the print model and the web JSON export.
+    """
+    specs = []
+    pc = NAME_TO_PC[start]
+    for _ in range(count):
+        prefer = auto_prefer_for_pc(pc) if prefer_arg == "auto" else prefer_arg
+        name = pc_to_name(pc, prefer)
+        specs.append((pc, prefer, name))
+        if extras and name in ENHARMONIC_EXTRAS:
+            extra_name, extra_pc = ENHARMONIC_EXTRAS[name]
+            specs.append((extra_pc, "sharps", extra_name))
+        pc = (pc + step) % 12
+    return specs
+
+
 def sanitize_key_for_filename(name: str) -> str:
     return (
         name.replace("##", "double-sharp")

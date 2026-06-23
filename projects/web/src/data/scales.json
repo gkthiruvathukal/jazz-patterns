@@ -6,7 +6,9 @@
     "Eb",
     "Ab",
     "Db",
+    "C#",
     "Gb",
+    "F#",
     "B",
     "E",
     "A",
@@ -14371,6 +14373,2381 @@
       ]
     },
     {
+      "key": "C#",
+      "scale": "Major (Ionian)",
+      "chord": "C#maj7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Natural Minor (Aeolian)",
+      "chord": "C#m7",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Harmonic Minor",
+      "chord": "C#m(maj7)",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W+H",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Melodic Minor (Jazz)",
+      "chord": "C#m(maj7)",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Dominant 7th (Mixolydian)",
+      "chord": "C#7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Dorian",
+      "chord": "C#m7",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Phrygian",
+      "chord": "C#m7(b9)",
+      "intervals": [
+        "H",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Lydian",
+      "chord": "C#maj7(#11)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Locrian",
+      "chord": "C#m7b5",
+      "intervals": [
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Half-Dim #2 (Locrian \u266e2)",
+      "chord": "C#m7b5",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Whole Tone",
+      "chord": "C#7(#5)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Octatonic (Half\u2013Whole)",
+      "chord": "C#7(b9)",
+      "intervals": [
+        "H",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Octatonic (Whole\u2013Half)",
+      "chord": "C#dim7",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Blues (major)",
+      "chord": "C#6",
+      "intervals": [
+        "W",
+        "H",
+        "H",
+        "m3",
+        "W",
+        "W+H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Blues (minor)",
+      "chord": "C#m7",
+      "intervals": [
+        "m3",
+        "W",
+        "H",
+        "H",
+        "m3",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Pentatonic Major",
+      "chord": "C#6",
+      "intervals": [
+        "W",
+        "W",
+        "W+H",
+        "W",
+        "W+H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Pentatonic Minor",
+      "chord": "C#m",
+      "intervals": [
+        "W+H",
+        "W",
+        "W",
+        "W+H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Altered",
+      "chord": "C#7alt",
+      "intervals": [
+        "H",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Lydian Dominant",
+      "chord": "C#7(#11)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Bebop Dominant",
+      "chord": "C#7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Mixolydian b6",
+      "chord": "C#7(b13)",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Minor Pentatonic b5",
+      "chord": "C#m7(b5)",
+      "intervals": [
+        "m3",
+        "W",
+        "H",
+        "M3",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Dorian b2",
+      "chord": "C#m7(b9)",
+      "intervals": [
+        "H",
+        "W",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Bebop Major",
+      "chord": "C#maj7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "H",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Lydian Augmented",
+      "chord": "C#maj7(#5)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 4,
+          "midi": 67,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 4,
+          "midi": 69,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 70,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 5,
+          "midi": 72,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "C#",
+      "scale": "Dominant Pentatonic",
+      "chord": "C#7",
+      "intervals": [
+        "W",
+        "W",
+        "W+H",
+        "W+H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 68,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 4,
+          "midi": 71,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 5,
+          "midi": 73,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
       "key": "Gb",
       "scale": "Major (Ionian)",
       "chord": "Gbmaj7",
@@ -16736,6 +19113,2381 @@
         {
           "name": "G",
           "accidental": "b",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Major (Ionian)",
+      "chord": "F#maj7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Natural Minor (Aeolian)",
+      "chord": "F#m7",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Harmonic Minor",
+      "chord": "F#m(maj7)",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W+H",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Melodic Minor (Jazz)",
+      "chord": "F#m(maj7)",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Dominant 7th (Mixolydian)",
+      "chord": "F#7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Dorian",
+      "chord": "F#m7",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Phrygian",
+      "chord": "F#m7(b9)",
+      "intervals": [
+        "H",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 3,
+          "midi": 55,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Lydian",
+      "chord": "F#maj7(#11)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Locrian",
+      "chord": "F#m7b5",
+      "intervals": [
+        "H",
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 3,
+          "midi": 55,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Half-Dim #2 (Locrian \u266e2)",
+      "chord": "F#m7b5",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Whole Tone",
+      "chord": "F#7(#5)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Octatonic (Half\u2013Whole)",
+      "chord": "F#7(b9)",
+      "intervals": [
+        "H",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 3,
+          "midi": 55,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Octatonic (Whole\u2013Half)",
+      "chord": "F#dim7",
+      "intervals": [
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Blues (major)",
+      "chord": "F#6",
+      "intervals": [
+        "W",
+        "H",
+        "H",
+        "m3",
+        "W",
+        "W+H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Blues (minor)",
+      "chord": "F#m7",
+      "intervals": [
+        "m3",
+        "W",
+        "H",
+        "H",
+        "m3",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Pentatonic Major",
+      "chord": "F#6",
+      "intervals": [
+        "W",
+        "W",
+        "W+H",
+        "W",
+        "W+H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Pentatonic Minor",
+      "chord": "F#m",
+      "intervals": [
+        "W+H",
+        "W",
+        "W",
+        "W+H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Altered",
+      "chord": "F#7alt",
+      "intervals": [
+        "H",
+        "W",
+        "H",
+        "W",
+        "W",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 3,
+          "midi": 55,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Lydian Dominant",
+      "chord": "F#7(#11)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Bebop Dominant",
+      "chord": "F#7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "W",
+        "H",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Mixolydian b6",
+      "chord": "F#7(b13)",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "H",
+        "W",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Minor Pentatonic b5",
+      "chord": "F#m7(b5)",
+      "intervals": [
+        "m3",
+        "W",
+        "H",
+        "M3",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Dorian b2",
+      "chord": "F#m7(b9)",
+      "intervals": [
+        "H",
+        "W",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "",
+          "octave": 3,
+          "midi": 55,
+          "flat_name": "G",
+          "flat_accidental": "",
+          "sharp_name": "G",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "A",
+          "accidental": "",
+          "octave": 3,
+          "midi": 57,
+          "flat_name": "A",
+          "flat_accidental": "",
+          "sharp_name": "A",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Bebop Major",
+      "chord": "F#maj7",
+      "intervals": [
+        "W",
+        "W",
+        "H",
+        "W",
+        "H",
+        "H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "B",
+          "accidental": "",
+          "octave": 3,
+          "midi": 59,
+          "flat_name": "B",
+          "flat_accidental": "",
+          "sharp_name": "B",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Lydian Augmented",
+      "chord": "F#maj7(#5)",
+      "intervals": [
+        "W",
+        "W",
+        "W",
+        "W",
+        "H",
+        "W",
+        "H"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "",
+          "octave": 4,
+          "midi": 60,
+          "flat_name": "C",
+          "flat_accidental": "",
+          "sharp_name": "C",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "",
+          "octave": 4,
+          "midi": 62,
+          "flat_name": "D",
+          "flat_accidental": "",
+          "sharp_name": "D",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "D",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 63,
+          "flat_name": "E",
+          "flat_accidental": "b",
+          "sharp_name": "D",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "F",
+          "accidental": "",
+          "octave": 4,
+          "midi": 65,
+          "flat_name": "F",
+          "flat_accidental": "",
+          "sharp_name": "F",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 66,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        }
+      ]
+    },
+    {
+      "key": "F#",
+      "scale": "Dominant Pentatonic",
+      "chord": "F#7",
+      "intervals": [
+        "W",
+        "W",
+        "W+H",
+        "W+H",
+        "W"
+      ],
+      "notes": [
+        {
+          "name": "F",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 54,
+          "flat_name": "G",
+          "flat_accidental": "b",
+          "sharp_name": "F",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "G",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 56,
+          "flat_name": "A",
+          "flat_accidental": "b",
+          "sharp_name": "G",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "A",
+          "accidental": "#",
+          "octave": 3,
+          "midi": 58,
+          "flat_name": "B",
+          "flat_accidental": "b",
+          "sharp_name": "A",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "C",
+          "accidental": "#",
+          "octave": 4,
+          "midi": 61,
+          "flat_name": "D",
+          "flat_accidental": "b",
+          "sharp_name": "C",
+          "sharp_accidental": "#"
+        },
+        {
+          "name": "E",
+          "accidental": "",
+          "octave": 4,
+          "midi": 64,
+          "flat_name": "E",
+          "flat_accidental": "",
+          "sharp_name": "E",
+          "sharp_accidental": ""
+        },
+        {
+          "name": "F",
+          "accidental": "#",
           "octave": 4,
           "midi": 66,
           "flat_name": "G",

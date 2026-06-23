@@ -13,8 +13,7 @@ from jazz_common.pitch import (
     FLAT_NAMES,
     NAME_TO_PC,
     SHARP_NAMES,
-    auto_prefer_for_pc,
-    pc_to_name,
+    key_cycle,
 )
 
 from .generator import (
@@ -46,13 +45,10 @@ def note_from_midi(midi: int, prefer: str) -> dict:
     }
 
 
-def build_data(start: str, step: int, count: int, prefer_arg: str, anchor: str) -> dict:
+def build_data(start: str, step: int, count: int, prefer_arg: str, anchor: str, extras: bool = True) -> dict:
     keys = []
     charts = []
-    pc = NAME_TO_PC[start]
-    for _ in range(count):
-        prefer = auto_prefer_for_pc(pc) if prefer_arg == "auto" else prefer_arg
-        key_name = pc_to_name(pc, prefer)
+    for pc, prefer, key_name in key_cycle(start, step, count, prefer_arg, extras=extras):
         keys.append(key_name)
         semitone_offset = pc_to_register_offset(pc, anchor)
         for scale_name, notes_spec, intervals, chord_text_c in SCALES:
@@ -64,7 +60,6 @@ def build_data(start: str, step: int, count: int, prefer_arg: str, anchor: str) 
                 "intervals": list(intervals),
                 "notes": [note_from_midi(p.number() + MIDDLE_C_MIDI, prefer) for p in pitches],
             })
-        pc = (pc + step) % 12
 
     scales_meta = [{"name": name, "slug": scale_slug(name)} for name, *_ in SCALES]
     return {"keys": keys, "scales": scales_meta, "charts": charts}
@@ -78,12 +73,13 @@ def main():
     ap.add_argument("--count", type=int, default=12, help="How many keys (default 12).")
     ap.add_argument("--prefer", type=str, choices=["auto", "flats", "sharps"], default="auto", help="Accidental style (default auto).")
     ap.add_argument("--anchor", type=str, choices=["nearest", "up", "down"], default="nearest", help="Register anchoring (default nearest).")
+    ap.add_argument("--no-enharmonics", action="store_true", help="Skip the extra enharmonic sharp keys (F#, C#) emitted alongside Gb, Db.")
     args = ap.parse_args()
 
     if args.start not in NAME_TO_PC:
         raise SystemExit(f"Unknown start key: {args.start}")
 
-    data = build_data(args.start, args.step, args.count, args.prefer, args.anchor)
+    data = build_data(args.start, args.step, args.count, args.prefer, args.anchor, extras=not args.no_enharmonics)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     print(f"Wrote {args.output} ({len(data['charts'])} charts, {len(data['keys'])} keys)")

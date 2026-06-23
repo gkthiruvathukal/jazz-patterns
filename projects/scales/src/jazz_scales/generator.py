@@ -9,7 +9,7 @@ import abjad
 from jazz_common.lilypond import compile_with_lilypond
 from jazz_common.pitch import (
     NAME_TO_PC,
-    auto_prefer_for_pc,
+    key_cycle,
     numbered_pitch_from_name,
     pc_to_lily_key,
     pc_to_name,
@@ -162,8 +162,12 @@ def build_score_for_key(pc: int, prefer_names: str, anchor: str, mode: str, bpm:
     return score, title, key_name
 
 
-def build_movements_for_scale(scale, start_pc: int, step: int, count: int, prefer_arg: str, anchor: str, mode: str, bpm: int):
+def build_movements_for_scale(scale, specs, anchor: str, mode: str, bpm: int):
     """Build one self-contained movement (score) per key for a single scale.
+
+    ``specs`` is the resolved ``(pc, prefer, name)`` list from ``key_cycle`` —
+    the same order used for the per-key chapters, so by-scale and by-key
+    chapters stay in lock-step (including the enharmonic F#/C# entries).
 
     Each movement is two measures (forward + retrograde) with its own key
     signature. Using separate scores rather than systems within one score keeps
@@ -173,10 +177,7 @@ def build_movements_for_scale(scale, start_pc: int, step: int, count: int, prefe
     scale_name, notes, intervals, chord_text_c = scale
 
     movements = []
-    pc = start_pc
-    for index in range(count):
-        prefer_names = auto_prefer_for_pc(pc) if prefer_arg == "auto" else prefer_arg
-        key_name = pc_to_name(pc, prefer_names)
+    for index, (pc, prefer_names, key_name) in enumerate(specs):
         lily_key = pc_to_lily_key(pc, prefer_names)
         semitone_offset = pc_to_register_offset(pc, anchor)
 
@@ -196,7 +197,6 @@ def build_movements_for_scale(scale, start_pc: int, step: int, count: int, prefe
             abjad.attach(abjad.MetronomeMark(abjad.Duration(1, 4), bpm), first_leaf)
 
         movements.append(abjad.Score([staff], name="Score"))
-        pc = (pc + step) % 12
 
     title = f"{scale_name} — All Keys"
     return movements, title
@@ -305,19 +305,18 @@ def main():
     ap.add_argument("--license", type=str, default="Creative Commons 4.0 International", help="License text printed in the footer (copyright field).")
     ap.add_argument("--output-dir", type=Path, default=Path("build"), help="Directory for generated .ly/.pdf/.midi outputs (default: build).")
     ap.add_argument("--sections", type=str, choices=["key", "scale", "both"], default="both", help="Which chapters to generate: by key, by scale, or both (default: both).")
+    ap.add_argument("--no-enharmonics", action="store_true", help="Skip the extra enharmonic sharp keys (F#, C#) emitted alongside Gb, Db.")
     args = ap.parse_args()
 
     if args.start not in NAME_TO_PC:
         raise SystemExit(f"Unknown start key: {args.start}")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    start_pc = NAME_TO_PC[args.start]
+    specs = key_cycle(args.start, args.step, args.count, args.prefer, extras=not args.no_enharmonics)
 
     key_results = []
     if args.sections in ("key", "both"):
-        pc = start_pc
-        for _ in range(args.count):
-            prefer = auto_prefer_for_pc(pc) if args.prefer == "auto" else args.prefer
+        for pc, prefer, _name in specs:
             score, title, key_name = build_score_for_key(pc, prefer, args.anchor, args.mode, args.bpm)
             safe_key = sanitize_key_for_filename(key_name)
             outfile = args.output_dir / f"jazz_scales_abjad_{safe_key}.ly"
@@ -332,12 +331,11 @@ def main():
             )
             res["label"] = f"Key {key_name}"
             key_results.append(res)
-            pc = (pc + args.step) % 12
 
     scale_results = []
     if args.sections in ("scale", "both"):
         for scale in SCALES:
-            movements, title = build_movements_for_scale(scale, start_pc, args.step, args.count, args.prefer, args.anchor, args.mode, args.bpm)
+            movements, title = build_movements_for_scale(scale, specs, args.anchor, args.mode, args.bpm)
             outfile = args.output_dir / f"jazz_scales_byscale_{scale_slug(scale[0])}.ly"
             res = write_lilypond_movements(
                 movements,

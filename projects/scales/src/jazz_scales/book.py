@@ -14,10 +14,24 @@ def pretty_from_filename(fn: str) -> str:
     key_part = key_part.replace("sharp", "#").replace("flat", "b")
     return key_part
 
+# Sharp enharmonic keys are placed immediately after their flat twin so each
+# pair (Db/C#, Gb/F#) sits together in the book, matching the web dropdown.
+ENHARMONIC_AFTER = {"C#": "Db", "F#": "Gb"}
+
+
+def key_sort_key(fn: str):
+    name = pretty_from_filename(fn)
+    if name in ENHARMONIC_AFTER:
+        # Sort just after the flat twin (same primary key, secondary rank 1).
+        return (ENHARMONIC_AFTER[name], 1)
+    return (name, 0)
+
+
 def collect_key_pdfs(out_dir: Path):
-    files = sorted([str(p) for p in out_dir.glob("jazz_scales_abjad_*.pdf")])
-    # Alphabetical by pretty key
-    files = sorted(files, key=lambda f: pretty_from_filename(f))
+    files = [str(p) for p in out_dir.glob("jazz_scales_abjad_*.pdf")]
+    # Alphabetical by pretty key, with each sharp enharmonic nested after its
+    # flat twin (Db→C#, Gb→F#).
+    files = sorted(files, key=key_sort_key)
     return files
 
 def collect_scale_pdfs(out_dir: Path):
