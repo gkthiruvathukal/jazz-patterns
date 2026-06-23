@@ -26,7 +26,15 @@
         max-width: 920px; margin-inline: auto;
         background: var(--bg); color: var(--fg);
       }
-      h1 { font-size: 1.4rem; margin: 0 0 1rem; }
+      h1 { font-size: 1.4rem; margin: 0 0 1rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+      .version-pill {
+        font-size: 0.7rem; font-weight: 600; line-height: 1;
+        padding: 0.25rem 0.55rem; border-radius: 999px;
+        background: var(--control-bg); color: var(--fg);
+        border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent);
+        text-decoration: none; letter-spacing: 0.02em; white-space: nowrap;
+      }
+      .version-pill:hover { border-color: color-mix(in srgb, var(--fg) 50%, transparent); }
       .controls {
         display: flex; flex-wrap: wrap; gap: 1rem 1.25rem;
         align-items: flex-end; margin-bottom: 1.25rem;
@@ -49,7 +57,11 @@
     </style>
   </head>
   <body>
-    <h1>Jazz Scales — Interactive</h1>
+    <h1>Jazz Scales — Interactive
+      <a id="version-pill" class="version-pill"
+         href="https://github.com/gkthiruvathukal/jazz-patterns/releases"
+         target="_blank" rel="noopener"></a>
+    </h1>
 
     <div class="controls">
       <div class="field">

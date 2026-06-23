@@ -19,6 +19,9 @@ function el<T extends HTMLElement>(id: string): T {
   return node as T;
 }
 
+// Version pill — sourced from package.json via Vite's `define` (see vite.config.ts).
+el("version-pill").textContent = `v${__APP_VERSION__}`;
+
 // Theme toggle — defaults to system preference, persists in localStorage.
 const themeToggle = el<HTMLButtonElement>("theme-toggle");
 const root = document.documentElement;
