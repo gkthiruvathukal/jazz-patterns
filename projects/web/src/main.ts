@@ -13,15 +13,35 @@ import {
   type TransportState,
 } from "./player";
 
-// A small curated set of GM soundfont instruments. Piano is the default; adding
-// more is just another entry here (smplr loads them by name).
-const INSTRUMENTS: { name: string; label: string }[] = [
-  { name: "acoustic_grand_piano", label: "Acoustic Grand Piano" },
-  { name: "electric_piano_1", label: "Electric Piano" },
-  { name: "vibraphone", label: "Vibraphone" },
-  { name: "acoustic_guitar_nylon", label: "Nylon Guitar" },
-  { name: "marimba", label: "Marimba" },
+// A curated set of GM soundfont instruments, grouped for the dropdown. Piano is
+// the default; adding more is just another entry here (smplr loads them by name —
+// any General MIDI name works, see smplr's getSoundfontNames()).
+// `octave` is the sensible default playback transposition (in octaves) for each
+// instrument, since the notation sits in the treble staff: basses drop a couple
+// octaves, low horns one. It only shifts the audio, never the printed notes.
+type Instrument = { name: string; label: string; group: string; octave: number };
+const INSTRUMENTS: Instrument[] = [
+  { group: "Keys & Mallets", name: "acoustic_grand_piano", label: "Acoustic Grand Piano", octave: 0 },
+  { group: "Keys & Mallets", name: "electric_piano_1", label: "Electric Piano", octave: 0 },
+  { group: "Keys & Mallets", name: "vibraphone", label: "Vibraphone", octave: 0 },
+  { group: "Keys & Mallets", name: "marimba", label: "Marimba", octave: 0 },
+  { group: "Guitar", name: "acoustic_guitar_nylon", label: "Nylon Guitar", octave: 0 },
+  { group: "Guitar", name: "electric_guitar_jazz", label: "Jazz Guitar", octave: 0 },
+  { group: "Bass", name: "acoustic_bass", label: "Upright Bass", octave: -2 },
+  { group: "Bass", name: "electric_bass_finger", label: "Electric Bass", octave: -2 },
+  { group: "Bass", name: "fretless_bass", label: "Fretless Bass", octave: -2 },
+  { group: "Horns & Winds", name: "trumpet", label: "Trumpet", octave: 0 },
+  { group: "Horns & Winds", name: "muted_trumpet", label: "Muted Trumpet", octave: 0 },
+  { group: "Horns & Winds", name: "trombone", label: "Trombone", octave: -1 },
+  { group: "Horns & Winds", name: "alto_sax", label: "Alto Sax", octave: 0 },
+  { group: "Horns & Winds", name: "tenor_sax", label: "Tenor Sax", octave: -1 },
+  { group: "Horns & Winds", name: "flute", label: "Flute", octave: 0 },
+  { group: "Horns & Winds", name: "clarinet", label: "Clarinet", octave: 0 },
 ];
+
+function defaultOctaveFor(name: string): number {
+  return INSTRUMENTS.find((i) => i.name === name)?.octave ?? 0;
+}
 
 function el<T extends HTMLElement>(id: string): T {
   const node = document.getElementById(id);
@@ -56,6 +76,7 @@ themeToggle.addEventListener("click", () => {
 const keySelect = el<HTMLSelectElement>("key");
 const scaleSelect = el<HTMLSelectElement>("scale");
 const instrumentSelect = el<HTMLSelectElement>("instrument");
+const octaveSelect = el<HTMLSelectElement>("octave");
 const bpmInput = el<HTMLInputElement>("bpm");
 const preferSelect = el<HTMLSelectElement>("prefer");
 const retrogradeInput = el<HTMLInputElement>("retrograde");
@@ -76,9 +97,41 @@ function fillSelect(select: HTMLSelectElement, options: { value: string; label: 
   }
 }
 
+// Populate the instrument select with <optgroup>s, preserving INSTRUMENTS order.
+function fillInstruments(select: HTMLSelectElement): void {
+  select.innerHTML = "";
+  const groups = new Map<string, Instrument[]>();
+  for (const inst of INSTRUMENTS) {
+    const list = groups.get(inst.group) ?? [];
+    list.push(inst);
+    groups.set(inst.group, list);
+  }
+  for (const [group, items] of groups) {
+    const optgroup = document.createElement("optgroup");
+    optgroup.label = group;
+    for (const inst of items) {
+      const option = document.createElement("option");
+      option.value = inst.name;
+      option.textContent = inst.label;
+      optgroup.append(option);
+    }
+    select.append(optgroup);
+  }
+}
+
 fillSelect(keySelect, scalesData.keys.map((k) => ({ value: k, label: k })));
 fillSelect(scaleSelect, scalesData.scales.map((s) => ({ value: s.name, label: s.name })));
-fillSelect(instrumentSelect, INSTRUMENTS.map((i) => ({ value: i.name, label: i.label })));
+fillInstruments(instrumentSelect);
+
+// Octave shift options (playback only): −3 … +3, labelled with explicit signs.
+fillSelect(
+  octaveSelect,
+  [-3, -2, -1, 0, 1, 2, 3].map((n) => ({
+    value: String(n),
+    label: n > 0 ? `+${n}` : n < 0 ? `−${-n}` : "0",
+  })),
+);
+octaveSelect.value = String(defaultOctaveFor(instrumentSelect.value));
 
 function setStatus(message: string): void {
   status.textContent = message;
@@ -105,6 +158,7 @@ function currentSpec(): SequenceSpec | undefined {
     retrograde: retrogradeInput.checked,
     instrument: instrumentSelect.value,
     loop: loopOn,
+    octaveShift: Number(octaveSelect.value),
   };
 }
 
@@ -171,7 +225,11 @@ function changeAndStop(): void {
 keySelect.addEventListener("change", changeAndStop);
 scaleSelect.addEventListener("change", changeAndStop);
 retrogradeInput.addEventListener("change", changeAndStop);
-instrumentSelect.addEventListener("change", stop);
+instrumentSelect.addEventListener("change", () => {
+  octaveSelect.value = String(defaultOctaveFor(instrumentSelect.value)); // sensible default per sound
+  stop();
+});
+octaveSelect.addEventListener("change", stop);
 bpmInput.addEventListener("change", stop);
 preferSelect.addEventListener("change", render); // spelling only — no audio impact
 

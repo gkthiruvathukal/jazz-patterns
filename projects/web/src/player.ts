@@ -12,6 +12,8 @@ export interface SequenceSpec {
   retrograde: boolean;
   instrument: string;
   loop: boolean;
+  /** Playback-only transposition in octaves (does not affect the notation). */
+  octaveShift: number;
 }
 
 const PPQ = 480;
@@ -73,9 +75,10 @@ export async function play(spec: SequenceSpec): Promise<void> {
     intervalMs: 25,
   });
   const sequence = spec.retrograde ? [...spec.notes].reverse() : spec.notes;
+  const transpose = spec.octaveShift * 12; // semitones; playback only
   seq.addTrack(
     instrument,
-    sequence.map((note, i) => ({ note: note.midi, at: i * EIGHTH, duration: EIGHTH })),
+    sequence.map((note, i) => ({ note: note.midi + transpose, at: i * EIGHTH, duration: EIGHTH })),
   );
   seq.on("statechange", (state: TransportState) => stateListener?.(state));
   seq.on("end", () => stateListener?.("stopped")); // non-looping sequence finished
