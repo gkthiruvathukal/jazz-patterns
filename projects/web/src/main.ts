@@ -1,7 +1,16 @@
 // Entry point: populate controls, render notation, and drive playback.
 import { scalesData, findChart, type Chart } from "./data/scales";
 import { renderChart } from "./notation";
-import { play, stop, type NoteValue } from "./player";
+import {
+  play,
+  stop,
+  togglePause,
+  setLoop,
+  getState,
+  onStateChange,
+  type SequenceSpec,
+  type TransportState,
+} from "./player";
 
 // A small curated set of GM soundfont instruments. Piano is the default; adding
 // more is just another entry here (smplr loads them by name).
@@ -47,11 +56,11 @@ const keySelect = el<HTMLSelectElement>("key");
 const scaleSelect = el<HTMLSelectElement>("scale");
 const instrumentSelect = el<HTMLSelectElement>("instrument");
 const bpmInput = el<HTMLInputElement>("bpm");
-const noteValueSelect = el<HTMLSelectElement>("note-value");
 const preferSelect = el<HTMLSelectElement>("prefer");
 const retrogradeInput = el<HTMLInputElement>("retrograde");
 const playButton = el<HTMLButtonElement>("play");
 const stopButton = el<HTMLButtonElement>("stop");
+const loopButton = el<HTMLButtonElement>("loop");
 const nowPlaying = el<HTMLParagraphElement>("now-playing");
 const notation = el<HTMLDivElement>("notation");
 const status = el<HTMLParagraphElement>("status");
@@ -84,6 +93,20 @@ function currentChart(): Chart | undefined {
   return findChart(keySelect.value, scaleSelect.value);
 }
 
+let loopOn = false;
+
+function currentSpec(): SequenceSpec | undefined {
+  const chart = currentChart();
+  if (!chart) return undefined;
+  return {
+    notes: chart.notes,
+    bpm: clampedBpm(),
+    retrograde: retrogradeInput.checked,
+    instrument: instrumentSelect.value,
+    loop: loopOn,
+  };
+}
+
 function render(): void {
   const chart = currentChart();
   if (!chart) return;
@@ -91,26 +114,31 @@ function render(): void {
   const suffix = retrograde ? " (retrograde)" : "";
   nowPlaying.innerHTML = `<span class="chord">${chart.chord}</span> &mdash; ${chart.key} ${chart.scale}${suffix}`;
   renderChart(notation, chart, {
-    noteValue: noteValueSelect.value as NoteValue,
     retrograde,
     prefer: preferSelect.value as "auto" | "sharps" | "flats",
   });
 }
 
+// Keep the Play/Pause button label and status in sync with the transport.
+function reflectState(state: TransportState): void {
+  playButton.textContent = state === "playing" ? "Pause" : state === "paused" ? "Resume" : "Play";
+  setStatus(state === "playing" ? "Playing…" : state === "paused" ? "Paused" : "");
+}
+onStateChange(reflectState);
+
+// One button toggles Play ⇄ Pause/Resume. From a stopped state it builds a fresh
+// sequence from the current controls; otherwise it pauses/resumes in place.
 playButton.addEventListener("click", async () => {
-  const chart = currentChart();
-  if (!chart) return;
+  if (getState() !== "stopped") {
+    togglePause();
+    return;
+  }
+  const spec = currentSpec();
+  if (!spec) return;
   playButton.disabled = true;
   setStatus("Loading sound…");
   try {
-    const seconds = await play(chart.notes, {
-      bpm: clampedBpm(),
-      noteValue: noteValueSelect.value as NoteValue,
-      retrograde: retrogradeInput.checked,
-      instrument: instrumentSelect.value,
-    });
-    setStatus(retrogradeInput.checked ? "Playing (retrograde)…" : "Playing…");
-    window.setTimeout(() => setStatus(""), seconds * 1000 + 300);
+    await play(spec);
   } catch (error) {
     setStatus(`Audio error: ${(error as Error).message}`);
   } finally {
@@ -118,16 +146,26 @@ playButton.addEventListener("click", async () => {
   }
 });
 
-stopButton.addEventListener("click", () => {
-  stop();
-  setStatus("");
+stopButton.addEventListener("click", () => stop());
+
+loopButton.addEventListener("click", () => {
+  loopOn = !loopOn;
+  setLoop(loopOn); // applies to the current run if one is playing
+  loopButton.classList.toggle("active", loopOn);
+  loopButton.setAttribute("aria-pressed", String(loopOn));
 });
 
-keySelect.addEventListener("change", render);
-scaleSelect.addEventListener("change", render);
-noteValueSelect.addEventListener("change", render);
-preferSelect.addEventListener("change", render);
-retrogradeInput.addEventListener("change", render);
+// Changing what or how we play resets the transport so the next Play rebuilds it.
+function changeAndStop(): void {
+  stop();
+  render();
+}
+keySelect.addEventListener("change", changeAndStop);
+scaleSelect.addEventListener("change", changeAndStop);
+retrogradeInput.addEventListener("change", changeAndStop);
+instrumentSelect.addEventListener("change", stop);
+bpmInput.addEventListener("change", stop);
+preferSelect.addEventListener("change", render); // spelling only — no audio impact
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint
 // can be wrong until the font is ready — re-render once fonts have settled.

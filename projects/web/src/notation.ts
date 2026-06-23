@@ -3,10 +3,8 @@
 // W/H/m3 step labels written under each note.
 import { Renderer, Stave, StaveNote, Accidental, Formatter, Annotation, BarNote, Voice } from "vexflow";
 import type { Chart } from "./data/scales";
-import type { NoteValue } from "./player";
 
 export interface RenderOptions {
-  noteValue: NoteValue;
   retrograde: boolean;
   prefer: "auto" | "sharps" | "flats";
 }
@@ -19,8 +17,8 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
   // First note has no preceding interval ("-"), then one label per step.
   const labels = ["-", ...intervals];
 
-  const durationBase = opts.noteValue === "quarter" ? "4" : "8";
-  const slotsPerMeasure = opts.noteValue === "quarter" ? 4 : 8; // 4/4
+  const durationBase = "8"; // eighth notes
+  const slotsPerMeasure = 8; // 4/4
   const totalSlots = Math.ceil(notes.length / slotsPerMeasure) * slotsPerMeasure;
 
   const tickables = [];

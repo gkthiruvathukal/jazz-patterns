@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jazz Scales — Interactive</title>
+    <title>Jazz Scales Practice ∀</title>
     <style>
       :root {
         color-scheme: light;
@@ -26,7 +26,7 @@
         max-width: 920px; margin-inline: auto;
         background: var(--bg); color: var(--fg);
       }
-      h1 { font-size: 1.4rem; margin: 0 0 1rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+      h1 { font-size: 1.4rem; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.6rem; }
       .version-pill {
         font-size: 0.7rem; font-weight: 600; line-height: 1;
         padding: 0.25rem 0.55rem; border-radius: 999px;
@@ -45,7 +45,9 @@
       .checkbox { flex-direction: row; align-items: center; gap: 0.4rem; }
       .buttons { display: flex; gap: 0.5rem; }
       button { padding: 0.45rem 1.1rem; font-size: 1rem; cursor: pointer; }
-      #theme-toggle { padding: 0.3rem 0.7rem; font-size: 0.95rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); margin-left: auto; align-self: flex-start; }
+      #loop { border: 1px solid color-mix(in srgb, var(--fg) 40%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); }
+      #loop.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+      #theme-toggle { padding: 0.3rem 0.7rem; font-size: 0.95rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); margin-left: auto; align-self: center; }
       #now-playing { font-size: 1.1rem; margin: 0.5rem 0; min-height: 1.4em; }
       #now-playing .chord { font-weight: 700; }
       #notation { background: var(--notation-bg); border-radius: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
@@ -57,10 +59,12 @@
     </style>
   </head>
   <body>
-    <h1>Jazz Scales — Interactive
+    <h1>
+      <span class="title">Jazz Scales Practice ∀</span>
       <a id="version-pill" class="version-pill"
          href="https://github.com/gkthiruvathukal/jazz-patterns/releases"
          target="_blank" rel="noopener"></a>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode">☀️</button>
     </h1>
 
     <div class="controls">
@@ -81,13 +85,6 @@
         <input id="bpm" type="number" min="40" max="240" step="1" value="96" />
       </div>
       <div class="field">
-        <label for="note-value">Note value</label>
-        <select id="note-value">
-          <option value="eighth" selected>Eighth notes</option>
-          <option value="quarter">Quarter notes</option>
-        </select>
-      </div>
-      <div class="field">
         <label for="prefer">Accidentals</label>
         <select id="prefer">
           <option value="auto">Auto (by key)</option>
@@ -102,8 +99,8 @@
       <div class="buttons">
         <button id="play" type="button">Play</button>
         <button id="stop" type="button">Stop</button>
+        <button id="loop" type="button" aria-pressed="false">Loop</button>
       </div>
-      <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode">☀️</button>
     </div>
 
     <p id="now-playing"></p>

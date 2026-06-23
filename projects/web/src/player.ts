@@ -1,20 +1,26 @@
 // Audio playback via smplr (loads General MIDI soundfont instruments over the
 // network — static fetch, no server state). One AudioContext, instruments cached
-// by name so switching sounds is cheap.
-import { Soundfont } from "smplr";
+// by name so switching sounds is cheap. Transport (play/pause/resume/stop/loop)
+// runs through smplr's Sequencer, which owns the scheduling and state machine.
+import { Soundfont, Sequencer } from "smplr";
 
-export type NoteValue = "eighth" | "quarter";
+export type TransportState = "stopped" | "playing" | "paused";
 
-export interface PlayOptions {
+export interface SequenceSpec {
+  notes: { midi: number }[];
   bpm: number;
-  noteValue: NoteValue;
   retrograde: boolean;
   instrument: string;
+  loop: boolean;
 }
+
+const PPQ = 480;
+const EIGHTH = PPQ / 2; // eighth-note grid: two notes per quarter-note beat
 
 let context: AudioContext | null = null;
 const cache = new Map<string, Soundfont>();
-let active: Soundfont | null = null;
+let sequencer: Sequencer | null = null;
+let stateListener: ((state: TransportState) => void) | null = null;
 
 function getContext(): AudioContext {
   if (!context) {
@@ -34,26 +40,49 @@ export async function loadInstrument(name: string): Promise<Soundfont> {
   return instrument;
 }
 
-/** Schedule the notes and return the total playback duration in seconds. */
-export async function play(notes: { midi: number }[], opts: PlayOptions): Promise<number> {
+/** Register a callback fired on every transport state change (drives the UI). */
+export function onStateChange(cb: (state: TransportState) => void): void {
+  stateListener = cb;
+}
+
+export function getState(): TransportState {
+  return sequencer?.state ?? "stopped";
+}
+
+/** Build a fresh sequence from the spec and start playing from the beginning. */
+export async function play(spec: SequenceSpec): Promise<void> {
   const ctx = getContext();
   await ctx.resume(); // required after the user gesture
-  const instrument = await loadInstrument(opts.instrument);
-  active = instrument;
-  instrument.stop(); // clear anything still sounding
+  const instrument = await loadInstrument(spec.instrument);
 
-  const beat = 60 / opts.bpm;
-  const step = opts.noteValue === "quarter" ? beat : beat / 2;
-  const sequence = opts.retrograde ? [...notes].reverse() : notes;
+  sequencer?.stop(); // tear down any previous run
 
-  const start = ctx.currentTime + 0.12;
-  sequence.forEach((note, i) => {
-    instrument.start({ note: note.midi, time: start + i * step, duration: step * 0.95 });
-  });
+  const seq = new Sequencer(ctx, { bpm: spec.bpm, ppq: PPQ, loop: spec.loop });
+  const sequence = spec.retrograde ? [...spec.notes].reverse() : spec.notes;
+  seq.addTrack(
+    instrument,
+    sequence.map((note, i) => ({ note: note.midi, at: i * EIGHTH, duration: EIGHTH })),
+  );
+  seq.on("statechange", (state: TransportState) => stateListener?.(state));
+  seq.on("end", () => stateListener?.("stopped")); // non-looping sequence finished
 
-  return sequence.length * step;
+  sequencer = seq;
+  seq.start();
+}
+
+/** Pause if playing, resume if paused. No-op when stopped (use play() to start). */
+export function togglePause(): void {
+  const seq = sequencer;
+  if (seq && (seq.state === "playing" || seq.state === "paused")) {
+    seq.togglePlayPause();
+  }
 }
 
 export function stop(): void {
-  active?.stop();
+  sequencer?.stop();
+}
+
+/** Toggle looping on the current run; also read again from the spec on next play(). */
+export function setLoop(loop: boolean): void {
+  if (sequencer) sequencer.loop = loop;
 }
