@@ -1,0 +1,112 @@
+/* @theme jazz */
+
+/*
+ * A restrained, screen-first theme: Inter for text, JetBrains Mono for code,
+ * generous whitespace, one amber accent (echoing the app's playback highlight).
+ * Editable from slides.md — this file only sets the look.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --fg: #181a1f;
+  --muted: #626877;
+  --accent: #d99413;        /* amber — same family as the note highlight */
+  --rule: #e7e9ed;
+  --code-bg: #f6f7f9;
+  --code-fg: #2b2f37;
+}
+
+section {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 26px;
+  line-height: 1.5;
+  color: var(--fg);
+  background: var(--bg);
+  padding: 64px 88px;
+  letter-spacing: -0.011em;
+}
+
+h1, h2, h3 { font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
+h1 { font-size: 2.0em; margin: 0 0 0.35em; }
+h2 {
+  font-size: 1.3em; margin: 0 0 0.7em; padding-bottom: 0.3em;
+  border-bottom: 3px solid var(--accent);
+  display: inline-block;
+}
+h3 { font-size: 1.05em; margin: 0.2em 0 0.3em; color: var(--muted); }
+
+p, li { margin: 0.35em 0; }
+strong { color: var(--accent); font-weight: 700; }
+em { color: var(--muted); font-style: normal; }
+a { color: var(--accent); text-decoration: none; }
+ul { padding-left: 1.1em; }
+li::marker { color: var(--accent); }
+
+small, .muted { color: var(--muted); font-size: 0.8em; }
+
+/* Work-in-progress badge (title slide) */
+.wip {
+  display: inline-block;
+  font-size: 0.6em; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #15171c; background: var(--accent);
+  padding: 0.3em 0.8em; border-radius: 999px;
+  margin-bottom: 0.5em;
+}
+
+/* Code */
+code {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.86em;
+  background: var(--code-bg);
+  padding: 0.08em 0.32em;
+  border-radius: 5px;
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 0.85em 1.05em;
+  font-size: 0.6em;
+  line-height: 1.55;
+  overflow: auto;
+}
+pre code { background: none; padding: 0; color: var(--code-fg); font-size: 1em; }
+
+/* Minimal syntax accents (highlight.js classes) */
+.hljs-comment, .hljs-quote { color: #9aa1ad; font-style: italic; }
+.hljs-keyword, .hljs-built_in, .hljs-literal { color: #b5641a; }
+.hljs-string, .hljs-attr { color: #2e7d57; }
+.hljs-number, .hljs-symbol { color: #8a5cf6; }
+.hljs-title, .hljs-section, .hljs-name { color: #2563b0; }
+
+/* Images / notation */
+img { border-radius: 8px; }
+.engrave { background: #fff; padding: 14px 18px; border: 1px solid var(--rule); border-radius: 10px; }
+
+/* Two-column helper: <div class="cols"> ... </div> */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+.cols.tight { gap: 22px; }
+figure { margin: 0; text-align: center; }
+figcaption { color: var(--muted); font-size: 0.66em; margin-top: 0.4em; }
+
+/* Lead / title + section-divider slides */
+section.lead { justify-content: center; }
+section.lead h1 { font-size: 3.1em; margin-bottom: 0.1em; }
+section.lead h2 { border: none; font-size: 1.15em; font-weight: 500; color: var(--muted); padding: 0; }
+
+section.dark { background: #15171c; color: #eceef2; }
+section.dark h1, section.dark h2, section.dark h3 { color: #ffffff; }
+section.dark h2 { border-bottom-color: var(--accent); }
+section.dark strong { color: #f2b53e; }
+section.dark a, section.dark em, section.dark .muted, section.dark small { color: #aab0bd; }
+
+/* Pull-quote / statement slide */
+section.statement { justify-content: center; }
+section.statement h1 { font-size: 2.4em; max-width: 18ch; }
+
+/* Footer + pagination */
+footer { color: var(--muted); font-size: 0.6em; }
+section::after { color: var(--muted); font-size: 0.6em; }
+section.dark footer, section.dark::after { color: #8b93a1; }

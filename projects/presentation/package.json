@@ -1,0 +1,17 @@
+{
+  "name": "jazz-presentation",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Marp (Markdown) slide deck about the Jazz Scales Practice project.",
+  "scripts": {
+    "notation": "bash tools/render-notation.sh",
+    "build": "marp slides.md -o dist/index.html --theme theme.css --html && rm -rf dist/assets && cp -R assets dist/assets",
+    "build:pdf": "marp slides.md -o dist/slides.pdf --theme theme.css --html --allow-local-files",
+    "dev": "marp -s . --theme theme.css --html"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.4.0",
+    "puppeteer": "^25.2.0"
+  }
+}

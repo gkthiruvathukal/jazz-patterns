@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" width="45.90mm" height="18.04mm" viewBox="0.0000 0.0001 26.1174 10.2682">
+<style type="text/css">
+<![CDATA[
+tspan { white-space: pre; }
+]]>
+</style>
+<g transform="translate(0.0000, 8.5201)">
+<rect x="5.4740" y="-0.1000" width="1.9563" height="0.2000" ry="0.1000" fill="currentColor"/>
+</g>
+<g transform="translate(0.0000, 7.5201)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="26.0674" y2="0"/>
+</g>
+<g transform="translate(0.0000, 6.5201)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="26.0674" y2="0"/>
+</g>
+<g transform="translate(0.0000, 5.5201)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="26.0674" y2="0"/>
+</g>
+<g transform="translate(0.0000, 4.5201)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="26.0674" y2="0"/>
+</g>
+<g transform="translate(0.0000, 3.5201)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="26.0674" y2="0"/>
+</g>
+<g transform="translate(25.9274, 5.5201)">
+<rect x="0.0000" y="-2.0000" width="0.1900" height="4.0000" ry="0.0000" fill="currentColor"/>
+</g>
+<g transform="translate(16.9910, 3.3301)">
+<polygon stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0800" fill="currentColor" stroke="currentColor" points="7.6026 -1.0100 7.6026 -0.6100 0.0400 0.2000 0.0400 -0.2000"/>
+</g>
+<g transform="translate(6.9742, 5.3301)">
+<polygon stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0800" fill="currentColor" stroke="currentColor" points="7.6026 -1.2000 7.6026 -0.8000 0.0400 0.2000 0.0400 -0.2000"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:16:6:7">
+<g transform="translate(5.8000, 8.5201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:16:8:9">
+<g transform="translate(5.8000, 1.6260)">
+<text font-family="serif" font-weight="bold" font-size="2.2000" text-anchor="start" fill="currentColor">
+<tspan>C Major — Cmaj7</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(0.8000, 6.5201)">
+<path transform="scale(0.0040, -0.0040)" d="M266 -635h-6c-108 0 -195 88 -195 197c0 58 53 103 112 103c54 0 95 -47 95 -103c0 -52 -43 -95 -95 -95c-11 0 -21 2 -31 6c26 -39 68 -65 117 -65h4zM401 151c19 -89 48 -242 60 -354c76 27 112 94 112 163c0 89 -60 179 -172 191zM74 28c0 -112 98 -247 278 -247
+c21 0 44 2 68 6c-7 64 -29 203 -63 364c-79 -8 -124 -61 -124 -119c0 -44 25 -91 81 -123c5 -5 7 -10 7 -15c0 -11 -10 -22 -22 -22c-15 0 -126 62 -126 187c0 88 58 174 160 197c-14 58 -29 117 -46 175c-107 -121 -213 -243 -213 -403zM357 1194c28 0 143 -206 143 -361
+c0 -143 -86 -255 -180 -364c21 -68 39 -138 56 -207c5 0 10 1 14 1c155 0 255 -129 255 -262c0 -113 -74 -212 -180 -245c3 -35 5 -70 5 -105c0 -19 -1 -39 -2 -58c-7 -119 -88 -225 -202 -228l1 43c93 2 153 92 159 191c1 18 2 37 2 55c0 31 -1 61 -4 92
+c-28 -5 -55 -8 -80 -8c-239 0 -342 217 -342 374c0 177 131 306 248 441c-29 96 -52 170 -52 346c0 189 144 295 159 295zM247 782c0 -55 12 -115 35 -190c82 100 147 202 147 326c0 40 -6 82 -21 127c-49 -24 -161 -97 -161 -263z" fill="currentColor"/>
+</g>
+<g transform="translate(7.0392, 5.5201)">
+<rect x="-0.0650" y="-0.1985" width="0.1300" height="3.0123" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:17:6:7">
+<g transform="translate(8.3042, 8.0201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:17:8:9">
+<g transform="translate(8.3042, 10.2474)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>W</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(9.5434, 5.5201)">
+<rect x="-0.0650" y="-0.5262" width="0.1300" height="2.8400" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:18:6:7">
+<g transform="translate(10.8084, 7.5201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:18:8:9">
+<g transform="translate(10.8084, 9.7474)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>W</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(12.0476, 5.5201)">
+<rect x="-0.0650" y="-0.8538" width="0.1300" height="2.6676" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:19:6:7">
+<g transform="translate(13.3126, 7.0201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:19:8:9">
+<g transform="translate(13.3126, 9.2524)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>H</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(14.5518, 5.5201)">
+<rect x="-0.0650" y="-1.1815" width="0.1300" height="2.4953" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:20:6:7">
+<g transform="translate(15.8168, 6.5201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:20:8:9">
+<g transform="translate(15.8168, 9.2524)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>W</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(17.0560, 5.5201)">
+<rect x="-0.0650" y="-2.1969" width="0.1300" height="3.0107" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:21:6:7">
+<g transform="translate(18.3210, 6.0201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:21:8:9">
+<g transform="translate(18.3210, 9.2524)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>W</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(19.5602, 5.5201)">
+<rect x="-0.0650" y="-2.4623" width="0.1300" height="2.7761" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:22:6:7">
+<g transform="translate(20.8252, 5.5201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:22:8:9">
+<g transform="translate(20.8252, 9.2524)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>W</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(22.0644, 5.5201)">
+<rect x="-0.0650" y="-2.7277" width="0.1300" height="2.5415" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:23:6:7">
+<g transform="translate(23.3294, 5.0201)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/cmajor.ly:23:8:9">
+<g transform="translate(23.3294, 9.2524)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>H</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(24.5686, 5.5201)">
+<rect x="-0.0650" y="-2.9931" width="0.1300" height="2.3069" ry="0.0400" fill="currentColor"/>
+</g>
+</svg>

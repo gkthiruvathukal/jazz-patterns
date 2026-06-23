@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" width="53.21mm" height="16.84mm" viewBox="0.0000 -0.0000 30.2808 9.5845">
+<style type="text/css">
+<![CDATA[
+tspan { white-space: pre; }
+]]>
+</style>
+<g transform="translate(0.0000, 7.5062)">
+<rect x="5.4740" y="-0.1000" width="1.9563" height="0.2000" ry="0.1000" fill="currentColor"/>
+</g>
+<g transform="translate(0.0000, 6.5062)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="30.2308" y2="0"/>
+</g>
+<g transform="translate(0.0000, 5.5062)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="30.2308" y2="0"/>
+</g>
+<g transform="translate(0.0000, 4.5062)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="30.2308" y2="0"/>
+</g>
+<g transform="translate(0.0000, 3.5062)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="30.2308" y2="0"/>
+</g>
+<g transform="translate(0.0000, 2.5062)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.1000" stroke="currentColor" x1="0.0500" y1="0" x2="30.2308" y2="0"/>
+</g>
+<g transform="translate(15.1995, 4.5062)">
+<rect x="-0.0650" y="-1.5804" width="0.1300" height="2.8942" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:21:6:7">
+<g transform="translate(26.5356, 4.0062)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<g transform="translate(6.9742, 3.6962)">
+<polygon stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0800" fill="currentColor" stroke="currentColor" points="12.6654 -1.3900 12.6654 -0.9900 0.0400 0.2000 0.0400 -0.2000"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:16:6:7">
+<g transform="translate(5.8000, 7.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:16:8:9">
+<g transform="translate(5.8000, 1.7931)">
+<text font-family="serif" font-weight="bold" font-size="2.2000" text-anchor="start" fill="currentColor">
+<tspan>C Minor Pentatonic ♭5</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(0.8000, 5.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M266 -635h-6c-108 0 -195 88 -195 197c0 58 53 103 112 103c54 0 95 -47 95 -103c0 -52 -43 -95 -95 -95c-11 0 -21 2 -31 6c26 -39 68 -65 117 -65h4zM401 151c19 -89 48 -242 60 -354c76 27 112 94 112 163c0 89 -60 179 -172 191zM74 28c0 -112 98 -247 278 -247
+c21 0 44 2 68 6c-7 64 -29 203 -63 364c-79 -8 -124 -61 -124 -119c0 -44 25 -91 81 -123c5 -5 7 -10 7 -15c0 -11 -10 -22 -22 -22c-15 0 -126 62 -126 187c0 88 58 174 160 197c-14 58 -29 117 -46 175c-107 -121 -213 -243 -213 -403zM357 1194c28 0 143 -206 143 -361
+c0 -143 -86 -255 -180 -364c21 -68 39 -138 56 -207c5 0 10 1 14 1c155 0 255 -129 255 -262c0 -113 -74 -212 -180 -245c3 -35 5 -70 5 -105c0 -19 -1 -39 -2 -58c-7 -119 -88 -225 -202 -228l1 43c93 2 153 92 159 191c1 18 2 37 2 55c0 31 -1 61 -4 92
+c-28 -5 -55 -8 -80 -8c-239 0 -342 217 -342 374c0 177 131 306 248 441c-29 96 -52 170 -52 346c0 189 144 295 159 295zM247 782c0 -55 12 -115 35 -190c82 100 147 202 147 326c0 40 -6 82 -21 127c-49 -24 -161 -97 -161 -263z" fill="currentColor"/>
+</g>
+<g transform="translate(7.0392, 4.5062)">
+<rect x="-0.0650" y="-0.8161" width="0.1300" height="3.6299" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:17:6:7">
+<g transform="translate(10.2151, 6.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:17:10:11">
+<g transform="translate(10.2151, 8.6114)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>m3</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(11.4543, 4.5062)">
+<rect x="-0.0650" y="-1.2296" width="0.1300" height="3.0434" ry="0.0400" fill="currentColor"/>
+</g>
+<g transform="translate(9.0651, 6.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M27 41l-1 -66v-11c0 -22 1 -44 4 -66c45 38 93 80 93 139c0 33 -14 67 -43 67c-31 0 -52 -30 -53 -63zM-15 -138l-12 595c8 5 18 8 27 8s19 -3 27 -8l-7 -345c25 21 58 34 91 34c52 0 89 -48 89 -102c0 -80 -86 -117 -147 -169c-15 -13 -24 -38 -45 -38
+c-13 0 -23 11 -23 25z" fill="currentColor"/>
+</g>
+<g transform="translate(26.6656, 7.4662)">
+<path transform="scale(0.0040, -0.0040)" d="M0 0h-16v375h16v-375zM224 509c0 94 -40 158 -40 168c0 14 11 22 23 22c7 0 15 -3 20 -11c25 -56 40 -117 40 -179c0 -203 -267 -306 -267 -509v250c97 59 224 148 224 259z" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:18:6:7">
+<g transform="translate(13.9603, 6.0062)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:18:8:9">
+<g transform="translate(13.9603, 8.2385)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>W</tspan>
+</text>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:19:6:7">
+<g transform="translate(18.3754, 5.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:19:10:11">
+<g transform="translate(18.3754, 8.2385)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>H</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(19.6146, 4.5062)">
+<rect x="-0.0650" y="-1.9939" width="0.1300" height="2.8077" ry="0.0400" fill="currentColor"/>
+</g>
+<g transform="translate(17.2254, 5.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M27 41l-1 -66v-11c0 -22 1 -44 4 -66c45 38 93 80 93 139c0 33 -14 67 -43 67c-31 0 -52 -30 -53 -63zM-15 -138l-12 595c8 5 18 8 27 8s19 -3 27 -8l-7 -345c25 21 58 34 91 34c52 0 89 -48 89 -102c0 -80 -86 -117 -147 -169c-15 -13 -24 -38 -45 -38
+c-13 0 -23 11 -23 25z" fill="currentColor"/>
+</g>
+<g transform="translate(26.6006, 4.5062)">
+<rect x="-0.0650" y="-0.3138" width="0.1300" height="3.3138" ry="0.0400" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:20:6:7">
+<g transform="translate(22.7905, 4.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M0 -46c0 91 116 182 217 182c63 0 109 -35 109 -90c0 -87 -110 -182 -220 -182c-67 0 -106 39 -106 90z" fill="currentColor"/>
+</g>
+</a>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:20:10:11">
+<g transform="translate(22.7905, 9.5635)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>M3</tspan>
+</text>
+</g>
+</a>
+<g transform="translate(22.8555, 4.5062)">
+<rect x="-0.0650" y="0.1862" width="0.1300" height="3.1888" ry="0.0400" fill="currentColor"/>
+</g>
+<g transform="translate(22.9205, 7.8412)">
+<path transform="scale(0.0040, -0.0040)" d="M0 0h-16v375h16v-375zM224 509c0 94 -40 158 -40 168c0 14 11 22 23 22c7 0 15 -3 20 -11c25 -56 40 -117 40 -179c0 -203 -267 -306 -267 -509v250c97 59 224 148 224 259z" fill="currentColor"/>
+</g>
+<g transform="translate(21.6405, 4.5062)">
+<path transform="scale(0.0040, -0.0040)" d="M27 41l-1 -66v-11c0 -22 1 -44 4 -66c45 38 93 80 93 139c0 33 -14 67 -43 67c-31 0 -52 -30 -53 -63zM-15 -138l-12 595c8 5 18 8 27 8s19 -3 27 -8l-7 -345c25 21 58 34 91 34c52 0 89 -48 89 -102c0 -80 -86 -117 -147 -169c-15 -13 -24 -38 -45 -38
+c-13 0 -23 11 -23 25z" fill="currentColor"/>
+</g>
+<a style="color:inherit;" xlink:href="textedit:///Volumes/Work/jazz-patterns/projects/presentation/tools/snippets/pentb5.ly:21:8:9">
+<g transform="translate(26.5356, 9.1885)">
+<text font-family="serif" font-size="1.7459" text-anchor="start" fill="currentColor">
+<tspan>W</tspan>
+</text>
+</g>
+</a>
+</svg>
