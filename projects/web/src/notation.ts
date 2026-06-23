@@ -9,6 +9,9 @@ export interface RenderOptions {
   noteValue: NoteValue;
   retrograde: boolean;
   prefer: "auto" | "sharps" | "flats";
+  // When true, scale the SVG to the container width (smaller but no scrolling);
+  // when false, keep natural size and let the #notation box scroll horizontally.
+  fitWidth: boolean;
 }
 
 export function renderChart(container: HTMLDivElement, chart: Chart, opts: RenderOptions): void {
@@ -71,11 +74,19 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
   new Formatter().joinVoices([voice]).format([voice], width - 90);
   voice.draw(context, stave);
 
-  // Make the SVG scale to fit its container instead of overflowing on narrow screens.
+  // The viewBox lets the SVG scale cleanly either way. With fitWidth, force it to
+  // the container width (scales down, no scroll). Otherwise keep its natural pixel
+  // size so wide scores overflow the #notation box and scroll horizontally
+  // (the box has overflow-x:auto) on narrow screens.
   const svg = container.querySelector("svg");
   if (svg) {
     svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-    svg.setAttribute("width", "100%");
-    svg.removeAttribute("height");
+    if (opts.fitWidth) {
+      svg.setAttribute("width", "100%");
+      svg.removeAttribute("height");
+    } else {
+      svg.setAttribute("width", `${width}`);
+      svg.setAttribute("height", `${height}`);
+    }
   }
 }
