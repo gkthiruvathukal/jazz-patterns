@@ -2,7 +2,7 @@
 
 A monorepo of jazz practice material: static notation/audio generated with [Abjad](https://abjad.github.io/) and [LilyPond](https://lilypond.org/), plus an interactive web app. It contains three independent subprojects and a small shared helper package.
 
-**Interactive app (live):** https://gkt.sh/jazz-patterns/
+**Interactive app (live):** https://jazz-scales.gkt.sh/
 
 ```text
 jazz-patterns/
@@ -31,7 +31,7 @@ bash projects/blues/build.sh
 
 Each Python script bootstraps a local `.venv`, installs `jazz-common` and the subproject, and writes outputs to that subproject's `build/` directory.
 
-**Web** (interactive app — [live at gkt.sh/jazz-patterns](https://gkt.sh/jazz-patterns/)):
+**Web** (interactive app — [live at jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)): pick a key/scale, see the notation, and play it back with a transport (play/pause/resume, stop, loop), a current-note highlight, selectable instruments with per-instrument octave, and adjustable swing. See [`projects/web/README.md`](projects/web/README.md) for the full feature list.
 
 ```bash
 cd projects/web && npm install && npm run dev
