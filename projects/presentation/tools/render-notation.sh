@@ -10,6 +10,10 @@ cd "$(dirname "$0")/.."
 echo "==> LilyPond engravings"
 bash tools/render-lilypond.sh
 
+echo "==> Ensuring Puppeteer is available (local-only; not a build dependency)"
+node -e "require.resolve('puppeteer')" 2>/dev/null || npm install --no-save puppeteer
+npx puppeteer browsers install chrome >/dev/null
+
 echo "==> Building + serving the web app for screenshots"
 ( cd ../web && npm run build >/dev/null 2>&1 )
 ( cd ../web && npx vite preview --port 4173 >/tmp/jazz-preview.log 2>&1 & echo $! >/tmp/jazz-preview.pid )

@@ -50,7 +50,7 @@ jobs:
         env:
           PUPPETEER_SKIP_DOWNLOAD: "true"
         run: |
-          npm ci
+          npm install --no-audit --no-fund
           npm run build
 
       - name: Place slides under /slides

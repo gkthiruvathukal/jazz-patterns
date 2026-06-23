@@ -178,13 +178,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
-          cache-dependency-path: projects/presentation/package-lock.json
 
       - name: Install deps
         env:
           PUPPETEER_SKIP_DOWNLOAD: "true"
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Build slides (HTML)
         run: npm run build

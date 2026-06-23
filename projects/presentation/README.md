@@ -33,8 +33,8 @@ stay authentic:
 - `app-*.png` — screenshots of the real **web app** (VexFlow + UI), captured with a
   headless browser.
 
-Regenerate them (needs the sibling `../web` app and a Puppeteer Chromium —
-`npx puppeteer browsers install chrome`):
+Regenerate them with the sibling `../web` app (the script installs Puppeteer
+on demand — it is **not** a build dependency, to keep CI lean):
 
 ```bash
 npm run notation
