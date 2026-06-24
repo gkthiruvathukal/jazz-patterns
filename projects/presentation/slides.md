@@ -41,7 +41,7 @@ George K. Thiruvathukal
 
 - **For musicians at all levels** — the same material scales from beginner drills to advanced modes.
 - **See it and hear it** — notation you can read *and* play back.
-- **Free & open for all (hence the ∀ symbol from mathematical logic)· * — no login, no account, no paywall. MIT-licensed.
+- **Free & open for all, hence the ∀ symbol from mathematical logic** — no login, no account, no paywall. MIT-licensed.
 
 If you find it useful, consider *sponsoring* me on GitHub or making a donation to my research lab at Loyola University Chicago. Details forthcoming.
 
@@ -152,7 +152,7 @@ Note names *and* MIDI *and* enharmonic spellings — so the renderer never does 
 <div>
 
 - **VexFlow** treble stave, 4/4, padded to whole measures.
-- Interval labels under each note (reversed for retrograde).
+- **Interval labels** under each note (reversed for retrograde).
 - **Responsive SVG** — crisp at any width, phones included.
 
 ```ts
@@ -173,7 +173,8 @@ svg.style.maxWidth = `${w}px`;  // VexFlow's inline
 
 ## Hear it — playback & interaction
 
-![bg right:42%](assets/app-full-dark.png)
+<div class="cols">
+<div>
 
 - **smplr Sequencer** — real transport: **play / pause / resume / stop / loop**.
 - **Instruments** — keys, mallets, guitar, **bass**, **horns & winds**.
@@ -181,6 +182,13 @@ svg.style.maxWidth = `${w}px`;  // VexFlow's inline
 - **Playing-note highlight** — the score follows the sound.
 
 *All "feel" controls change the audio only — never the printed notes.*
+
+</div>
+<figure>
+<img src="assets/app-mobile-dark.png" style="max-height: 580px; width: auto;" />
+<figcaption>The full app at phone width</figcaption>
+</figure>
+</div>
 
 ---
 

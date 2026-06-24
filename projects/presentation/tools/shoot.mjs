@@ -58,4 +58,12 @@ await sleep(250);
 await page.screenshot({ path: "assets/app-full-dark.png" });
 console.log("wrote app-full-dark.png");
 
+// 4) Mobile portrait (dark) — the full app reflowed to a typical phone width,
+// captured top-to-bottom so every control + the notation fits in one image.
+await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true });
+await sleep(300);
+await page.evaluate(() => window.scrollTo(0, 0));
+await page.screenshot({ path: "assets/app-mobile-dark.png", fullPage: true });
+console.log("wrote app-mobile-dark.png");
+
 await browser.close();
