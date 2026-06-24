@@ -51,12 +51,10 @@ await shootNotation("app-cmajor.png");
 await pick("C", "Minor Pentatonic b5");
 await shootNotation("app-pentb5.png");
 
-// 3) Full app (dark) — the interactive UI for the product slide.
+// 3) Dark theme + C Dorian — the state reused for the mobile capture below.
 await setDark(true);
 await pick("C", "Dorian");
 await sleep(250);
-await page.screenshot({ path: "assets/app-full-dark.png" });
-console.log("wrote app-full-dark.png");
 
 // 4) Mobile portrait (dark) — the full app reflowed to a typical phone width,
 // captured top-to-bottom so every control + the notation fits in one image.

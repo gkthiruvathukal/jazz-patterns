@@ -15,7 +15,11 @@ footer: "🚧 Work in progress · Jazz Scales Practice ∀ · github.com/gkthiru
 
 ## Open, generated practice material — every key, every scale, in print and in the browser
 
-George K. Thiruvathukal
+**George K. Thiruvathukal, PhD**<br>
+Professor of Computer Science, Loyola University Chicago<br>
+Visiting Computer Scientist, Argonne National Laboratory<br>
+[gthiruvathukal@luc.edu](mailto:gthiruvathukal@luc.edu) · [gkt.sh](https://gkt.sh)
+
 **[jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)** · MIT-licensed · [github.com/gkthiruvathukal/jazz-patterns](https://github.com/gkthiruvathukal/jazz-patterns)
 
 ---
@@ -223,6 +227,20 @@ const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 - **No server, no login, no tracking** — a static bundle on GitHub Pages.
 - **Open** — MIT-licensed; the Python model is the single source of truth.
 - **Mobile Web First** - While we may eventually provide Android and MacOS apps, we intentionally choose the web with the hope of reaching the widest possible audience.
+
+---
+
+<!-- _class: dark -->
+
+## Acknowledgments — my jazz mentors
+
+- **[Jack Cassidy](https://www.linkedin.com/in/dr-jack-cassidy-605428232/)** — my first jazz mentor, Old Town School of Folk Music.
+- **[Lara Driscoll](https://laradriscoll.com)** — my first and current piano teacher, Loyola University Chicago.
+- **[Victor Garcia](https://victorgarciamusic.com/)** — a mentor from Loyola University Chicago and bandleader of *Victor Garcia's Listening Party*, a wonderful program for jazz musicians of all ages (even older ones like me!).
+- **[Christopher Madsen](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/christophermadsendma.shtml)** — Director of the Jazz Studies program, Loyola University Chicago.
+- **[Michael Nearpass](https://www.oldtownschool.org/teachers/Michael-Nearpass/)** — my current mentor, Old Town School of Folk Music.
+
+*I've learned so much from all of them these past few years — I'd never have created this without them. Thank you.*
 
 ---
 
