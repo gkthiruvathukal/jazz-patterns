@@ -234,13 +234,41 @@ const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 
 ## Acknowledgments — my jazz mentors
 
-- **[Jack Cassidy](https://www.linkedin.com/in/dr-jack-cassidy-605428232/)** — my first jazz mentor, Old Town School of Folk Music.
-- **[Lara Driscoll](https://laradriscoll.com)** — my first and current piano teacher, Loyola University Chicago.
-- **[Victor Garcia](https://victorgarciamusic.com/)** — a mentor from Loyola University Chicago and bandleader of *Victor Garcia's Listening Party*, a wonderful program for jazz musicians of all ages (even older ones like me!).
-- **[Christopher Madsen](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/christophermadsendma.shtml)** — Director of the Jazz Studies program, Loyola University Chicago.
-- **[Michael Nearpass](https://www.oldtownschool.org/teachers/Michael-Nearpass/)** — my current mentor, Old Town School of Folk Music.
+<div class="cols">
+<div>
 
-*I've learned so much from all of them these past few years — I'd never have created this without them. Thank you.*
+- **[Jack Cassidy](https://www.linkedin.com/in/dr-jack-cassidy-605428232/)** — my first jazz mentor (Old Town School of Folk Music).
+- **[Lara Driscoll](https://laradriscoll.com)** — my piano teacher (Loyola).
+- **[Victor Garcia](https://victorgarciamusic.com/)** — mentor (Loyola); bandleader, *Victor Garcia's Listening Party*.
+- **[Dongryul Lee](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/dongryulleedma.shtml)** — my composition teacher (Loyola).
+
+</div>
+<div>
+
+- **[Christopher Madsen](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/christophermadsendma.shtml)** — Director, Jazz Studies (Loyola).
+- **[Michael Nearpass](https://www.oldtownschool.org/teachers/Michael-Nearpass/)** — my current mentor (Old Town School of Folk Music).
+- **[David B. Wetzel](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/davidwetzeldma.shtml)** — teaching collaborator in digital & electronic music (Loyola).
+
+</div>
+</div>
+
+*I've learned so much from all of them these past few years — this work wouldn't exist without them. Thank you.*
+
+---
+
+<!-- _class: dark -->
+
+## Acknowledgments — Argonne National Laboratory
+
+Beyond the music — the colleagues who back my (sometimes crazy) ideas and help turn them into great research papers.
+
+- **[Janet Knowles](https://www.alcf.anl.gov/about/people/janet-knowles)** — Principal Software Development Specialist, ALCF; a fellow musician whose positive energy and encouragement mean so much.
+- **[Victor Mateevitsi](https://www.alcf.anl.gov/about/people/victor-mateevitsi)** — Computer Scientist, ALCF; collaborator with me and my PhD student **[Nicholas Synovic](https://github.com/NicholasSynovic)**.
+- **[Mike Papka](https://www.anl.gov/profile/michael-e-papka)** — Director of the Argonne Leadership Computing Facility.
+- **[Silvio Rizzi](https://www.alcf.anl.gov/about/people/silvio-rizzi)** — Computer Scientist, ALCF; my collaborator of several years on HPC education and research.
+- **[Shilpika](https://www.alcf.anl.gov/about/people/shilpika)** — my former MS student, now a computational scientist working on visualization.
+
+*And all my colleagues not named here — including my department at Loyola University Chicago. Thank you for supporting the ideas that become great papers.*
 
 ---
 
