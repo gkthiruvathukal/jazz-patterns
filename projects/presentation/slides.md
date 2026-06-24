@@ -187,10 +187,33 @@ svg.style.maxWidth = `${w}px`;  // VexFlow's inline
 
 *All "feel" controls change the audio only — never the printed notes.*
 
+▶ **Play it:** [jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)
+
 </div>
 <figure>
 <img src="assets/app-mobile-dark.png" style="max-height: 580px; width: auto;" />
 <figcaption>The full app at phone width</figcaption>
+</figure>
+</div>
+
+---
+
+## Print it — the practice book
+
+<div class="cols">
+<div>
+
+- **Every key × every scale** — forward *and* retrograde.
+- **By-key *and* by-scale chapters**, with a cover and table of contents.
+- **Engraved with LilyPond** — real typesetting, not screenshots.
+- **One source model** — fix once; book, MIDI, and app stay in sync.
+
+📖 **Free book (PDF):** [github.com/gkthiruvathukal/jazz-patterns/releases/latest](https://github.com/gkthiruvathukal/jazz-patterns/releases/latest/download/Jazz-Scales-Book.pdf)
+
+</div>
+<figure>
+<img src="assets/lily-pentb5.svg" class="engrave" width="100%" />
+<figcaption>Engraved with LilyPond — Jazz-Scales-Book.pdf</figcaption>
 </figure>
 </div>
 
@@ -232,7 +255,7 @@ const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 
 <!-- _class: dark -->
 
-## Acknowledgments — my jazz mentors
+## Acknowledgments — my jazz mentors and music collaborators
 
 <div class="cols">
 <div>
@@ -266,9 +289,7 @@ Beyond the music — the colleagues who back my (sometimes crazy) ideas and help
 - **[Victor Mateevitsi](https://www.alcf.anl.gov/about/people/victor-mateevitsi)** — Computer Scientist, ALCF; collaborator with me and my PhD student **[Nicholas Synovic](https://github.com/NicholasSynovic)**.
 - **[Mike Papka](https://www.anl.gov/profile/michael-e-papka)** — Director of the Argonne Leadership Computing Facility.
 - **[Silvio Rizzi](https://www.alcf.anl.gov/about/people/silvio-rizzi)** — Computer Scientist, ALCF; my collaborator of several years on HPC education and research.
-- **[Shilpika](https://www.alcf.anl.gov/about/people/shilpika)** — my former MS student, now a computational scientist working on visualization.
-
-*And all my colleagues not named here — including my department at Loyola University Chicago. Thank you for supporting the ideas that become great papers.*
+- **[Shilpika](https://www.alcf.anl.gov/about/people/shilpika)** — my former graduate student in Software Engineering, now a computational scientist working on visualization.
 
 ---
 
