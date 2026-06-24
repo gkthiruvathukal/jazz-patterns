@@ -23,7 +23,8 @@ doi = "10.6084/m9.figshare.29887028.v5"
 
 - Two book organizations (`--sections`, default both):
   - **By key** — one chapter per key showing all scales; each pattern is a 2-measure system (forward bar, then retrograde bar)
-  - **By scale** — one chapter per scale showing it across all 12 keys, each key a self-contained 2-measure "movement"
+  - **By scale** — one chapter per scale showing it across all keys, each key a self-contained 2-measure "movement"
+- **F#/C# enharmonics** — emitted alongside Gb/Db (spelled with sharps), so all 14 keys appear; `--no-enharmonics` emits just the 12-key cycle
 - Beamed 8th notes
 - Scale name and compatible chord symbol above the line
 - Step pattern (W / H / W+H / m3) below **both** the forward and retrograde forms
@@ -120,6 +121,7 @@ Common generator options:
 - `--anchor` register anchoring: `nearest`, `up`, or `down`
 - `--mode` key-signature mode: `major` or `minor`
 - `--sections` which chapters to generate: `key`, `scale`, or `both` (default `both`)
+- `--no-enharmonics` skip the extra F#/C# keys (emitted alongside Gb/Db by default)
 - `--pdf` compile PDFs
 - `--midi` compile MIDI
 - `--bpm` set print/MIDI tempo
