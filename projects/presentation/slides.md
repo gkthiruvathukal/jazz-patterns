@@ -37,13 +37,13 @@ George K. Thiruvathukal
 
 ## Why I'm building this
 
-> *I want one tool that helps a player — from a first-year student to a gigging pro — internalize the **sound and shape** of every scale, in every key. Free, open, and useful at the music stand or on a phone.*
+> *I want one tool that helps a player — from a first-year student to a gigging pro — internalize the **sound and shape** of every scale, in every key. Free, open, and useful at the music stand or on a phone. As a pianist myself, I started by creating a tool that would be useful for my own piano practice.*
 
 - **For musicians at all levels** — the same material scales from beginner drills to advanced modes.
 - **See it and hear it** — notation you can read *and* play back.
-- **Free & open** — no login, no account, no paywall. MIT-licensed.
+- **Free & open for all (hence the ∀ symbol from mathematical logic)· * — no login, no account, no paywall. MIT-licensed.
 
-*(Speaker's own framing — edit this slide to your voice.)*
+If you find it useful, consider *sponsoring* me on GitHub or making a donation to my research lab at Loyola University Chicago. Details forthcoming.
 
 ---
 
@@ -53,7 +53,7 @@ George K. Thiruvathukal
 - **Two deliverables, one model.** A printable book **and** an interactive web app.
 - **All keys, all scales.** 12 keys × 26 scales = **312** ready charts.
 - **Client-only.** The app runs entirely in the browser — no server, no tracking.
-
+- **A living work.** As an active music student and professor, I am committed to maintaining and improving this app!
 ---
 
 ## One model → two outputs
@@ -94,7 +94,9 @@ George K. Thiruvathukal
 
 ## The data model
 
-One row drives notation, audio, and the app — pitch classes 0–11, step labels `H·W·W+H·m3·M3`.
+One row drives notation, audio, and the app — pitch classes 0–11, step labels `H·W·W+H·m3·M3` (W=Whole Tone, H=Half Tone/Semitone, W+H=Whole+Semitone, m3=Minor Third, M3=Major Third)
+
+All scales are written in C and then *transposed* to all other keys.
 
 ```python
 # generator.py
@@ -105,8 +107,6 @@ SCALES = [
         ["m3","W","H","M3","W"], "Cm7(b5)"),   # M3 = 4 semitones — not m3
 ]
 ```
-
-Every label must equal the real gap between notes — a correctness check, not decoration.
 
 ---
 
@@ -214,6 +214,7 @@ const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 - **Dark / light**, responsive, keyboard-reachable controls.
 - **No server, no login, no tracking** — a static bundle on GitHub Pages.
 - **Open** — MIT-licensed; the Python model is the single source of truth.
+- **Mobile Web First** - While we may eventually provide Android and MacOS apps, we intentionally choose the web with the hope of reaching the widest possible audience.
 
 ---
 
@@ -227,5 +228,8 @@ const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 - More scales & modes (just another `SCALES` row).
 - Backing chords / play-along; metronome click.
 - Per-user practice sets and printable selections.
+- Intervals to support non-linear reading and listening.
+- Rhythm, not just scales. (The print version supports rhythm already.)
+
 
 **Try it:** **[jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)** — code: **[github.com/gkthiruvathukal/jazz-patterns](https://github.com/gkthiruvathukal/jazz-patterns)** — *thank you.*
