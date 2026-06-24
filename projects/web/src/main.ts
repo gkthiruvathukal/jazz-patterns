@@ -127,8 +127,80 @@ function fillInstruments(select: HTMLSelectElement): void {
   }
 }
 
+// Scale-select grouping — minor headings per parent-scale family, in the order
+// they appear in the source modal charts ("Jazz Scales and their Modes"; see
+// SCALE-INVENTORY.md). `present` names must match scales.json exactly;
+// `placeholders` are modes not yet in the model, rendered disabled. Any scale in
+// the data not listed here falls through to "Other scales", so nothing is ever
+// dropped when SCALES changes.
+//
+// Placeholders are kept here as a roadmap (see SCALE-INVENTORY.md) but hidden
+// from the menu while SHOW_PLACEHOLDERS is false — flip it to true to surface
+// the not-yet-added modes as disabled "coming soon" entries.
+const SHOW_PLACEHOLDERS = false;
+const SCALE_GROUPS: { label: string; present: string[]; placeholders: string[] }[] = [
+  {
+    label: "Major scale modes",
+    present: ["Major (Ionian)", "Dorian", "Phrygian", "Lydian", "Dominant 7th (Mixolydian)", "Natural Minor (Aeolian)", "Locrian"],
+    placeholders: [],
+  },
+  {
+    label: "Melodic minor modes",
+    present: ["Melodic Minor (Jazz)", "Dorian b2", "Lydian Augmented", "Lydian Dominant", "Mixolydian b6", "Half-Dim #2 (Locrian ♮2)", "Altered"],
+    placeholders: [],
+  },
+  {
+    label: "Harmonic minor modes",
+    present: ["Harmonic Minor"],
+    placeholders: ["Locrian ♮6", "Ionian Augmented", "Dorian ♯4", "Phrygian Dominant", "Lydian ♯2", "Super Locrian ♭♭7"],
+  },
+  {
+    label: "Harmonic major modes",
+    present: [],
+    placeholders: ["Harmonic Major", "Locrian ♮2 ♮6", "Altered Dominant ♮5", "Lydian ♭3", "Mixolydian ♭2", "Lydian Augmented ♯2", "Locrian ♭♭7"],
+  },
+];
+
+// Populate the scale select with <optgroup> family headings (SCALE_GROUPS
+// order), disabled "coming soon" placeholders for not-yet-added modes, and an
+// "Other scales" group for anything in the data not assigned to a family.
+function fillScales(select: HTMLSelectElement): void {
+  select.innerHTML = "";
+  const available = new Set(scalesData.scales.map((s) => s.name));
+  const grouped = new Set<string>();
+
+  const addGroup = (label: string, present: string[], placeholders: string[] = []): void => {
+    const optgroup = document.createElement("optgroup");
+    optgroup.label = label;
+    for (const name of present) {
+      if (!available.has(name)) continue; // skip names missing from scales.json
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      optgroup.append(option);
+    }
+    if (SHOW_PLACEHOLDERS) {
+      for (const name of placeholders) {
+        const option = document.createElement("option");
+        option.textContent = `${name} — coming soon`;
+        option.disabled = true;
+        optgroup.append(option);
+      }
+    }
+    if (optgroup.childElementCount > 0) select.append(optgroup);
+  };
+
+  for (const group of SCALE_GROUPS) {
+    group.present.forEach((name) => grouped.add(name));
+    addGroup(group.label, group.present, group.placeholders);
+  }
+
+  const others = scalesData.scales.map((s) => s.name).filter((name) => !grouped.has(name));
+  if (others.length > 0) addGroup("Other scales", others);
+}
+
 fillSelect(keySelect, scalesData.keys.map((k) => ({ value: k, label: k })));
-fillSelect(scaleSelect, scalesData.scales.map((s) => ({ value: s.name, label: s.name })));
+fillScales(scaleSelect);
 fillInstruments(instrumentSelect);
 
 // Octave shift options (playback only): −3 … +3, labelled with explicit signs.
