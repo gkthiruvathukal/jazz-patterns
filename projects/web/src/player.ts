@@ -51,6 +51,29 @@ export async function loadInstrument(name: string): Promise<Soundfont> {
   return instrument;
 }
 
+/**
+ * Prime audio for mobile from within a user gesture: create + resume the
+ * AudioContext, play a one-sample silent buffer (the canonical iOS unlock), then
+ * preload the soundfont. iOS/Android can let a tap's audio activation lapse
+ * during the (first) soundfont fetch — leaving the context suspended and silent
+ * — so doing this on the first gesture means the real Play already has the
+ * context running and the instrument cached. Idempotent and best-effort: context
+ * creation and instrument loads are cached, and unlock failures are swallowed.
+ */
+export async function primeAudio(instrument?: string): Promise<void> {
+  const ctx = getContext();
+  try {
+    const source = ctx.createBufferSource();
+    source.buffer = ctx.createBuffer(1, 1, 22050);
+    source.connect(ctx.destination);
+    source.start(0);
+  } catch {
+    // Silent-buffer unlock is best-effort; resume() below is the main path.
+  }
+  await ctx.resume();
+  if (instrument) await loadInstrument(instrument);
+}
+
 /** Register a callback fired on every transport state change (drives the UI). */
 export function onStateChange(cb: (state: TransportState) => void): void {
   stateListener = cb;

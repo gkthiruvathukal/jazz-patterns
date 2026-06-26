@@ -9,6 +9,7 @@ import {
   getState,
   onStateChange,
   onNote,
+  primeAudio,
   type SequenceSpec,
   type TransportState,
 } from "./player";
@@ -292,6 +293,16 @@ playButton.addEventListener("click", async () => {
   }
 });
 
+// Mobile audio unlock: on the very first user gesture anywhere, create + resume
+// the AudioContext and preload the selected instrument, so the first Play is
+// already armed. Without this, the soundfont fetch during the first tap can
+// outlast the gesture's audio activation on iOS/Android, leaving it silent.
+window.addEventListener(
+  "pointerdown",
+  () => void primeAudio(instrumentSelect.value),
+  { once: true },
+);
+
 stopButton.addEventListener("click", () => stop());
 
 loopButton.addEventListener("click", () => {
@@ -311,6 +322,7 @@ scaleSelect.addEventListener("change", changeAndStop);
 retrogradeInput.addEventListener("change", changeAndStop);
 instrumentSelect.addEventListener("change", () => {
   octaveSelect.value = String(defaultOctaveFor(instrumentSelect.value)); // sensible default per sound
+  void primeAudio(instrumentSelect.value); // preload the newly chosen sound (this change is a user gesture)
   stop();
 });
 octaveSelect.addEventListener("change", stop);
