@@ -40,6 +40,21 @@ function getContext(): AudioContext {
   return context;
 }
 
+// A soundfont fetch that never settles (flaky mobile network, blocked CDN)
+// would otherwise leave the UI stuck on "Loading…" forever. Cap the wait so the
+// caller can surface an error and let the user retry.
+const LOAD_TIMEOUT_MS = 15000;
+
+function withTimeout<T>(promise: Promise<T>, ms: number, message: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(message)), ms);
+    promise.then(
+      (value) => { clearTimeout(timer); resolve(value); },
+      (error) => { clearTimeout(timer); reject(error); },
+    );
+  });
+}
+
 export async function loadInstrument(name: string): Promise<Soundfont> {
   const ctx = getContext();
   let instrument = cache.get(name);
@@ -47,7 +62,12 @@ export async function loadInstrument(name: string): Promise<Soundfont> {
     instrument = new Soundfont(ctx, { instrument: name });
     cache.set(name, instrument);
   }
-  await instrument.load;
+  try {
+    await withTimeout(instrument.load, LOAD_TIMEOUT_MS, `Timed out loading the "${name}" sound`);
+  } catch (error) {
+    cache.delete(name); // drop the failed/stuck instance so the next attempt starts fresh
+    throw error;
+  }
   return instrument;
 }
 
@@ -71,7 +91,13 @@ export async function primeAudio(instrument?: string): Promise<void> {
     // Silent-buffer unlock is best-effort; resume() below is the main path.
   }
   await ctx.resume();
-  if (instrument) await loadInstrument(instrument);
+  if (instrument) {
+    try {
+      await loadInstrument(instrument);
+    } catch {
+      // Preload is best-effort; the real Play surfaces (and retries) load errors.
+    }
+  }
 }
 
 /** Register a callback fired on every transport state change (drives the UI). */

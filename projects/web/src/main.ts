@@ -283,11 +283,15 @@ playButton.addEventListener("click", async () => {
   const spec = currentSpec();
   if (!spec) return;
   playButton.disabled = true;
+  playButton.textContent = "Loading…";
   setStatus("Loading sound…");
   try {
+    // play() awaits the soundfont before starting, so a failed/timed-out load
+    // throws here and nothing is ever played.
     await play(spec);
   } catch (error) {
-    setStatus(`Audio error: ${(error as Error).message}`);
+    playButton.textContent = "Play";
+    setStatus(`⚠️ ${(error as Error).message || "Couldn't load the sound"} — check your connection and tap Play to retry.`);
   } finally {
     playButton.disabled = false;
   }
