@@ -74,6 +74,21 @@ themeToggle.addEventListener("click", () => {
   localStorage.setItem("theme", dark ? "dark" : "light");
 });
 
+// Swing "feel" presets — the long:short ratio of the eighth-note pair, after
+// Ethan Iverson's "Take a Swing at It." The player derives the off-beat fraction
+// as ratio/(ratio+1); Straight (swing:false) plays even eighths with uniform
+// velocity (no accent). Order is prominent feels first, with the two
+// nearly-straight feels (4:3, 5:4) last.
+type SwingFeel = { id: string; label: string; ratio: number; swing: boolean };
+const SWING_FEELS: SwingFeel[] = [
+  { id: "straight", label: "Straight (1:1)", ratio: 1, swing: false },
+  { id: "5-based", label: "5-based (3:2)", ratio: 3 / 2, swing: true },
+  { id: "triplet", label: "Triplet (2:1)", ratio: 2, swing: true },
+  { id: "dotted", label: "Dotted (3:1)", ratio: 3, swing: true },
+  { id: "7-based", label: "7-based (4:3)", ratio: 4 / 3, swing: true },
+  { id: "9-based", label: "9-based (5:4)", ratio: 5 / 4, swing: true },
+];
+
 const keySelect = el<HTMLSelectElement>("key");
 const scaleSelect = el<HTMLSelectElement>("scale");
 const instrumentSelect = el<HTMLSelectElement>("instrument");
@@ -81,10 +96,7 @@ const octaveSelect = el<HTMLSelectElement>("octave");
 const bpmInput = el<HTMLInputElement>("bpm");
 const preferSelect = el<HTMLSelectElement>("prefer");
 const retrogradeInput = el<HTMLInputElement>("retrograde");
-const swingInput = el<HTMLInputElement>("swing");
-const swingNumInput = el<HTMLInputElement>("swing-num");
-const swingDenInput = el<HTMLInputElement>("swing-den");
-const swingRatioVal = el<HTMLSpanElement>("swing-ratio-val");
+const feelSelect = el<HTMLSelectElement>("feel");
 const accentInput = el<HTMLInputElement>("accent");
 const accentVal = el<HTMLSpanElement>("accent-val");
 const downbeatInput = el<HTMLInputElement>("downbeat");
@@ -203,6 +215,7 @@ function fillScales(select: HTMLSelectElement): void {
 fillSelect(keySelect, scalesData.keys.map((k) => ({ value: k, label: k })));
 fillScales(scaleSelect);
 fillInstruments(instrumentSelect);
+fillSelect(feelSelect, SWING_FEELS.map((feel) => ({ value: feel.id, label: feel.label })));
 
 // Octave shift options (playback only): −3 … +3, labelled with explicit signs.
 fillSelect(
@@ -230,9 +243,14 @@ function currentChart(): Chart | undefined {
 
 let loopOn = false;
 
+function currentFeel(): SwingFeel {
+  return SWING_FEELS.find((feel) => feel.id === feelSelect.value) ?? SWING_FEELS[0];
+}
+
 function currentSpec(): SequenceSpec | undefined {
   const chart = currentChart();
   if (!chart) return undefined;
+  const feel = currentFeel();
   return {
     notes: chart.notes,
     bpm: clampedBpm(),
@@ -240,8 +258,8 @@ function currentSpec(): SequenceSpec | undefined {
     instrument: instrumentSelect.value,
     loop: loopOn,
     octaveShift: Number(octaveSelect.value),
-    swing: swingInput.checked,
-    swingRatio: Number(swingNumInput.value) / Number(swingDenInput.value),
+    swing: feel.swing,
+    swingRatio: feel.ratio,
     accent: Number(accentInput.value),
     downbeat: Number(downbeatInput.value),
   };
@@ -333,33 +351,27 @@ octaveSelect.addEventListener("change", stop);
 bpmInput.addEventListener("change", stop);
 preferSelect.addEventListener("change", render); // spelling only — no audio impact
 
-// Swing: checkbox enables the ratio/accent sliders; all three are audio-only.
-function syncSwingEnabled(): void {
-  swingNumInput.disabled = !swingInput.checked;
-  swingDenInput.disabled = !swingInput.checked;
-  accentInput.disabled = !swingInput.checked;
-  downbeatInput.disabled = !swingInput.checked;
+// Feel: the accent/down-beat sliders apply only to a swung feel; on Straight
+// (1:1) playback is even with uniform velocity, so they're disabled. All three
+// are audio-only — they never change the printed notes.
+function syncFeelEnabled(): void {
+  const swung = currentFeel().swing;
+  accentInput.disabled = !swung;
+  downbeatInput.disabled = !swung;
 }
-swingInput.addEventListener("change", () => {
-  syncSwingEnabled();
+feelSelect.addEventListener("change", () => {
+  syncFeelEnabled();
   stop();
 });
-function updateSwingRatioLabel(): void {
-  swingRatioVal.textContent = `${Number(swingNumInput.value).toFixed(1)} : ${Number(swingDenInput.value).toFixed(1)}`;
-}
-swingNumInput.addEventListener("input", updateSwingRatioLabel);
-swingDenInput.addEventListener("input", updateSwingRatioLabel);
 accentInput.addEventListener("input", () => {
   accentVal.textContent = accentInput.value;
 });
 downbeatInput.addEventListener("input", () => {
   downbeatVal.textContent = downbeatInput.value;
 });
-swingNumInput.addEventListener("change", stop);
-swingDenInput.addEventListener("change", stop);
 accentInput.addEventListener("change", stop);
 downbeatInput.addEventListener("change", stop);
-syncSwingEnabled(); // sliders start disabled (swing off by default)
+syncFeelEnabled(); // accent/down-beat start disabled (Straight by default)
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint
 // can be wrong until the font is ready — re-render once fonts have settled.
