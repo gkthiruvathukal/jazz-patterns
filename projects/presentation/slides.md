@@ -156,7 +156,7 @@ Note names *and* MIDI *and* enharmonic spellings — so the renderer never does 
 <div>
 
 - **VexFlow** treble stave, 4/4, padded to whole measures.
-- **Interval labels** under each note (reversed for retrograde).
+- **Interval labels** under each note — or scale-degree numbers in the interval patterns.
 - **Responsive SVG** — crisp at any width, phones included.
 
 ```ts
@@ -184,6 +184,7 @@ svg.style.maxWidth = `${w}px`;  // VexFlow's inline
 - **Instruments** — keys, mallets, guitar, **bass**, **horns & winds**.
 - **Per-instrument octave** — basses drop into range automatically; nudge ±3.
 - **Playing-note highlight** — the score follows the sound.
+- **Interval practice** — play the scale in **thirds, fourths … sevenths** (diatonic patterns), up and down, looping.
 
 *All "feel" controls change the audio only — never the printed notes.*
 
@@ -195,6 +196,19 @@ svg.style.maxWidth = `${w}px`;  // VexFlow's inline
 <figcaption>The full app at phone width</figcaption>
 </figure>
 </div>
+
+---
+
+## Intervals — hear the shapes
+
+Play any scale in **diatonic intervals** — its *own* notes, never chromatic. Each pattern is a **two-measure** phrase that **loops** back to the tonic, and the staff re-renders with **scale-degree numbers** so you *see* the interval as you hear it.
+
+<figure>
+<img src="assets/app-thirds.png" width="100%" />
+<figcaption>C major <strong>in thirds</strong> — degrees 1 3 2 4 3 5 4 6 5 7 4 6 3 5 2 4</figcaption>
+</figure>
+
+**Steps · Seconds · Thirds · Fourths · Fifths · Sixths · Sevenths**
 
 ---
 
@@ -230,7 +244,8 @@ const at = beat * PPQ + (offbeat ? Math.round(f * PPQ) : 0);
 const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 ```
 
-- Ratio set by **numerator / denominator** (real-valued: 2:1, 1.5:1, …).
+- Ratio chosen from a **Feel** dropdown of presets (after Iverson): Straight 1:1, 3:2, **2:1**, 3:1, plus the near-straight 4:3 / 5:4.
+- *Example:* the off-beat "and" lands at **67%** of the beat for 2:1, **60%** for 3:2, **56%** for 5:4 ("barely there").
 - **Off-beat accent** + **down-beat level** = a backbeat you can dial in.
 
 ---
@@ -303,7 +318,6 @@ Beyond the music — the colleagues who back my (sometimes crazy) ideas and help
 - More scales & modes (just another `SCALES` row).
 - Backing chords / play-along; metronome click.
 - Per-user practice sets and printable selections.
-- Intervals to support non-linear reading and listening.
 - Rhythm, not just scales. (The print version supports rhythm already.)
 
 

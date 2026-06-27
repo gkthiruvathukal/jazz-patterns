@@ -47,6 +47,15 @@ await setDark(false);
 await pick("C", "Major (Ionian)");
 await shootNotation("app-cmajor.png");
 
+// 1b) C major in thirds (light) — the interval-practice example for the deck.
+await page.select("#intervals", "thirds");
+await page.evaluate(() => document.getElementById("intervals").dispatchEvent(new Event("change")));
+await sleep(300);
+await shootNotation("app-thirds.png");
+await page.select("#intervals", "steps");
+await page.evaluate(() => document.getElementById("intervals").dispatchEvent(new Event("change")));
+await sleep(150);
+
 // 2) Minor Pentatonic b5 (light) — shows the m3 … M3 interval labels.
 await pick("C", "Minor Pentatonic b5");
 await shootNotation("app-pentb5.png");
