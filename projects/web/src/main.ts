@@ -284,10 +284,18 @@ function render(): void {
 // Light up the note as it sounds (index is in playback order).
 onNote((index) => highlighter?.highlight(index));
 
-// Keep the Play/Pause button label and status in sync with the transport.
+// Inline transport icons (SVG paths); fill comes from currentColor.
+const ICON_PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>';
+const ICON_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>';
+
+// Keep the Play/Pause icon, accessible label, and status in sync with the transport.
 function reflectState(state: TransportState): void {
-  playButton.textContent = state === "playing" ? "Pause" : state === "paused" ? "Resume" : "Play";
-  setStatus(state === "playing" ? "Playing…" : state === "paused" ? "Paused" : "");
+  const playing = state === "playing";
+  playButton.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+  const label = playing ? "Pause" : state === "paused" ? "Resume" : "Play";
+  playButton.setAttribute("aria-label", label);
+  playButton.title = label;
+  setStatus(playing ? "Playing…" : state === "paused" ? "Paused" : "");
   if (state === "stopped") highlighter?.clear(); // paused holds on the current note
 }
 onStateChange(reflectState);
@@ -301,15 +309,13 @@ playButton.addEventListener("click", async () => {
   }
   const spec = currentSpec();
   if (!spec) return;
-  playButton.disabled = true;
-  playButton.textContent = "Loading…";
+  playButton.disabled = true; // play icon stays; the status line shows progress
   setStatus("Loading sound…");
   try {
     // play() awaits the soundfont before starting, so a failed/timed-out load
     // throws here and nothing is ever played.
     await play(spec);
   } catch (error) {
-    playButton.textContent = "Play";
     setStatus(`⚠️ ${(error as Error).message || "Couldn't load the sound"} — check your connection and tap Play to retry.`);
   } finally {
     playButton.disabled = false;

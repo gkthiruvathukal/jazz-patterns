@@ -51,7 +51,10 @@
       .field:has(input:disabled) label { opacity: 0.5; }
       .buttons { display: flex; gap: 0.5rem; }
       button { padding: 0.45rem 1.1rem; font-size: 1rem; cursor: pointer; }
-      #loop { border: 1px solid color-mix(in srgb, var(--fg) 40%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); }
+      /* Transport: uniform square icon buttons; SVGs inherit color via currentColor. */
+      .buttons button { display: inline-flex; align-items: center; justify-content: center; width: 2.6rem; height: 2.6rem; padding: 0; border: 1px solid color-mix(in srgb, var(--fg) 40%, transparent); border-radius: 6px; background: var(--control-bg); color: var(--fg); }
+      .buttons button svg { width: 1.35rem; height: 1.35rem; fill: currentColor; }
+      .buttons button:disabled { opacity: 0.45; cursor: default; }
       #loop.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
       #theme-toggle { padding: 0.3rem 0.7rem; font-size: 0.95rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); margin-left: auto; align-self: center; }
       #now-playing { font-size: 1.1rem; margin: 0.5rem 0; min-height: 1.4em; }
@@ -122,9 +125,15 @@
         </div>
       </div>
       <div class="buttons">
-        <button id="play" type="button">Play</button>
-        <button id="stop" type="button">Stop</button>
-        <button id="loop" type="button" aria-pressed="false">Loop</button>
+        <button id="play" type="button" aria-label="Play" title="Play">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+        </button>
+        <button id="stop" type="button" aria-label="Stop" title="Stop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z" /></svg>
+        </button>
+        <button id="loop" type="button" aria-pressed="false" aria-label="Loop" title="Loop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z" /></svg>
+        </button>
       </div>
     </div>
 
