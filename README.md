@@ -32,7 +32,7 @@ bash projects/blues/build.sh
 
 Each Python script bootstraps a local `.venv`, installs `jazz-common` and the subproject, and writes outputs to that subproject's `build/` directory.
 
-**Web** (interactive app — [live at jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)): pick a key/scale, see the notation, and play it back with a transport (play/pause/resume, stop, loop), a current-note highlight, selectable instruments with per-instrument octave, and adjustable swing. See [`projects/web/README.md`](projects/web/README.md) for the full feature list.
+**Web** (interactive app — [live at jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)): pick a key/scale, see the notation, and play it back with a transport (play/pause/resume, stop, loop), a current-note highlight, selectable instruments with per-instrument octave, an adjustable swing feel, and diatonic interval-practice patterns (thirds, fourths, …). See [`projects/web/README.md`](projects/web/README.md) for the full feature list.
 
 ```bash
 cd projects/web && npm install && npm run dev

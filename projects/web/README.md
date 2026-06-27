@@ -12,9 +12,10 @@ The notation shows a 4/4 time signature with the scale grouped into measures
 (short scales padded with rests, like the print book) and the W / H / W+H / m3 /
 M3 step labels written under each note — matching the Python/Abjad book.
 
-> **Notation is the source of truth and is never altered by playback.** The
-> octave, swing, and accent controls below change *how it sounds*, not the
-> printed notes.
+> **Playback never alters the chosen spelling.** The octave, feel, and accent
+> controls change *how it sounds*, not the printed pitches. (The Intervals
+> control does re-render the staff — it's a practice pattern of the same scale
+> tones, not a re-spelling.)
 
 ## Features
 
@@ -25,17 +26,21 @@ M3 step labels written under each note — matching the Python/Abjad book.
   **Loop** toggle. Driven by smplr's sequencer, so pause resumes in place and
   loops stay rhythmically even.
 - **Playing-note highlight** — the note currently sounding is highlighted in the
-  score, in sync through pause/resume, loop, and retrograde.
+  score, in sync through pause/resume and loop.
 - **Instruments** — a curated set of General MIDI sounds grouped into Keys &
   Mallets, Guitar, Bass, and Horns & Winds.
 - **Per-instrument octave** — selecting an instrument drops it into a sensible
   range (e.g. basses −2 octaves, low horns −1); an **Octave** control (−3…+3)
   lets you shift further. Playback only.
-- **Swing** — swing the eighth notes with a fully adjustable feel: a
-  **numerator / denominator** ratio (both real-valued, e.g. 2:1 triplet, 1.5:1
-  lighter, or past-even for a rushed off-beat), an **off-beat accent**, and a
-  **down-beat level** so you can soften the down-beat and let the "and" pop.
-- **Retrograde** — play the scale backwards (descending).
+- **Feel** — a swing-ratio dropdown of presets (after Ethan Iverson's "Take a
+  Swing at It"): Straight 1:1, 5-based 3:2, Triplet 2:1, Dotted 3:1, plus the
+  near-straight 7-based 4:3 and 9-based 5:4. An **off-beat accent** and a
+  **down-beat level** (active for any swung feel) let you dial in a backbeat.
+- **Intervals** — practice the scale in diatonic interval patterns: **Steps,
+  Seconds, Thirds … Sevenths**. Each is a looping two-measure phrase built from
+  the scale's own tones (degree shifts, octave-wrapped — never chromatic); the
+  staff re-renders to match, with scale-degree numbers under the notes. Replaces
+  the old retrograde toggle (Steps already walks up *and* down).
 - **Accidentals** — auto (by key), or force sharps / flats.
 - **Tempo** — quarter-note BPM.
 - **Dark / light theme** — toggle in the header, remembered across visits.
@@ -63,10 +68,11 @@ npm run dev        # http://localhost:5173
 ```
 
 Controls: **Key**, **Scale**, **Sound** (grouped GM instruments), **Octave**
-(playback transpose), **Tempo (BPM)**, **Accidentals**, **Retrograde**, and the
-**Swing** group (toggle + ratio numerator/denominator, off-beat accent, down-beat
-level — enabled only when Swing is on). Transport: **Play/Pause/Resume**,
-**Stop**, **Loop**. Theme toggle and version pill live in the header.
+(playback transpose), **Tempo (BPM)**, **Accidentals**, **Intervals** (Steps /
+Seconds / Thirds … Sevenths practice patterns), and **Feel** (swing-ratio preset
++ off-beat accent + down-beat level, the last two active for any swung feel).
+Transport: **Play/Pause/Resume**, **Stop**, **Loop**. Theme toggle and version
+pill live in the header.
 
 ## Build / check
 

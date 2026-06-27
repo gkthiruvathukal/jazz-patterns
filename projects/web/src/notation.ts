@@ -2,12 +2,9 @@
 // notes grouped into measures (padded with rests like the print book), and the
 // W/H/m3 step labels written under each note.
 import { Renderer, Stave, StaveNote, Accidental, Formatter, Annotation, BarNote, Voice } from "vexflow";
-import type { Chart } from "./data/scales";
+import type { Note } from "./data/scales";
 
-export interface RenderOptions {
-  retrograde: boolean;
-  prefer: "auto" | "sharps" | "flats";
-}
+export type Prefer = "auto" | "sharps" | "flats";
 
 /** Controls the playback highlight overlay for the rendered score. */
 export interface NoteHighlighter {
@@ -17,13 +14,11 @@ export interface NoteHighlighter {
   clear(): void;
 }
 
-export function renderChart(container: HTMLDivElement, chart: Chart, opts: RenderOptions): NoteHighlighter {
+// `notes` and `labels` are the already-resolved play-order sequence (see
+// sequence.ts) — one label per note. The same sequence drives playback, so the
+// highlight indices line up.
+export function renderChart(container: HTMLDivElement, notes: Note[], labels: string[], prefer: Prefer): NoteHighlighter {
   container.innerHTML = "";
-
-  const notes = opts.retrograde ? [...chart.notes].reverse() : chart.notes;
-  const intervals = opts.retrograde ? [...chart.intervals].reverse() : chart.intervals;
-  // First note has no preceding interval ("-"), then one label per step.
-  const labels = ["-", ...intervals];
 
   const durationBase = "8"; // eighth notes
   const slotsPerMeasure = 8; // 4/4
@@ -37,8 +32,8 @@ export function renderChart(container: HTMLDivElement, chart: Chart, opts: Rende
     }
     if (i < notes.length) {
       const n = notes[i];
-      const noteName = opts.prefer === "sharps" ? n.sharp_name : opts.prefer === "flats" ? n.flat_name : n.name;
-      const noteAcc  = opts.prefer === "sharps" ? n.sharp_accidental : opts.prefer === "flats" ? n.flat_accidental : n.accidental;
+      const noteName = prefer === "sharps" ? n.sharp_name : prefer === "flats" ? n.flat_name : n.name;
+      const noteAcc  = prefer === "sharps" ? n.sharp_accidental : prefer === "flats" ? n.flat_accidental : n.accidental;
       const key = `${noteName.toLowerCase()}${noteAcc}/${n.octave}`;
       const staveNote = new StaveNote({ keys: [key], duration: durationBase });
       if (noteAcc) {

@@ -9,7 +9,6 @@ export type TransportState = "stopped" | "playing" | "paused";
 export interface SequenceSpec {
   notes: { midi: number }[];
   bpm: number;
-  retrograde: boolean;
   instrument: string;
   loop: boolean;
   /** Playback-only transposition in octaves (does not affect the notation). */
@@ -131,7 +130,7 @@ export async function play(spec: SequenceSpec): Promise<void> {
     lookaheadMs: 25,
     intervalMs: 25,
   });
-  const sequence = spec.retrograde ? [...spec.notes].reverse() : spec.notes;
+  const sequence = spec.notes; // already in play order (see sequence.ts)
   const transpose = spec.octaveShift * 12; // semitones; playback only
 
   // Eighth-note pairs: the on-beat note starts the beat, the off-beat ("and")

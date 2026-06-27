@@ -1,6 +1,7 @@
 // Entry point: populate controls, render notation, and drive playback.
 import { scalesData, findChart, type Chart } from "./data/scales";
 import { renderChart, type NoteHighlighter } from "./notation";
+import { INTERVAL_PATTERNS, sequenceForChart } from "./sequence";
 import {
   play,
   stop,
@@ -95,7 +96,7 @@ const instrumentSelect = el<HTMLSelectElement>("instrument");
 const octaveSelect = el<HTMLSelectElement>("octave");
 const bpmInput = el<HTMLInputElement>("bpm");
 const preferSelect = el<HTMLSelectElement>("prefer");
-const retrogradeInput = el<HTMLInputElement>("retrograde");
+const intervalsSelect = el<HTMLSelectElement>("intervals");
 const feelSelect = el<HTMLSelectElement>("feel");
 const accentInput = el<HTMLInputElement>("accent");
 const accentVal = el<HTMLSpanElement>("accent-val");
@@ -216,6 +217,7 @@ fillSelect(keySelect, scalesData.keys.map((k) => ({ value: k, label: k })));
 fillScales(scaleSelect);
 fillInstruments(instrumentSelect);
 fillSelect(feelSelect, SWING_FEELS.map((feel) => ({ value: feel.id, label: feel.label })));
+fillSelect(intervalsSelect, INTERVAL_PATTERNS.map((p) => ({ value: p.id, label: p.label })));
 
 // Octave shift options (playback only): −3 … +3, labelled with explicit signs.
 fillSelect(
@@ -251,10 +253,10 @@ function currentSpec(): SequenceSpec | undefined {
   const chart = currentChart();
   if (!chart) return undefined;
   const feel = currentFeel();
+  const { notes } = sequenceForChart(chart, intervalsSelect.value);
   return {
-    notes: chart.notes,
+    notes,
     bpm: clampedBpm(),
-    retrograde: retrogradeInput.checked,
     instrument: instrumentSelect.value,
     loop: loopOn,
     octaveShift: Number(octaveSelect.value),
@@ -271,13 +273,12 @@ let highlighter: NoteHighlighter | null = null;
 function render(): void {
   const chart = currentChart();
   if (!chart) return;
-  const retrograde = retrogradeInput.checked;
-  const suffix = retrograde ? " (retrograde)" : "";
+  const patternId = intervalsSelect.value;
+  const { notes, labels } = sequenceForChart(chart, patternId);
+  const pattern = INTERVAL_PATTERNS.find((p) => p.id === patternId);
+  const suffix = pattern && pattern.id !== "steps" ? ` &middot; ${pattern.label.toLowerCase()}` : "";
   nowPlaying.innerHTML = `<span class="chord">${chart.chord}</span> &mdash; ${chart.key} ${chart.scale}${suffix}`;
-  highlighter = renderChart(notation, chart, {
-    retrograde,
-    prefer: preferSelect.value as "auto" | "sharps" | "flats",
-  });
+  highlighter = renderChart(notation, notes, labels, preferSelect.value as "auto" | "sharps" | "flats");
 }
 
 // Light up the note as it sounds (index is in playback order).
@@ -341,7 +342,7 @@ function changeAndStop(): void {
 }
 keySelect.addEventListener("change", changeAndStop);
 scaleSelect.addEventListener("change", changeAndStop);
-retrogradeInput.addEventListener("change", changeAndStop);
+intervalsSelect.addEventListener("change", changeAndStop);
 instrumentSelect.addEventListener("change", () => {
   octaveSelect.value = String(defaultOctaveFor(instrumentSelect.value)); // sensible default per sound
   void primeAudio(instrumentSelect.value); // preload the newly chosen sound (this change is a user gesture)
