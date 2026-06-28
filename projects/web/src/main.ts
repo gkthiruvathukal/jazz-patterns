@@ -11,6 +11,7 @@ import {
   onStateChange,
   onNote,
   primeAudio,
+  type InstrumentKind,
   type SequenceSpec,
   type TransportState,
 } from "./player";
@@ -21,9 +22,10 @@ import {
 // `octave` is the sensible default playback transposition (in octaves) for each
 // instrument, since the notation sits in the treble staff: basses drop a couple
 // octaves, low horns one. It only shifts the audio, never the printed notes.
-type Instrument = { name: string; label: string; group: string; octave: number };
+type Instrument = { name: string; label: string; group: string; octave: number; kind?: InstrumentKind };
 const INSTRUMENTS: Instrument[] = [
   { group: "Keys & Mallets", name: "acoustic_grand_piano", label: "Acoustic Grand Piano", octave: 0 },
+  { group: "Keys & Mallets", name: "salamander", label: "Grand Piano (Salamander)", octave: 0, kind: "splendid" },
   { group: "Keys & Mallets", name: "electric_piano_1", label: "Electric Piano", octave: 0 },
   { group: "Keys & Mallets", name: "vibraphone", label: "Vibraphone", octave: 0 },
   { group: "Keys & Mallets", name: "marimba", label: "Marimba", octave: 0 },
@@ -43,6 +45,10 @@ const INSTRUMENTS: Instrument[] = [
 
 function defaultOctaveFor(name: string): number {
   return INSTRUMENTS.find((i) => i.name === name)?.octave ?? 0;
+}
+
+function kindFor(name: string): InstrumentKind {
+  return INSTRUMENTS.find((i) => i.name === name)?.kind ?? "soundfont";
 }
 
 function el<T extends HTMLElement>(id: string): T {
@@ -258,6 +264,7 @@ function currentSpec(): SequenceSpec | undefined {
     notes,
     bpm: clampedBpm(),
     instrument: instrumentSelect.value,
+    kind: kindFor(instrumentSelect.value),
     loop: loopOn,
     octaveShift: Number(octaveSelect.value),
     swing: feel.swing,
@@ -328,7 +335,7 @@ playButton.addEventListener("click", async () => {
 // outlast the gesture's audio activation on iOS/Android, leaving it silent.
 window.addEventListener(
   "pointerdown",
-  () => void primeAudio(instrumentSelect.value),
+  () => void primeAudio(instrumentSelect.value, kindFor(instrumentSelect.value)),
   { once: true },
 );
 
@@ -351,7 +358,7 @@ scaleSelect.addEventListener("change", changeAndStop);
 intervalsSelect.addEventListener("change", changeAndStop);
 instrumentSelect.addEventListener("change", () => {
   octaveSelect.value = String(defaultOctaveFor(instrumentSelect.value)); // sensible default per sound
-  void primeAudio(instrumentSelect.value); // preload the newly chosen sound (this change is a user gesture)
+  void primeAudio(instrumentSelect.value, kindFor(instrumentSelect.value)); // preload the newly chosen sound (this change is a user gesture)
   stop();
 });
 octaveSelect.addEventListener("change", stop);

@@ -2,14 +2,20 @@
 // network — static fetch, no server state). One AudioContext, instruments cached
 // by name so switching sounds is cheap. Transport (play/pause/resume/stop/loop)
 // runs through smplr's Sequencer, which owns the scheduling and state machine.
-import { Soundfont, Sequencer, type SequencerNoteEvent } from "smplr";
+import { Soundfont, SplendidGrandPiano, Sequencer, type SequencerNoteEvent } from "smplr";
 
 export type TransportState = "stopped" | "playing" | "paused";
+
+/** Loader kind: a General MIDI soundfont (default) or the Salamander grand piano. */
+export type InstrumentKind = "soundfont" | "splendid";
+type Sampler = Soundfont | SplendidGrandPiano;
 
 export interface SequenceSpec {
   notes: { midi: number }[];
   bpm: number;
   instrument: string;
+  /** Loader kind for `instrument` (defaults to a GM soundfont). */
+  kind?: InstrumentKind;
   loop: boolean;
   /** Playback-only transposition in octaves (does not affect the notation). */
   octaveShift: number;
@@ -27,7 +33,7 @@ const PPQ = 480; // ticks per quarter-note beat
 const BASE_VELOCITY = 100;
 
 let context: AudioContext | null = null;
-const cache = new Map<string, Soundfont>();
+const cache = new Map<string, Sampler>();
 let sequencer: Sequencer | null = null;
 let stateListener: ((state: TransportState) => void) | null = null;
 let noteListener: ((index: number) => void) | null = null;
@@ -54,11 +60,11 @@ function withTimeout<T>(promise: Promise<T>, ms: number, message: string): Promi
   });
 }
 
-export async function loadInstrument(name: string): Promise<Soundfont> {
+export async function loadInstrument(name: string, kind: InstrumentKind = "soundfont"): Promise<Sampler> {
   const ctx = getContext();
   let instrument = cache.get(name);
   if (!instrument) {
-    instrument = new Soundfont(ctx, { instrument: name });
+    instrument = kind === "splendid" ? new SplendidGrandPiano(ctx) : new Soundfont(ctx, { instrument: name });
     cache.set(name, instrument);
   }
   try {
@@ -79,7 +85,7 @@ export async function loadInstrument(name: string): Promise<Soundfont> {
  * context running and the instrument cached. Idempotent and best-effort: context
  * creation and instrument loads are cached, and unlock failures are swallowed.
  */
-export async function primeAudio(instrument?: string): Promise<void> {
+export async function primeAudio(instrument?: string, kind: InstrumentKind = "soundfont"): Promise<void> {
   const ctx = getContext();
   try {
     const source = ctx.createBufferSource();
@@ -92,7 +98,7 @@ export async function primeAudio(instrument?: string): Promise<void> {
   await ctx.resume();
   if (instrument) {
     try {
-      await loadInstrument(instrument);
+      await loadInstrument(instrument, kind);
     } catch {
       // Preload is best-effort; the real Play surfaces (and retries) load errors.
     }
@@ -117,7 +123,7 @@ export function onNote(cb: (index: number) => void): void {
 export async function play(spec: SequenceSpec): Promise<void> {
   const ctx = getContext();
   await ctx.resume(); // required after the user gesture
-  const instrument = await loadInstrument(spec.instrument);
+  const instrument = await loadInstrument(spec.instrument, spec.kind);
 
   sequencer?.stop(); // tear down any previous run
 
