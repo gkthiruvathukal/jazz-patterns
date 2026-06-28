@@ -117,6 +117,8 @@ const offlineDialog = el<HTMLDialogElement>("offline-dialog");
 const offlineList = el<HTMLDivElement>("offline-list");
 const offlineUsage = el<HTMLSpanElement>("offline-usage");
 const downloadAllBtn = el<HTMLButtonElement>("offline-download-all");
+const installBtn = el<HTMLButtonElement>("install-btn");
+const installHint = el<HTMLParagraphElement>("install-hint");
 const nowPlaying = el<HTMLParagraphElement>("now-playing");
 const notation = el<HTMLDivElement>("notation");
 const status = el<HTMLParagraphElement>("status");
@@ -476,6 +478,58 @@ downloadAllBtn.addEventListener("click", async () => {
   downloadAllBtn.textContent = label;
   downloadAllBtn.disabled = false;
 });
+
+// ---- Install affordance ----
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: string }>;
+}
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  (navigator as unknown as { standalone?: boolean }).standalone === true;
+
+// Chromium (Android + desktop Chrome/Edge): capture the prompt and offer Install.
+let deferredPrompt: BeforeInstallPromptEvent | null = null;
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredPrompt = event as BeforeInstallPromptEvent;
+  if (!isStandalone) installBtn.hidden = false;
+});
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  await deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.hidden = true;
+});
+window.addEventListener("appinstalled", () => {
+  installBtn.hidden = true;
+});
+
+// Safari (iOS/macOS) fires no prompt — show a one-time, dismissible hint.
+if (!isStandalone && !localStorage.getItem("install-hint-dismissed")) {
+  const ua = navigator.userAgent;
+  const isSafari = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(ua);
+  if (isSafari) {
+    const isIOS =
+      /iphone|ipad|ipod/i.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    installHint.innerHTML = isIOS
+      ? "Install this app: tap <strong>Share → Add to Home Screen</strong>."
+      : "Install this app: <strong>File → Add to Dock</strong>.";
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.className = "install-hint-dismiss";
+    dismiss.textContent = "✕";
+    dismiss.setAttribute("aria-label", "Dismiss");
+    dismiss.addEventListener("click", () => {
+      installHint.hidden = true;
+      localStorage.setItem("install-hint-dismissed", "1");
+    });
+    installHint.append(dismiss);
+    installHint.hidden = false;
+  }
+}
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint
 // can be wrong until the font is ready — re-render once fonts have settled.

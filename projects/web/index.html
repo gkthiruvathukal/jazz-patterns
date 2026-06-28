@@ -63,7 +63,9 @@
       .buttons button:disabled { opacity: 0.45; cursor: default; }
       #loop.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
       #theme-toggle { padding: 0.3rem 0.7rem; font-size: 0.95rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); margin-left: auto; align-self: center; }
-      #offline-toggle { padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); align-self: center; }
+      #offline-toggle, #install-btn { padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); align-self: center; }
+      .install-hint { font-size: 0.82rem; background: color-mix(in srgb, var(--fg) 8%, var(--bg)); border: 1px solid color-mix(in srgb, var(--fg) 20%, transparent); border-radius: 6px; padding: 0.5rem 0.7rem; margin: 0 0 1rem; }
+      .install-hint-dismiss { border: none; background: none; color: var(--fg); cursor: pointer; float: right; font-size: 0.85rem; line-height: 1; }
       /* Offline-sounds picker dialog */
       .offline-dialog { width: min(30rem, 92vw); border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); border-radius: 10px; background: var(--bg); color: var(--fg); padding: 1rem 1.1rem 1.2rem; }
       .offline-dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
@@ -98,8 +100,10 @@
          href="https://github.com/gkthiruvathukal/jazz-patterns/releases"
          target="_blank" rel="noopener"></a>
       <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode">☀️</button>
+      <button id="install-btn" type="button" hidden aria-label="Install app">Install</button>
       <button id="offline-toggle" type="button" aria-label="Offline sounds" title="Manage offline sounds">Offline</button>
     </h1>
+    <p id="install-hint" class="install-hint" hidden></p>
 
     <div class="controls">
       <div class="field">
