@@ -525,8 +525,13 @@ if (!isStandalone && !localStorage.getItem("install-hint-dismissed")) {
       /iphone|ipad|ipod/i.test(ua) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     installHint.innerHTML = isIOS
-      ? "Install this app: tap <strong>Share → Add to Home Screen</strong>."
-      : "Install this app: <strong>File → Add to Dock</strong>.";
+      ? "<strong>Install this app for offline use</strong>" +
+        "<ol>" +
+        "<li>Tap the <strong>Share</strong> button (the □↑ icon) in Safari.</li>" +
+        "<li>Choose <strong>Add to Home&nbsp;Screen</strong>, then <strong>Add</strong>.</li>" +
+        "<li>Open it from your home screen, then tap <strong>Offline</strong> to download the sounds you want.</li>" +
+        "</ol>"
+      : "<strong>Install this app:</strong> in Safari, <strong>File → Add to Dock</strong> (macOS 14+).";
     const dismiss = document.createElement("button");
     dismiss.type = "button";
     dismiss.className = "install-hint-dismiss";
@@ -536,7 +541,7 @@ if (!isStandalone && !localStorage.getItem("install-hint-dismissed")) {
       installHint.hidden = true;
       localStorage.setItem("install-hint-dismissed", "1");
     });
-    installHint.append(dismiss);
+    installHint.prepend(dismiss); // first in flow so float:right puts ✕ top-right
     installHint.hidden = false;
   }
 }
