@@ -82,12 +82,13 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
-Controls: **Key**, **Scale**, **Sound** (grouped GM instruments), **Octave**
-(playback transpose), **Tempo (BPM)**, **Accidentals**, **Intervals** (Steps /
-Seconds / Thirds … Sevenths practice patterns), and **Feel** (swing-ratio preset
-+ off-beat accent + down-beat level, the last two active for any swung feel).
-Transport: **Play/Pause/Resume**, **Stop**, **Loop**. Theme toggle and version
-pill live in the header.
+Controls: **Key**, **Scale**, **Sound** (grouped GM instruments + a Salamander
+grand piano), **Octave** (playback transpose), **Tempo (BPM)**, **Accidentals**,
+**Intervals** (Steps / Seconds / Thirds … Sevenths practice patterns), and
+**Feel** (swing-ratio preset + off-beat accent + down-beat level, the last two
+active for any swung feel). Transport: icon **Play/Pause · Stop · Loop**. The
+header also carries **Offline** (the sound-cache picker), **Install**, the theme
+toggle, and the version pill.
 
 ## Build / check
 
