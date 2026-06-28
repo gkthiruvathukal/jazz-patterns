@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Jazz Scales Practice (for-all)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Jazz Scales Practice — ii-V-I (Dm7 G7 Cmaj7)">
   <rect width="512" height="512" rx="104" fill="#16181d"/>
-  <!-- ∀ ("for all") drawn as strokes so it needs no font; content stays within the maskable safe zone -->
-  <g fill="none" stroke="#f2b53e" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M256 396 L166 150"/>
-    <path d="M256 396 L346 150"/>
-    <path d="M208 280 L304 280"/>
+  <!-- A ii-V-I in C as a mini chord chart; △ is the jazz shorthand for maj7. -->
+  <g fill="#f2b53e" font-family="Georgia,'Times New Roman',serif" font-weight="bold" text-anchor="middle">
+    <text x="256" y="188" font-size="120">Dm7</text>
+    <text x="256" y="300" font-size="120">G7</text>
+    <text x="256" y="412" font-size="120">C&#9651;7</text>
   </g>
 </svg>
