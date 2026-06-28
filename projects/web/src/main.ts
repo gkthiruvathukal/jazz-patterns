@@ -11,9 +11,11 @@ import {
   onStateChange,
   onNote,
   primeAudio,
+  type InstrumentKind,
   type SequenceSpec,
   type TransportState,
 } from "./player";
+import * as offline from "./offline";
 
 // A curated set of GM soundfont instruments, grouped for the dropdown. Piano is
 // the default; adding more is just another entry here (smplr loads them by name —
@@ -21,9 +23,10 @@ import {
 // `octave` is the sensible default playback transposition (in octaves) for each
 // instrument, since the notation sits in the treble staff: basses drop a couple
 // octaves, low horns one. It only shifts the audio, never the printed notes.
-type Instrument = { name: string; label: string; group: string; octave: number };
+type Instrument = { name: string; label: string; group: string; octave: number; kind?: InstrumentKind };
 const INSTRUMENTS: Instrument[] = [
   { group: "Keys & Mallets", name: "acoustic_grand_piano", label: "Acoustic Grand Piano", octave: 0 },
+  { group: "Keys & Mallets", name: "salamander", label: "Grand Piano (Salamander)", octave: 0, kind: "splendid" },
   { group: "Keys & Mallets", name: "electric_piano_1", label: "Electric Piano", octave: 0 },
   { group: "Keys & Mallets", name: "vibraphone", label: "Vibraphone", octave: 0 },
   { group: "Keys & Mallets", name: "marimba", label: "Marimba", octave: 0 },
@@ -43,6 +46,10 @@ const INSTRUMENTS: Instrument[] = [
 
 function defaultOctaveFor(name: string): number {
   return INSTRUMENTS.find((i) => i.name === name)?.octave ?? 0;
+}
+
+function kindFor(name: string): InstrumentKind {
+  return INSTRUMENTS.find((i) => i.name === name)?.kind ?? "soundfont";
 }
 
 function el<T extends HTMLElement>(id: string): T {
@@ -105,6 +112,13 @@ const downbeatVal = el<HTMLSpanElement>("downbeat-val");
 const playButton = el<HTMLButtonElement>("play");
 const stopButton = el<HTMLButtonElement>("stop");
 const loopButton = el<HTMLButtonElement>("loop");
+const offlineToggle = el<HTMLButtonElement>("offline-toggle");
+const offlineDialog = el<HTMLDialogElement>("offline-dialog");
+const offlineList = el<HTMLDivElement>("offline-list");
+const offlineUsage = el<HTMLSpanElement>("offline-usage");
+const downloadAllBtn = el<HTMLButtonElement>("offline-download-all");
+const installBtn = el<HTMLButtonElement>("install-btn");
+const installHint = el<HTMLParagraphElement>("install-hint");
 const nowPlaying = el<HTMLParagraphElement>("now-playing");
 const notation = el<HTMLDivElement>("notation");
 const status = el<HTMLParagraphElement>("status");
@@ -258,6 +272,7 @@ function currentSpec(): SequenceSpec | undefined {
     notes,
     bpm: clampedBpm(),
     instrument: instrumentSelect.value,
+    kind: kindFor(instrumentSelect.value),
     loop: loopOn,
     octaveShift: Number(octaveSelect.value),
     swing: feel.swing,
@@ -328,7 +343,7 @@ playButton.addEventListener("click", async () => {
 // outlast the gesture's audio activation on iOS/Android, leaving it silent.
 window.addEventListener(
   "pointerdown",
-  () => void primeAudio(instrumentSelect.value),
+  () => void primeAudio(instrumentSelect.value, kindFor(instrumentSelect.value)),
   { once: true },
 );
 
@@ -351,7 +366,7 @@ scaleSelect.addEventListener("change", changeAndStop);
 intervalsSelect.addEventListener("change", changeAndStop);
 instrumentSelect.addEventListener("change", () => {
   octaveSelect.value = String(defaultOctaveFor(instrumentSelect.value)); // sensible default per sound
-  void primeAudio(instrumentSelect.value); // preload the newly chosen sound (this change is a user gesture)
+  void primeAudio(instrumentSelect.value, kindFor(instrumentSelect.value)); // preload the newly chosen sound (this change is a user gesture)
   stop();
 });
 octaveSelect.addEventListener("change", stop);
@@ -379,6 +394,142 @@ downbeatInput.addEventListener("input", () => {
 accentInput.addEventListener("change", stop);
 downbeatInput.addEventListener("change", stop);
 syncFeelEnabled(); // accent/down-beat start disabled (Straight by default)
+
+// ---- Offline-sounds picker: choose which instruments to cache for offline use ----
+async function updateOfflineUsage(): Promise<void> {
+  const mb = (await offline.usageBytes()) / (1024 * 1024);
+  offlineUsage.textContent = mb >= 0.1 ? `Using ${mb.toFixed(1)} MB offline` : "";
+}
+
+async function renderOfflineList(): Promise<void> {
+  offlineList.innerHTML = "";
+  const online = navigator.onLine;
+  for (const inst of INSTRUMENTS) {
+    const kind = inst.kind ?? "soundfont";
+    const cached = await offline.isCached(inst.name, kind);
+
+    const row = document.createElement("div");
+    row.className = "offline-row";
+    const name = document.createElement("span");
+    name.className = "offline-name";
+    name.textContent = inst.label;
+    const size = document.createElement("span");
+    size.className = "offline-size";
+    size.textContent = cached ? "✓ offline" : `~${offline.estimatedMB(kind)} MB`;
+    const btn = document.createElement("button");
+    btn.type = "button";
+
+    if (cached) {
+      btn.textContent = "Remove";
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        btn.textContent = "Removing…";
+        await offline.remove(inst.name, kind);
+        await renderOfflineList();
+        await updateOfflineUsage();
+      });
+    } else {
+      btn.textContent = "Download";
+      btn.disabled = !online;
+      btn.title = online ? "" : "Connect to the internet to download";
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        btn.textContent = "Downloading…";
+        try {
+          await offline.download(inst.name, kind);
+        } catch {
+          btn.disabled = false;
+          btn.textContent = "Retry";
+          return;
+        }
+        await renderOfflineList();
+        await updateOfflineUsage();
+      });
+    }
+    row.append(name, size, btn);
+    offlineList.append(row);
+  }
+}
+
+offlineToggle.addEventListener("click", async () => {
+  await renderOfflineList();
+  await updateOfflineUsage();
+  offlineDialog.showModal();
+});
+offlineDialog.addEventListener("click", (event) => {
+  if (event.target === offlineDialog) offlineDialog.close(); // click the backdrop to close
+});
+downloadAllBtn.addEventListener("click", async () => {
+  if (!navigator.onLine) return;
+  const label = downloadAllBtn.textContent;
+  downloadAllBtn.disabled = true;
+  for (const inst of INSTRUMENTS) {
+    const kind = inst.kind ?? "soundfont";
+    if (await offline.isCached(inst.name, kind)) continue;
+    downloadAllBtn.textContent = `Downloading ${inst.label}…`;
+    try {
+      await offline.download(inst.name, kind);
+    } catch {
+      // skip a failed instrument; the rest still download
+    }
+    await renderOfflineList();
+    await updateOfflineUsage();
+  }
+  downloadAllBtn.textContent = label;
+  downloadAllBtn.disabled = false;
+});
+
+// ---- Install affordance ----
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: string }>;
+}
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  (navigator as unknown as { standalone?: boolean }).standalone === true;
+
+// Chromium (Android + desktop Chrome/Edge): capture the prompt and offer Install.
+let deferredPrompt: BeforeInstallPromptEvent | null = null;
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredPrompt = event as BeforeInstallPromptEvent;
+  if (!isStandalone) installBtn.hidden = false;
+});
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  await deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.hidden = true;
+});
+window.addEventListener("appinstalled", () => {
+  installBtn.hidden = true;
+});
+
+// Safari (iOS/macOS) fires no prompt — show a one-time, dismissible hint.
+if (!isStandalone && !localStorage.getItem("install-hint-dismissed")) {
+  const ua = navigator.userAgent;
+  const isSafari = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(ua);
+  if (isSafari) {
+    const isIOS =
+      /iphone|ipad|ipod/i.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    installHint.innerHTML = isIOS
+      ? "Install this app: tap <strong>Share → Add to Home Screen</strong>."
+      : "Install this app: <strong>File → Add to Dock</strong>.";
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.className = "install-hint-dismiss";
+    dismiss.textContent = "✕";
+    dismiss.setAttribute("aria-label", "Dismiss");
+    dismiss.addEventListener("click", () => {
+      installHint.hidden = true;
+      localStorage.setItem("install-hint-dismissed", "1");
+    });
+    installHint.append(dismiss);
+    installHint.hidden = false;
+  }
+}
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint
 // can be wrong until the font is ready — re-render once fonts have settled.

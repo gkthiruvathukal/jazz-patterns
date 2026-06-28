@@ -28,7 +28,8 @@ M3 step labels written under each note — matching the Python/Abjad book.
 - **Playing-note highlight** — the note currently sounding is highlighted in the
   score, in sync through pause/resume and loop.
 - **Instruments** — a curated set of General MIDI sounds grouped into Keys &
-  Mallets, Guitar, Bass, and Horns & Winds.
+  Mallets, Guitar, Bass, and Horns & Winds, plus a dedicated **Grand Piano
+  (Salamander)** — smplr's multi-velocity `SplendidGrandPiano` (Yamaha C5).
 - **Per-instrument octave** — selecting an instrument drops it into a sensible
   range (e.g. basses −2 octaves, low horns −1); an **Octave** control (−3…+3)
   lets you shift further. Playback only.
@@ -46,6 +47,20 @@ M3 step labels written under each note — matching the Python/Abjad book.
 - **Dark / light theme** — toggle in the header, remembered across visits.
 - **Version pill** — the header shows the app version (from `package.json`),
   linking to the GitHub releases.
+- **Installable PWA** — install to the home screen / dock (Android & desktop
+  Chromium show an **Install** button; iOS/macOS Safari: Share → *Add to Home
+  Screen* / *Add to Dock*). The app shell (UI + notation) works fully offline.
+- **Offline sounds** — an **Offline** panel downloads the instruments you choose
+  for offline use (cache, see total usage, remove later) or **Download all (~50 MB)**.
+
+## Offline & install (PWA)
+
+A service worker (via `vite-plugin-pwa`, configured in `vite.config.ts`) precaches
+the app shell and `CacheFirst`-caches sound samples (the gleitz / smpldsnds CDNs)
+into a `sound-samples` cache; `src/offline.ts` manages that cache for the Offline
+panel. Note: iOS can evict cached storage after long disuse, so re-downloading
+sounds may occasionally be needed — a future Capacitor build would bundle them for
+guaranteed offline.
 
 ## Data
 

@@ -1,7 +1,7 @@
 {
   "name": "jazz-scales-web",
   "private": true,
-  "version": "0.9.1",
+  "version": "0.10.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@vite-pwa/assets-generator": "^1.0.2",
     "typescript": "^6.0.3",
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "vite-plugin-pwa": "^1.3.0"
   },
   "dependencies": {
     "smplr": "^1.0.0",
