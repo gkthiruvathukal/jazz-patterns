@@ -401,58 +401,74 @@ async function updateOfflineUsage(): Promise<void> {
   offlineUsage.textContent = mb >= 0.1 ? `Using ${mb.toFixed(1)} MB offline` : "";
 }
 
-async function renderOfflineList(): Promise<void> {
-  offlineList.innerHTML = "";
-  const online = navigator.onLine;
-  for (const inst of INSTRUMENTS) {
-    const kind = inst.kind ?? "soundfont";
+// One self-updating row. Download/remove mutate only this row's button + size
+// in place (via sync) — the list is never torn down and rebuilt, so the panel
+// doesn't flicker or jump when you download a sound.
+type OfflineRow = { el: HTMLDivElement; sync: () => Promise<void>; download: () => Promise<void> };
+
+function makeOfflineRow(inst: Instrument): OfflineRow {
+  const kind = inst.kind ?? "soundfont";
+  const el = document.createElement("div");
+  el.className = "offline-row";
+  const name = document.createElement("span");
+  name.className = "offline-name";
+  name.textContent = inst.label;
+  const size = document.createElement("span");
+  size.className = "offline-size";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.textContent = "Download";
+  el.append(name, size, btn);
+
+  async function sync(): Promise<void> {
     const cached = await offline.isCached(inst.name, kind);
-
-    const row = document.createElement("div");
-    row.className = "offline-row";
-    const name = document.createElement("span");
-    name.className = "offline-name";
-    name.textContent = inst.label;
-    const size = document.createElement("span");
-    size.className = "offline-size";
+    const online = navigator.onLine;
     size.textContent = cached ? "✓ offline" : `~${offline.estimatedMB(kind)} MB`;
-    const btn = document.createElement("button");
-    btn.type = "button";
-
-    if (cached) {
-      btn.textContent = "Remove";
-      btn.addEventListener("click", async () => {
-        btn.disabled = true;
-        btn.textContent = "Removing…";
-        await offline.remove(inst.name, kind);
-        await renderOfflineList();
-        await updateOfflineUsage();
-      });
-    } else {
-      btn.textContent = "Download";
-      btn.disabled = !online;
-      btn.title = online ? "" : "Connect to the internet to download";
-      btn.addEventListener("click", async () => {
-        btn.disabled = true;
-        btn.textContent = "Downloading…";
-        try {
-          await offline.download(inst.name, kind);
-        } catch {
-          btn.disabled = false;
-          btn.textContent = "Retry";
-          return;
-        }
-        await renderOfflineList();
-        await updateOfflineUsage();
-      });
-    }
-    row.append(name, size, btn);
-    offlineList.append(row);
+    btn.textContent = cached ? "Remove" : "Download";
+    btn.disabled = !cached && !online;
+    btn.title = !cached && !online ? "Connect to the internet to download" : "";
+    btn.onclick = cached ? remove : download;
   }
+
+  async function download(): Promise<void> {
+    if (await offline.isCached(inst.name, kind)) return;
+    btn.disabled = true;
+    btn.textContent = "Downloading…";
+    size.textContent = "…";
+    try {
+      await offline.download(inst.name, kind);
+    } catch {
+      btn.disabled = false;
+      btn.textContent = "Retry";
+      size.textContent = `~${offline.estimatedMB(kind)} MB`;
+      btn.onclick = download;
+      return;
+    }
+    await sync();
+    await updateOfflineUsage();
+  }
+
+  async function remove(): Promise<void> {
+    btn.disabled = true;
+    btn.textContent = "Removing…";
+    await offline.remove(inst.name, kind);
+    await sync();
+    await updateOfflineUsage();
+  }
+
+  void sync();
+  return { el, sync, download };
+}
+
+let offlineRows: OfflineRow[] = [];
+function buildOfflineList(): void {
+  offlineList.innerHTML = "";
+  offlineRows = INSTRUMENTS.map(makeOfflineRow);
+  for (const row of offlineRows) offlineList.append(row.el);
 }
 
 offlineToggle.addEventListener("click", async () => {
-  await renderOfflineList();
+  buildOfflineList(); // built once per open; rows then update themselves in place
   await updateOfflineUsage();
   offlineDialog.showModal();
 });
@@ -463,17 +479,11 @@ downloadAllBtn.addEventListener("click", async () => {
   if (!navigator.onLine) return;
   const label = downloadAllBtn.textContent;
   downloadAllBtn.disabled = true;
-  for (const inst of INSTRUMENTS) {
-    const kind = inst.kind ?? "soundfont";
-    if (await offline.isCached(inst.name, kind)) continue;
-    downloadAllBtn.textContent = `Downloading ${inst.label}…`;
-    try {
-      await offline.download(inst.name, kind);
-    } catch {
-      // skip a failed instrument; the rest still download
-    }
-    await renderOfflineList();
-    await updateOfflineUsage();
+  let done = 0;
+  for (const row of offlineRows) {
+    done += 1;
+    downloadAllBtn.textContent = `Downloading… (${done}/${offlineRows.length})`;
+    await row.download(); // updates its own row in place; skips already-cached
   }
   downloadAllBtn.textContent = label;
   downloadAllBtn.disabled = false;
