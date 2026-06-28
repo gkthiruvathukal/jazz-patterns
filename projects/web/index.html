@@ -63,6 +63,23 @@
       .buttons button:disabled { opacity: 0.45; cursor: default; }
       #loop.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
       #theme-toggle { padding: 0.3rem 0.7rem; font-size: 0.95rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); margin-left: auto; align-self: center; }
+      #offline-toggle { padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); align-self: center; }
+      /* Offline-sounds picker dialog */
+      .offline-dialog { width: min(30rem, 92vw); border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); border-radius: 10px; background: var(--bg); color: var(--fg); padding: 1rem 1.1rem 1.2rem; }
+      .offline-dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+      .offline-head { display: flex; align-items: center; justify-content: space-between; margin: 0; }
+      .offline-head h2 { font-size: 1.1rem; margin: 0; }
+      .offline-close { border: none; background: none; color: var(--fg); font-size: 1.1rem; cursor: pointer; padding: 0.2rem 0.4rem; }
+      .offline-intro { font-size: 0.8rem; opacity: 0.75; margin: 0.25rem 0 0.85rem; }
+      .offline-list { display: flex; flex-direction: column; gap: 0.4rem; max-height: 55vh; overflow-y: auto; }
+      .offline-row { display: grid; grid-template-columns: 1fr auto 6.5rem; align-items: center; gap: 0.6rem; }
+      .offline-name { font-size: 0.9rem; }
+      .offline-size { font-size: 0.72rem; opacity: 0.6; text-align: right; }
+      .offline-row button { padding: 0.25rem 0.5rem; font-size: 0.8rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); }
+      .offline-row button:disabled { opacity: 0.5; cursor: default; }
+      .offline-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-top: 0.9rem; }
+      #offline-usage { font-size: 0.75rem; opacity: 0.7; }
+      #offline-download-all { padding: 0.35rem 0.7rem; font-size: 0.85rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); }
       #now-playing { font-size: 1.1rem; margin: 0.5rem 0; min-height: 1.4em; }
       #now-playing .chord { font-weight: 700; }
       #notation { position: relative; background: var(--notation-bg); border-radius: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
@@ -81,6 +98,7 @@
          href="https://github.com/gkthiruvathukal/jazz-patterns/releases"
          target="_blank" rel="noopener"></a>
       <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode">☀️</button>
+      <button id="offline-toggle" type="button" aria-label="Offline sounds" title="Manage offline sounds">Offline</button>
     </h1>
 
     <div class="controls">
@@ -159,6 +177,19 @@
       <span>&middot;</span>
       <a href="https://github.com/gkthiruvathukal/jazz-patterns/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
     </footer>
+
+    <dialog id="offline-dialog" class="offline-dialog">
+      <form method="dialog" class="offline-head">
+        <h2>Offline sounds</h2>
+        <button class="offline-close" value="close" aria-label="Close">✕</button>
+      </form>
+      <p class="offline-intro">Download the sounds you want available without internet — they stay cached until you remove them.</p>
+      <div id="offline-list" class="offline-list"></div>
+      <div class="offline-foot">
+        <button id="offline-download-all" type="button">Download all (~50&nbsp;MB)</button>
+        <span id="offline-usage"></span>
+      </div>
+    </dialog>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

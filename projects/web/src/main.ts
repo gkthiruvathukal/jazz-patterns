@@ -15,6 +15,7 @@ import {
   type SequenceSpec,
   type TransportState,
 } from "./player";
+import * as offline from "./offline";
 
 // A curated set of GM soundfont instruments, grouped for the dropdown. Piano is
 // the default; adding more is just another entry here (smplr loads them by name —
@@ -111,6 +112,11 @@ const downbeatVal = el<HTMLSpanElement>("downbeat-val");
 const playButton = el<HTMLButtonElement>("play");
 const stopButton = el<HTMLButtonElement>("stop");
 const loopButton = el<HTMLButtonElement>("loop");
+const offlineToggle = el<HTMLButtonElement>("offline-toggle");
+const offlineDialog = el<HTMLDialogElement>("offline-dialog");
+const offlineList = el<HTMLDivElement>("offline-list");
+const offlineUsage = el<HTMLSpanElement>("offline-usage");
+const downloadAllBtn = el<HTMLButtonElement>("offline-download-all");
 const nowPlaying = el<HTMLParagraphElement>("now-playing");
 const notation = el<HTMLDivElement>("notation");
 const status = el<HTMLParagraphElement>("status");
@@ -386,6 +392,90 @@ downbeatInput.addEventListener("input", () => {
 accentInput.addEventListener("change", stop);
 downbeatInput.addEventListener("change", stop);
 syncFeelEnabled(); // accent/down-beat start disabled (Straight by default)
+
+// ---- Offline-sounds picker: choose which instruments to cache for offline use ----
+async function updateOfflineUsage(): Promise<void> {
+  const mb = (await offline.usageBytes()) / (1024 * 1024);
+  offlineUsage.textContent = mb >= 0.1 ? `Using ${mb.toFixed(1)} MB offline` : "";
+}
+
+async function renderOfflineList(): Promise<void> {
+  offlineList.innerHTML = "";
+  const online = navigator.onLine;
+  for (const inst of INSTRUMENTS) {
+    const kind = inst.kind ?? "soundfont";
+    const cached = await offline.isCached(inst.name, kind);
+
+    const row = document.createElement("div");
+    row.className = "offline-row";
+    const name = document.createElement("span");
+    name.className = "offline-name";
+    name.textContent = inst.label;
+    const size = document.createElement("span");
+    size.className = "offline-size";
+    size.textContent = cached ? "✓ offline" : `~${offline.estimatedMB(kind)} MB`;
+    const btn = document.createElement("button");
+    btn.type = "button";
+
+    if (cached) {
+      btn.textContent = "Remove";
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        btn.textContent = "Removing…";
+        await offline.remove(inst.name, kind);
+        await renderOfflineList();
+        await updateOfflineUsage();
+      });
+    } else {
+      btn.textContent = "Download";
+      btn.disabled = !online;
+      btn.title = online ? "" : "Connect to the internet to download";
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        btn.textContent = "Downloading…";
+        try {
+          await offline.download(inst.name, kind);
+        } catch {
+          btn.disabled = false;
+          btn.textContent = "Retry";
+          return;
+        }
+        await renderOfflineList();
+        await updateOfflineUsage();
+      });
+    }
+    row.append(name, size, btn);
+    offlineList.append(row);
+  }
+}
+
+offlineToggle.addEventListener("click", async () => {
+  await renderOfflineList();
+  await updateOfflineUsage();
+  offlineDialog.showModal();
+});
+offlineDialog.addEventListener("click", (event) => {
+  if (event.target === offlineDialog) offlineDialog.close(); // click the backdrop to close
+});
+downloadAllBtn.addEventListener("click", async () => {
+  if (!navigator.onLine) return;
+  const label = downloadAllBtn.textContent;
+  downloadAllBtn.disabled = true;
+  for (const inst of INSTRUMENTS) {
+    const kind = inst.kind ?? "soundfont";
+    if (await offline.isCached(inst.name, kind)) continue;
+    downloadAllBtn.textContent = `Downloading ${inst.label}…`;
+    try {
+      await offline.download(inst.name, kind);
+    } catch {
+      // skip a failed instrument; the rest still download
+    }
+    await renderOfflineList();
+    await updateOfflineUsage();
+  }
+  downloadAllBtn.textContent = label;
+  downloadAllBtn.disabled = false;
+});
 
 // Initial render. VexFlow loads its music font asynchronously, so the first paint
 // can be wrong until the font is ready — re-render once fonts have settled.
