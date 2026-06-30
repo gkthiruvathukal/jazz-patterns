@@ -164,3 +164,82 @@ jobs:
           name: jazz-web-ci
           if-no-files-found: error
           path: projects/web/dist
+
+  # Decide whether this tag should get demo videos. Deploy ONLY for major (vX)
+  # and minor "point" (vX.Y) tags — NOT patch tags (vX.Y.Z). i.e. one or two
+  # numeric parts deploy; three parts (or any other shape) are skipped. GitHub's
+  # job `if:` has no regex, so this tiny job computes the flag for `demo-video`.
+  release-gate:
+    if: ${{ github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.gate.outputs.deploy }}
+    steps:
+      - id: gate
+        env:
+          REF: ${{ github.ref_name }}
+        run: |
+          if [[ "$REF" =~ ^v[0-9]+(\.[0-9]+)?$ ]]; then deploy=true; else deploy=false; fi
+          echo "tag '$REF' -> deploy=$deploy"
+          echo "deploy=$deploy" >> "$GITHUB_OUTPUT"
+
+  # Render the demo videos and attach them to the GitHub Release for qualifying
+  # tags only (see release-gate). Recording runs in real time, so this is
+  # intentionally infrequent — tag-gated, never on plain pushes/PRs.
+  demo-video:
+    needs: release-gate
+    if: ${{ needs.release-gate.outputs.deploy == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: |
+            projects/web/package-lock.json
+            projects/web/tools/demo/package-lock.json
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Build the web app
+        working-directory: projects/web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Cache Puppeteer browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('projects/web/tools/demo/package-lock.json') }}
+
+      - name: Install demo-tool deps (Puppeteer + Chromium)
+        working-directory: projects/web/tools/demo
+        run: |
+          npm ci
+          npx puppeteer browsers install chrome
+
+      - name: Render both videos against a local preview of this tag
+        run: |
+          (cd projects/web && npm run preview -- --port 4173 --host 127.0.0.1 &)
+          npx --yes wait-on -t 60000 http://127.0.0.1:4173
+          cd projects/web/tools/demo
+          DEMO_URL=http://127.0.0.1:4173/ DEMO_OUT_DIR="$RUNNER_TEMP" node make-demo.mjs
+          # stable, descriptive asset names for the Releases page
+          mv "$RUNNER_TEMP/demo-portrait.mp4"  "$RUNNER_TEMP/jazz-scales-demo-portrait.mp4"
+          mv "$RUNNER_TEMP/demo-landscape.mp4" "$RUNNER_TEMP/jazz-scales-demo-landscape.mp4"
+          ls -la "$RUNNER_TEMP"/jazz-scales-demo-*.mp4
+
+      - name: Attach videos to the GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ runner.temp }}/jazz-scales-demo-portrait.mp4
+            ${{ runner.temp }}/jazz-scales-demo-landscape.mp4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -124,6 +124,9 @@ npm run proof             # short portrait smoke clip
 ```
 
 See [`tools/demo/README.md`](tools/demo/README.md) for the storyboard and env
-knobs. CI doesn't publish the video, but `.github/workflows/demo-video.yml`
-**smoke-tests the build** end-to-end (against a local preview) on changes to
-`projects/web`, so the generator never silently breaks.
+knobs. `.github/workflows/demo-video.yml` **smoke-tests the build** end-to-end
+(against a local preview) on changes to `projects/web` so the generator never
+silently breaks. On **major and minor "point" release tags** (`vX` or `vX.Y` — one or two version
+parts, e.g. `v1` or `v1.1`; **not** three-part patch tags like `v1.1.1`), the
+`demo-video` job in `build-book.yml` renders both videos and **attaches them to
+the GitHub Release**.

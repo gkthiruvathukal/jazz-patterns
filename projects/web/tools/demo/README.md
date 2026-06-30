@@ -54,3 +54,13 @@ generator headlessly (proof mode, against a freshly built local preview) on
 changes to `projects/web`, purely so the pipeline can't silently break. A manual
 `workflow_dispatch` with `mode: full` renders both orientations and uploads them
 as build artifacts if you ever want a CI-built copy.
+
+## Release deploy
+
+The `demo-video` job in `.github/workflows/build-book.yml` renders both videos
+and **attaches them to the GitHub Release** — but only for **major and minor
+"point" releases**: tag with **one or two version parts** — `vX` (e.g. `v1`,
+`v2`) or `vX.Y` (e.g. `v1.1`, `v1.2`). **Patch releases** with three parts
+(`vX.Y.Z`, e.g. `v1.1.1`) are **skipped**. The gate regex is
+`^v[0-9]+(\.[0-9]+)?$`. Assets are named `jazz-scales-demo-portrait.mp4` /
+`jazz-scales-demo-landscape.mp4` and appear under the release's **Assets**.

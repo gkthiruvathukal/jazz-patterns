@@ -107,18 +107,30 @@ const FEEL = {
   "5-based": { swing: true, ratio: 3 / 2, downbeat: 100, accent: 20 },
   triplet: { swing: true, ratio: 2, downbeat: 100, accent: 20 },
 };
+// Links shown as scannable QR codes on the intro/outro cards.
+const URLS = {
+  sponsor: "https://github.com/sponsors/gkthiruvathukal",
+  loyola: "https://loyolauniversitychicago3.my.site.com/ascendportal/s/give?dsgt=CSFUND&appeal=26Y02",
+  site: "https://jazz-scales.gkt.sh/",
+  slides: "https://jazz-scales.gkt.sh/slides/",
+  repo: "https://github.com/gkthiruvathukal/jazz-patterns",
+  ssl: "https://ssl.cs.luc.edu",
+};
 const FULL = [
-  { caption: "Jazz Scales Practice ∀", hold: 2600 },
+  // --- intro cards (silent) ---
+  { splash: { mark: "Dm7 · G7 · C△7", title: "Jazz Scales Practice ∀", tagline: "See it. Hear it. In every key.", author: "Created by George K. Thiruvathukal, PhD", role: "Professor of Computer Science, Loyola University Chicago" }, hold: 10000 },
+  { splash: { heading: "Why I made this", lines: ["Jazz fluency means every scale and mode, in all 12 keys — not just on the page, but notated and played, with interval patterns, swing, and your choice of instrument."], foot: "Free for everyone · Open source · For players, teachers, and students." }, hold: 14000 },
+  { splash: { heading: "If it helps your practice", lines: ["Please consider supporting the work — me, or the Computer Science Department at Loyola University Chicago."], links: [{ label: "Sponsor me on GitHub", url: URLS.sponsor }, { label: "Give to Loyola Computer Science", url: URLS.loyola }] }, hold: 13000 },
   // --- scales: the four families, one representative each, across keys ---
   { caption: "See any scale — in any key", set: { key: "C", scale: "Major (Ionian)" }, play: { key: "C", scale: "Major (Ionian)", pattern: "steps", ...piano } },
-  { caption: "Transpose to any of 14 keys — here, F", set: { key: "F" }, play: { key: "F", scale: "Major (Ionian)", pattern: "steps", ...piano } },
-  { caption: "Dozens of scales — Dorian", set: { key: "C", scale: "Dorian" }, play: { key: "C", scale: "Dorian", pattern: "steps", ...piano } },
-  { caption: "Melodic minor (jazz)", set: { scale: "Melodic Minor (Jazz)" }, play: { key: "C", scale: "Melodic Minor (Jazz)", pattern: "steps", ...piano } },
-  { caption: "Harmonic minor", set: { scale: "Harmonic Minor" }, play: { key: "C", scale: "Harmonic Minor", pattern: "steps", ...piano } },
-  { caption: "…even whole-tone", set: { scale: "Whole Tone" }, play: { key: "C", scale: "Whole Tone", pattern: "steps", ...piano } },
+  { caption: "Transpose to any of 12 keys — here, F", set: { key: "F" }, play: { key: "F", scale: "Major (Ionian)", pattern: "steps", ...piano } },
+  { caption: "Dozens of scales — Let's start with Dorian", set: { key: "C", scale: "Dorian" }, play: { key: "C", scale: "Dorian", pattern: "steps", ...piano } },
+  { caption: "Melodic minor (jazz) scale", set: { scale: "Melodic Minor (Jazz)" }, play: { key: "C", scale: "Melodic Minor (Jazz)", pattern: "steps", ...piano } },
+  { caption: "Harmonic minor scale", set: { scale: "Harmonic Minor" }, play: { key: "C", scale: "Harmonic Minor", pattern: "steps", ...piano } },
+  { caption: "Whole-tone scale", set: { scale: "Whole Tone" }, play: { key: "C", scale: "Whole Tone", pattern: "steps", ...piano } },
   // --- interval patterns ---
-  { caption: "Don't just run scales — hear the intervals · thirds", set: { scale: "Major (Ionian)", intervals: "thirds" }, play: { key: "C", scale: "Major (Ionian)", pattern: "thirds", ...piano } },
-  { caption: "Fourths — a jazz favorite", set: { intervals: "fourths" }, play: { key: "C", scale: "Major (Ionian)", pattern: "fourths", ...piano } },
+  { caption: "Don't just run scales! Learn to think in intervals · thirds", set: { scale: "Major (Ionian)", intervals: "thirds" }, play: { key: "C", scale: "Major (Ionian)", pattern: "thirds", ...piano } },
+  { caption: "Fourths — a jazz favorite (moving beyond thirds)", set: { intervals: "fourths" }, play: { key: "C", scale: "Major (Ionian)", pattern: "fourths", ...piano } },
   { caption: "…and fifths", set: { intervals: "fifths" }, play: { key: "C", scale: "Major (Ionian)", pattern: "fifths", ...piano } },
   // --- swing feel: straight eighths become long-short ---
   { caption: "Swing the eighths — a gentle 3:2", set: { intervals: "steps", feel: "5-based" }, play: { key: "C", scale: "Major (Ionian)", pattern: "steps", ...piano, feel: FEEL["5-based"] } },
@@ -128,14 +140,24 @@ const FULL = [
   // --- voices: a mallet and a horn, then the Salamander grand ---
   { caption: "Pick your voice — vibraphone", set: { instrument: "vibraphone" }, play: { key: "C", scale: "Major (Ionian)", pattern: "steps", instrument: "vibraphone", kind: "soundfont", bpm: 96, octaveShift: 0 } },
   { caption: "…a tenor sax", set: { scale: "Dorian", intervals: "thirds", instrument: "tenor_sax" }, play: { key: "C", scale: "Dorian", pattern: "thirds", instrument: "tenor_sax", kind: "soundfont", bpm: 96, octaveShift: -1 } },
-  { caption: "…or a Salamander grand piano", set: { scale: "Major (Ionian)", intervals: "steps", instrument: "salamander" }, play: { key: "C", scale: "Major (Ionian)", pattern: "steps", instrument: "salamander", kind: "splendid", bpm: 96, octaveShift: 0 } },
-  { caption: "Free & open · install it · jazz-scales.gkt.sh", hold: 3500 },
+  { caption: "…or a Salamander grand piano (based on Yamaha C)", set: { scale: "Major (Ionian)", intervals: "steps", instrument: "salamander" }, play: { key: "C", scale: "Major (Ionian)", pattern: "steps", instrument: "salamander", kind: "splendid", bpm: 96, octaveShift: 0 } },
+  // --- dedication to mentors (names from projects/presentation/slides.md) ---
+  { splash: { heading: "Dedicated to my music mentors and colleagues", sub: "who have inspired my interest in jazz, piano, and digital/electronic music", dense: true, lines: ["Jack Cassidy — Hutchinson Community College, Kansas", "Lara Driscoll — Loyola University Chicago", "Victor Garcia — Loyola · Victor Garcia Listening Party", "Dongryul Lee — Loyola University Chicago", "Christopher Madsen — Loyola University Chicago", "David B. Wetzel — Loyola University Chicago", "Michael Nearpass — Old Town School of Folk Music"], foot: "I've learned so much from them — this work wouldn't exist without them. Thank you." }, hold: 15000 },
+  // --- outro card: where to find it (silent) ---
+  { splash: { heading: "For more — and to try it free", links: [{ label: "Try it: jazz-scales.gkt.sh", url: URLS.site }, { label: "Presentation slides", url: URLS.slides }, { label: "Open source on GitHub", url: URLS.repo }], foot: "Created by George K. Thiruvathukal, PhD · MIT License" }, hold: 13000 },
+  // --- final card: repeat the sponsorship ask + research lab ---
+  { splash: { heading: "Please consider supporting the work", lines: ["…me, or the Computer Science Department at Loyola University Chicago."], links: [{ label: "Sponsor me on GitHub", url: URLS.sponsor }, { label: "Give to Loyola Computer Science", url: URLS.loyola }, { label: "Software and Systems Laboratory", url: URLS.ssl }], foot: "All proceeds support research in our laboratory at ssl.cs.luc.edu. Thank you!" }, hold: 14000 },
+  // --- the end (bookends the title card) ---
+  { splash: { mark: "Dm7 · G7 · C△7", title: "The End", tagline: "Thanks for watching — now go play." }, hold: 9000 },
 ];
 const SHORT = [
-  { caption: "Jazz Scales Practice ∀", hold: 2400 },
+  // Title card (no QR) + a couple of tour steps + a text outro — enough to
+  // validate the splash path in the CI smoke test without extra QR network.
+  { splash: { mark: "Dm7 · G7 · C△7", title: "Jazz Scales Practice ∀", tagline: "See it. Hear it. In every key.", author: "Created by George K. Thiruvathukal, PhD" }, hold: 2600 },
   { caption: "See any scale — in any key", set: { key: "C", scale: "Major (Ionian)" }, play: { key: "C", scale: "Major (Ionian)", pattern: "steps", ...piano } },
   { caption: "Hear the intervals — thirds", set: { intervals: "thirds" }, play: { key: "C", scale: "Major (Ionian)", pattern: "thirds", ...piano } },
   { caption: "Pick your voice — Salamander piano", set: { instrument: "salamander", intervals: "steps" }, play: { key: "C", scale: "Major (Ionian)", pattern: "steps", instrument: "salamander", kind: "splendid", bpm: 96, octaveShift: 0 } },
+  { splash: { heading: "Try it free", lines: ["jazz-scales.gkt.sh"] }, hold: 2500 },
 ];
 const STORY = PROOF ? SHORT : FULL;
 
@@ -151,18 +173,69 @@ function injectOverlays() {
    .__ring{position:fixed;z-index:99997;border:3px solid #f2b53e;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .2s}
    .__ring.on{opacity:1}
    #__toast{position:fixed;z-index:99999;background:#f2b53e;color:#16181d;font:700 22px system-ui,sans-serif;padding:.3em .6em;border-radius:8px;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;box-shadow:0 6px 18px rgba(0,0,0,.4)}
-   #__toast.on{opacity:1;transform:translateY(0)}`;
+   #__toast.on{opacity:1;transform:translateY(0)}
+   /* Full-screen title/why/outro cards. Sized in vmin/clamp so one definition
+      reads well in both portrait (1080x1920) and landscape (1920x1080). */
+   #__splash{position:fixed;inset:0;z-index:100000;background:#16181d;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(12px,2.4vmin,30px);padding:7vmin;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .45s;font-family:system-ui,-apple-system,sans-serif}
+   #__splash.on{opacity:1;visibility:visible}
+   #__splash .mark{color:#f2b53e;font-weight:700;letter-spacing:.08em;font-size:clamp(16px,2.6vmin,32px)}
+   #__splash .title{font-weight:800;font-size:clamp(34px,7vmin,86px);line-height:1.05}
+   #__splash .tagline{color:#cbd2dd;font-size:clamp(18px,3.4vmin,42px)}
+   #__splash .author{color:#f2b53e;font-size:clamp(15px,2.6vmin,32px);margin-top:.5em}
+   #__splash .role{color:#cbd2dd;font-size:clamp(13px,2.2vmin,28px);margin-top:-.1em;text-wrap:balance}
+   #__splash .heading{color:#f2b53e;font-weight:800;font-size:clamp(26px,5vmin,62px);text-wrap:balance}
+   #__splash .sub{color:#cbd2dd;font-size:clamp(16px,3vmin,34px);max-width:84%;margin-top:-.2em;text-wrap:balance}
+   /* text-wrap:balance evens out wrapped lines so paragraphs aren't jagged */
+   #__splash .lines{display:flex;flex-direction:column;gap:.3em;font-size:clamp(18px,3.2vmin,40px);line-height:1.4;max-width:80%;text-wrap:balance}
+   #__splash .lines.dense{font-size:clamp(15px,2.6vmin,30px);gap:.2em;max-width:92%} /* many lines (e.g. the dedication) */
+   #__splash .foot{color:#cbd2dd;font-size:clamp(14px,2.4vmin,30px);margin-top:.7em;max-width:86%}
+   #__splash .links{display:flex;gap:clamp(24px,6vmin,96px);flex-wrap:wrap;justify-content:center;margin-top:1em}
+   #__splash .link{display:flex;flex-direction:column;align-items:center;gap:.7em}
+   #__splash .link img{width:clamp(170px,30vmin,380px);height:auto;border-radius:12px}
+   #__splash .links.three .link img{width:clamp(180px,28vmin,320px)} /* 3 codes: keep big enough to scan (the dense Loyola one), wraps 2+1 in portrait */
+   #__splash .link span{font-size:clamp(13px,2.1vmin,26px);color:#fff;max-width:36vmin;word-break:break-word}`;
   const s = document.createElement("style"); s.textContent = css; document.head.append(s);
   const cap = document.createElement("div"); cap.id = "__cap"; cap.append(document.createElement("span")); document.body.append(cap);
   const cur = document.createElement("div"); cur.id = "__cur"; document.body.append(cur);
   const ring = document.createElement("div"); ring.className = "__ring"; document.body.append(ring);
   const toast = document.createElement("div"); toast.id = "__toast"; document.body.append(toast);
+  const splash = document.createElement("div"); splash.id = "__splash"; document.body.append(splash);
+  const esc = (t) => String(t).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
   window.__demo = {
     cap: (t) => { cap.firstChild.textContent = t || ""; cap.classList.toggle("hide", !t); },
     moveTo: (sel) => { const r = document.querySelector(sel)?.getBoundingClientRect(); if (r) { cur.style.left = (r.left + r.width / 2) + "px"; cur.style.top = (r.top + r.height / 2) + "px"; } },
     tap: () => { cur.classList.remove("tap"); void cur.offsetWidth; cur.classList.add("tap"); },
     flash: (sel) => { const r = document.querySelector(sel)?.getBoundingClientRect(); if (!r) return; ring.style.left = (r.left - 4) + "px"; ring.style.top = (r.top - 4) + "px"; ring.style.width = (r.width + 8) + "px"; ring.style.height = (r.height + 8) + "px"; ring.classList.add("on"); setTimeout(() => ring.classList.remove("on"), 900); },
     toast: (sel, text) => { const r = document.querySelector(sel)?.getBoundingClientRect(); if (!r) return; toast.textContent = text; toast.style.left = (r.left) + "px"; toast.style.top = (r.bottom + 8) + "px"; toast.classList.add("on"); setTimeout(() => toast.classList.remove("on"), 1100); },
+    // Show a full-screen card built from `spec`; each link is rendered as a
+    // scannable QR (generated in-page via the qrcode CDN, like smplr) plus a label.
+    splash: async (spec) => {
+      const parts = [];
+      if (spec.mark) parts.push(`<div class="mark">${esc(spec.mark)}</div>`);
+      if (spec.title) parts.push(`<div class="title">${esc(spec.title)}</div>`);
+      if (spec.tagline) parts.push(`<div class="tagline">${esc(spec.tagline)}</div>`);
+      if (spec.heading) parts.push(`<div class="heading">${esc(spec.heading)}</div>`);
+      if (spec.sub) parts.push(`<div class="sub">${esc(spec.sub)}</div>`);
+      if (spec.lines?.length) parts.push(`<div class="lines${spec.dense ? " dense" : ""}">${spec.lines.map((l) => `<div>${esc(l)}</div>`).join("")}</div>`);
+      if (spec.author) parts.push(`<div class="author">${esc(spec.author)}</div>`);
+      if (spec.role) parts.push(`<div class="role">${esc(spec.role)}</div>`);
+      if (spec.links?.length) {
+        const mod = await import("https://esm.sh/qrcode@1.5.4");
+        const QR = mod.default ?? mod;
+        const items = await Promise.all(spec.links.map(async (lk) => {
+          // Low error-correction = fewer/bigger modules (long URLs make dense
+          // codes); large native + large on-screen size survives the screencast's
+          // VP8 encode AND the mp4 h264 re-encode so phones still scan it.
+          const data = await QR.toDataURL(lk.url, { errorCorrectionLevel: "L", margin: 2, width: 600, color: { dark: "#16181d", light: "#f2b53e" } });
+          return `<div class="link"><img src="${data}" alt=""><span>${esc(lk.label)}</span></div>`;
+        }));
+        parts.push(`<div class="links${spec.links.length >= 3 ? " three" : ""}">${items.join("")}</div>`);
+      }
+      if (spec.foot) parts.push(`<div class="foot">${esc(spec.foot)}</div>`);
+      splash.innerHTML = parts.join("");
+      splash.classList.add("on");
+    },
+    hideSplash: () => splash.classList.remove("on"),
   };
 }
 
@@ -183,11 +256,15 @@ async function record(browser, name) {
   const cur = (sel) => page.evaluate((s) => window.__demo.moveTo(s), sel);
   const tap = () => page.evaluate(() => window.__demo.tap());
   const cap = (t) => page.evaluate((t) => window.__demo.cap(t), t);
+  const splash = (spec) => page.evaluate((s) => window.__demo.splash(s), spec);
+  const hideSplash = () => page.evaluate(() => window.__demo.hideSplash());
 
   // warm up the default piano so the first take's playback starts instantly
   // (clicking #play is itself the audio-unlocking gesture and preloads the font)
   await page.click("#play").catch(() => {}); await sleep(3500); await page.click("#stop").catch(() => {}); await sleep(400);
   await cap("");
+  // Pre-show the opening card so frame 1 is the title, not a flash of the app.
+  if (STORY[0]?.splash) await splash(STORY[0].splash);
 
   const raw = join(TMP, `demo-raw-${name}.webm`);
   const rec = await page.screencast({ path: raw });
@@ -195,7 +272,17 @@ async function record(browser, name) {
   await sleep(300);
 
   const segments = [];
-  for (const step of STORY) {
+  for (const [i, step] of STORY.entries()) {
+    // Per-step progress so the (real-time) recording phase isn't a silent wait.
+    const label = step.splash ? (step.splash.title || step.splash.heading || "card") : step.caption;
+    console.log(`  ${name} [${i + 1}/${STORY.length}] ${step.play ? "▶ " : ""}${label}  (+${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+    if (step.splash) {
+      await cap("");
+      await splash(step.splash);
+      await sleep(step.hold || 4000);
+      continue;
+    }
+    await hideSplash();
     await cap(step.caption);
     if (step.set) {
       for (const [id, val] of Object.entries(step.set)) {
@@ -221,7 +308,7 @@ async function record(browser, name) {
       await sleep(step.hold);
     }
   }
-  await cap(""); await sleep(400);
+  await cap(""); await hideSplash(); await sleep(500);
   await rec.stop();
   await page.close();
   return { name, raw, segments, target: o };
