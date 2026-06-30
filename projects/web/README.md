@@ -108,3 +108,22 @@ injects the `package.json` version as `__APP_VERSION__` for the version pill.
 Pages (Actions source) automatically on pushes to `main` that touch
 `projects/web` (and on manual dispatch). The site is served at the custom
 subdomain **https://jazz-scales.gkt.sh/** (`public/CNAME`).
+
+## Demo video
+
+`tools/demo/` generates a captioned, narrated **demo video** of the app — portrait
+1080×1920 (TikTok / Reels / Shorts) and landscape 1920×1080 (YouTube) — driving
+the live app, rendering each phrase's real instrument audio, and muxing it with
+ffmpeg. It's **local-only** (run it to refresh the clips for a new version):
+
+```bash
+cd tools/demo
+npm install               # once (Puppeteer/Chromium); also needs ffmpeg on PATH
+npm run demo              # -> demo-portrait.mp4 + demo-landscape.mp4
+npm run proof             # short portrait smoke clip
+```
+
+See [`tools/demo/README.md`](tools/demo/README.md) for the storyboard and env
+knobs. CI doesn't publish the video, but `.github/workflows/demo-video.yml`
+**smoke-tests the build** end-to-end (against a local preview) on changes to
+`projects/web`, so the generator never silently breaks.

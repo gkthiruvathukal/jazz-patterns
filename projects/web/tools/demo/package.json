@@ -1,0 +1,15 @@
+{
+  "name": "jazz-scales-demo",
+  "private": true,
+  "type": "module",
+  "description": "Automated demo-video generator for the Jazz Scales Practice web app.",
+  "scripts": {
+    "demo": "node make-demo.mjs",
+    "demo:portrait": "DEMO_ORIENT=portrait node make-demo.mjs",
+    "demo:landscape": "DEMO_ORIENT=landscape node make-demo.mjs",
+    "proof": "node make-demo.mjs --proof"
+  },
+  "dependencies": {
+    "puppeteer": "^25.2.0"
+  }
+}

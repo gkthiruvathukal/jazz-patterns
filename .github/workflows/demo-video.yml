@@ -1,0 +1,98 @@
+name: Demo video (build check)
+
+# Smoke-test that the demo-video pipeline (projects/web/tools/demo) still builds
+# end-to-end. We do NOT publish the videos here — refreshing the published clips
+# is done locally, on demand (see projects/web/tools/demo/README.md). This guard
+# just catches the script or the app drifting out of sync and breaking the build.
+#
+# It records against a LOCAL preview of the freshly built app (not the live site),
+# so the check validates the code in this commit. A manual "full" run also renders
+# both orientations and uploads them as artifacts.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "projects/web/**"
+      - ".github/workflows/demo-video.yml"
+  pull_request:
+    paths:
+      - "projects/web/**"
+      - ".github/workflows/demo-video.yml"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "proof = fast smoke test; full = both orientations, uploaded as artifacts"
+        type: choice
+        options: [proof, full]
+        default: proof
+
+permissions:
+  contents: read
+
+concurrency:
+  group: demo-video-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: |
+            projects/web/package-lock.json
+            projects/web/tools/demo/package-lock.json
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Build the web app
+        working-directory: projects/web
+        run: |
+          npm ci
+          npm run build
+
+      # Cache the Puppeteer browser download (keyed on the demo lockfile, i.e. the
+      # Puppeteer version) so repeat runs don't re-download Chromium from the CDN.
+      - name: Cache Puppeteer browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('projects/web/tools/demo/package-lock.json') }}
+
+      - name: Install demo-tool deps (Puppeteer + Chromium)
+        working-directory: projects/web/tools/demo
+        run: |
+          npm ci
+          npx puppeteer browsers install chrome
+
+      - name: Build the demo video against a local preview
+        env:
+          MODE: ${{ github.event.inputs.mode || 'proof' }}
+        run: |
+          # Serve the freshly built app so the check validates THIS commit.
+          (cd projects/web && npm run preview -- --port 4173 --host 127.0.0.1 &)
+          npx --yes wait-on -t 60000 http://127.0.0.1:4173
+          cd projects/web/tools/demo
+          export DEMO_URL=http://127.0.0.1:4173/ DEMO_OUT_DIR="$RUNNER_TEMP"
+          if [ "$MODE" = "full" ]; then
+            node make-demo.mjs
+          else
+            node make-demo.mjs --proof
+          fi
+          ls -la "$RUNNER_TEMP"/*.mp4
+
+      - name: Upload videos (manual full runs)
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'full' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-videos
+          path: ${{ runner.temp }}/*.mp4
+          if-no-files-found: error
