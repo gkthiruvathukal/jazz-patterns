@@ -60,6 +60,28 @@ If you find the scales work useful, please consider citing it (see [`projects/sc
 
 Thiruvathukal, George K. “Jazz Scale Patterns with Abjad and Lilypond”. 2025. https://doi.org/10.6084/m9.figshare.29887028
 
-## Acknowledgment
+## Acknowledgments
 
-I wish to acknowledge one of the great masters of jazz pedagogy, Jamey Aebersold, whose Jazz handbook (the "red book") at https://www.jazzbooks.com/jazz/FQBK is a great inspiration.
+I wish to acknowledge one of the great masters of jazz pedagogy, Jamey Aebersold, whose Jazz Handbook (the "red book") at https://www.jazzbooks.com/jazz/FQBK is a great inspiration.
+
+### Jazz mentors and music colleagues
+
+I've learned so much from all of them these past few years — this work would not exist without them. Thank you.
+
+- **[Jack Cassidy](https://www.linkedin.com/in/dr-jack-cassidy-605428232/)** — my first jazz mentor (Old Town School of Folk Music).
+- **[Lara Driscoll](https://laradriscoll.com)** — my piano teacher (Loyola University Chicago).
+- **[Victor Garcia](https://victorgarciamusic.com/)** — mentor (Loyola University Chicago); bandleader, *Victor Garcia's Listening Party*.
+- **[Dongryul Lee](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/dongryulleedma.shtml)** — my composition teacher (Loyola University Chicago).
+- **[Christopher Madsen](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/christophermadsendma.shtml)** — Director, Jazz Studies (Loyola University Chicago).
+- **[Michael Nearpass](https://www.oldtownschool.org/teachers/Michael-Nearpass/)** — my current mentor (Old Town School of Folk Music).
+- **[David B. Wetzel](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/davidwetzeldma.shtml)** — teaching collaborator in digital and electronic music (Loyola University Chicago).
+
+### Argonne National Laboratory
+
+Beyond the music — the colleagues who back my (sometimes crazy) ideas and help turn them into great research.
+
+- **[Janet Knowles](https://www.alcf.anl.gov/about/people/janet-knowles)** — Principal Software Development Specialist, ALCF; a fellow musician whose encouragement means a great deal.
+- **[Victor Mateevitsi](https://www.alcf.anl.gov/about/people/victor-mateevitsi)** — Computer Scientist, ALCF; collaborator with me and my PhD student **[Nicholas Synovic](https://github.com/NicholasSynovic)**.
+- **[Mike Papka](https://www.anl.gov/profile/michael-e-papka)** — Director of the Argonne Leadership Computing Facility.
+- **[Silvio Rizzi](https://www.alcf.anl.gov/about/people/silvio-rizzi)** — Computer Scientist, ALCF; my collaborator of several years on HPC education and research.
+- **[Shilpika](https://www.alcf.anl.gov/about/people/shilpika)** — my former graduate student in Software Engineering, now a computational scientist working on visualization.

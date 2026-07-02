@@ -47,7 +47,7 @@ Visiting Computer Scientist, Argonne National Laboratory<br>
 - **See it and hear it** — notation you can read *and* play back.
 - **Free & open for all, hence the ∀ symbol from mathematical logic** — no login, no account, no paywall. MIT-licensed.
 
-If you find it useful, consider *sponsoring* me on GitHub or making a donation to my research lab at Loyola University Chicago. Details forthcoming.
+If you find it useful, consider *sponsoring* me on GitHub or giving to Computer Science at Loyola University Chicago — links are in the project README.
 
 ---
 
@@ -55,7 +55,7 @@ If you find it useful, consider *sponsoring* me on GitHub or making a donation t
 
 - **One source of truth.** The music theory lives in *one* place; everything else is generated.
 - **Two deliverables, one model.** A printable book **and** an interactive web app.
-- **All keys, all scales.** 12 keys × 26 scales = **312** ready charts.
+- **All keys, all scales.** 14 key spellings × 26 scales = **364** ready charts.
 - **Client-only.** The app runs entirely in the browser — no server, no tracking.
 - **A living work.** As an active music student and professor, I am committed to maintaining and improving this app!
 ---
@@ -79,18 +79,9 @@ If you find it useful, consider *sponsoring* me on GitHub or making a donation t
 
 ## Architecture
 
-```text
-            SCALES  (Python, written relative to C)     ← single source of truth
-                       │
-          ┌────────────┴─────────────┐
-          ▼                          ▼
-   Abjad → LilyPond            export_json
-   PDF book · MIDI · WAV       scales.json   (12 keys × 26 scales = 312 charts)
-                                      │
-                                      ▼
-                         Web app  (TypeScript)
-                    VexFlow → render · smplr → play
-```
+<figure>
+<img src="assets/architecture.svg" width="100%" />
+</figure>
 
 **No music theory is duplicated downstream** — the web app is a renderer/player over resolved data.
 
@@ -114,7 +105,7 @@ SCALES = [
 
 ---
 
-## …and the model catches real bugs
+## … and the model catches real bugs
 
 <div class="cols tight">
 <div>
@@ -180,13 +171,12 @@ svg.style.maxWidth = `${w}px`;  // VexFlow's inline
 <div class="cols">
 <div>
 
-- **smplr Sequencer** — real transport: **play / pause / resume / stop / loop**.
-- **Instruments** — keys, mallets, guitar, **bass**, **horns & winds**.
-- **Per-instrument octave** — basses drop into range automatically; nudge ±3.
+- **smplr Sequencer** — real transport: **play · pause · stop · loop**.
+- **Instruments** — keys, mallets, guitar, **bass**, **horns & winds**, and a **Salamander grand piano**.
+- **Octave** — a sensible default per instrument; nudge ±3 (playback only).
 - **Playing-note highlight** — the score follows the sound.
-- **Interval practice** — play the scale in **thirds, fourths … sevenths** (diatonic patterns), up and down, looping.
 
-*All "feel" controls change the audio only — never the printed notes.*
+*All "feel" controls change the audio only — never the printed notes.* (Interval patterns are next.)
 
 ▶ **Play it:** [jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)
 
@@ -209,6 +199,15 @@ Play any scale in **diatonic intervals** — its *own* notes, never chromatic. E
 </figure>
 
 **Steps · Seconds · Thirds · Fourths · Fifths · Sixths · Sevenths**
+
+---
+
+## Install it — and take it offline
+
+- **Installable PWA** — add it to your phone's home screen or your desktop dock; it opens in its own window.
+- **Works offline** — the app shell and notation are precached on first load, so it runs with no connection.
+- **Download only the sounds you want** — an Offline-sounds picker caches instruments on demand (including a sampled **Salamander grand piano**), so playback works on a plane or at a gig with no signal.
+- **Still no server, no account, no tracking** — everything lives in your browser.
 
 ---
 
@@ -264,47 +263,7 @@ const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 - **Dark / light**, responsive, keyboard-reachable controls.
 - **No server, no login, no tracking** — a static bundle on GitHub Pages.
 - **Open** — MIT-licensed; the Python model is the single source of truth.
-- **Mobile Web First** - While we may eventually provide Android and MacOS apps, we intentionally choose the web with the hope of reaching the widest possible audience.
-
----
-
-<!-- _class: dark -->
-
-## Acknowledgments — my jazz mentors and music collaborators
-
-<div class="cols">
-<div>
-
-- **[Jack Cassidy](https://www.linkedin.com/in/dr-jack-cassidy-605428232/)** — my first jazz mentor (Old Town School of Folk Music).
-- **[Lara Driscoll](https://laradriscoll.com)** — my piano teacher (Loyola).
-- **[Victor Garcia](https://victorgarciamusic.com/)** — mentor (Loyola); bandleader, *Victor Garcia's Listening Party*.
-- **[Dongryul Lee](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/dongryulleedma.shtml)** — my composition teacher (Loyola).
-
-</div>
-<div>
-
-- **[Christopher Madsen](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/christophermadsendma.shtml)** — Director, Jazz Studies (Loyola).
-- **[Michael Nearpass](https://www.oldtownschool.org/teachers/Michael-Nearpass/)** — my current mentor (Old Town School of Folk Music).
-- **[David B. Wetzel](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/davidwetzeldma.shtml)** — teaching collaborator in digital & electronic music (Loyola).
-
-</div>
-</div>
-
-*I've learned so much from all of them these past few years — this work wouldn't exist without them. Thank you.*
-
----
-
-<!-- _class: dark -->
-
-## Acknowledgments — Argonne National Laboratory
-
-Beyond the music — the colleagues who back my (sometimes crazy) ideas and help turn them into great research papers.
-
-- **[Janet Knowles](https://www.alcf.anl.gov/about/people/janet-knowles)** — Principal Software Development Specialist, ALCF; a fellow musician whose positive energy and encouragement mean so much.
-- **[Victor Mateevitsi](https://www.alcf.anl.gov/about/people/victor-mateevitsi)** — Computer Scientist, ALCF; collaborator with me and my PhD student **[Nicholas Synovic](https://github.com/NicholasSynovic)**.
-- **[Mike Papka](https://www.anl.gov/profile/michael-e-papka)** — Director of the Argonne Leadership Computing Facility.
-- **[Silvio Rizzi](https://www.alcf.anl.gov/about/people/silvio-rizzi)** — Computer Scientist, ALCF; my collaborator of several years on HPC education and research.
-- **[Shilpika](https://www.alcf.anl.gov/about/people/shilpika)** — my former graduate student in Software Engineering, now a computational scientist working on visualization.
+- **Mobile-web first** — installable as a PWA today (home screen / dock, offline-capable); native app-store builds may follow, but the open web reaches the widest audience.
 
 ---
 
@@ -318,7 +277,30 @@ Beyond the music — the colleagues who back my (sometimes crazy) ideas and help
 - More scales & modes (just another `SCALES` row).
 - Backing chords / play-along; metronome click.
 - Per-user practice sets and printable selections.
-- Rhythm, not just scales. (The print version supports rhythm already.)
+- Native app-store builds (Capacitor) for guaranteed offline.
 
 
 **Try it:** **[jazz-scales.gkt.sh](https://jazz-scales.gkt.sh/)** — code: **[github.com/gkthiruvathukal/jazz-patterns](https://github.com/gkthiruvathukal/jazz-patterns)** — *thank you.*
+
+---
+
+<!-- _class: dark -->
+
+## Thank you
+
+To my mentors, colleagues, and collaborators at **Loyola University Chicago** and **Argonne National Laboratory** — thank you. This work would not exist without you. *(Full acknowledgments in the [README](https://github.com/gkthiruvathukal/jazz-patterns#acknowledgments).)*
+
+<div style="display:flex;gap:2.5rem;justify-content:center;align-items:flex-start;margin-top:1.1rem">
+<figure style="margin:0;text-align:center">
+<img src="assets/qr-sponsor.svg" style="width:188px;height:188px" />
+<figcaption style="font-size:0.72em;color:#e6e6e6">Sponsor me on GitHub</figcaption>
+</figure>
+<figure style="margin:0;text-align:center">
+<img src="assets/qr-loyola.svg" style="width:188px;height:188px" />
+<figcaption style="font-size:0.72em;color:#e6e6e6">Give to Loyola Computer Science</figcaption>
+</figure>
+<figure style="margin:0;text-align:center">
+<img src="assets/qr-ssl.svg" style="width:188px;height:188px" />
+<figcaption style="font-size:0.72em;color:#e6e6e6">Software and Systems Laboratory</figcaption>
+</figure>
+</div>

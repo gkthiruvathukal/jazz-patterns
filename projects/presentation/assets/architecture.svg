@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 285" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" role="img" aria-label="Architecture: one Python SCALES source of truth generates the print/audio pipeline and the JSON contract that drives the web app.">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- connectors -->
+  <g fill="none" stroke="#555" stroke-width="2">
+    <path d="M470,70 L470,94"/>
+    <path d="M180,94 L760,94"/>
+    <path d="M180,94 L180,117" marker-end="url(#ah)"/>
+    <path d="M760,94 L760,117" marker-end="url(#ah)"/>
+    <path d="M180,168 L180,189" marker-end="url(#ah)"/>
+    <path d="M760,182 L760,203" marker-end="url(#ah)"/>
+  </g>
+
+  <!-- top: single source of truth -->
+  <g>
+    <rect x="295" y="16" width="350" height="54" rx="9" fill="#fbf7ec" stroke="#d99a00" stroke-width="2"/>
+    <text x="470" y="40" text-anchor="middle" font-size="17" font-weight="700" fill="#16181d">SCALES — single source of truth</text>
+    <text x="470" y="59" text-anchor="middle" font-size="13" fill="#6b7078">Python, written relative to C</text>
+  </g>
+
+  <!-- left branch: engraving pipeline -->
+  <g>
+    <rect x="58" y="120" width="244" height="48" rx="9" fill="#eef1f5" stroke="#333"/>
+    <text x="180" y="149" text-anchor="middle" font-size="15" fill="#16181d">Abjad → LilyPond</text>
+
+    <rect x="45" y="190" width="270" height="52" rx="9" fill="#eef1f5" stroke="#333"/>
+    <text x="180" y="216" text-anchor="middle" font-size="15" fill="#16181d">PDF book · MIDI · WAV</text>
+    <text x="180" y="233" text-anchor="middle" font-size="12" fill="#6b7078">engraved output</text>
+  </g>
+
+  <!-- right branch: JSON contract → web app -->
+  <g>
+    <rect x="558" y="120" width="380" height="62" rx="9" fill="#eef1f5" stroke="#333"/>
+    <text x="748" y="145" text-anchor="middle" font-size="15" fill="#16181d">export_json → scales.json</text>
+    <text x="748" y="166" text-anchor="middle" font-size="12" fill="#6b7078">14 keys × 26 scales = 364 charts</text>
+
+    <rect x="558" y="204" width="380" height="62" rx="9" fill="#eef1f5" stroke="#333"/>
+    <text x="748" y="229" text-anchor="middle" font-size="15" fill="#16181d">Web app (TypeScript)</text>
+    <text x="748" y="250" text-anchor="middle" font-size="12" fill="#6b7078">VexFlow → render · smplr → play</text>
+  </g>
+</svg>
