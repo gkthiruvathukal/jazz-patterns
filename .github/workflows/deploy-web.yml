@@ -56,6 +56,16 @@ jobs:
       - name: Place slides under /slides
         run: cp -r ../presentation/dist ./dist/slides
 
+      # Guarantee the deck actually made it into the deploy bundle. A Pages deploy
+      # replaces the whole site, so a missing /slides would 404 — fail loudly here
+      # instead of shipping a slides-less site.
+      - name: Verify slides are present
+        run: |
+          test -f ./dist/slides/index.html || {
+            echo "::error::dist/slides/index.html missing — refusing to deploy without the slide deck";
+            exit 1;
+          }
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

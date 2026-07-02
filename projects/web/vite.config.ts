@@ -33,6 +33,13 @@ export default defineConfig({
       workbox: {
         // Precache the app shell (UI + notation + bundled fonts) so it works offline.
         globPatterns: ["**/*.{js,css,html,svg,png,ico,woff,woff2,ttf,otf}"],
+        // The SPA navigation fallback serves index.html for navigations that aren't
+        // precached. The Marp slide deck is added to dist/slides *after* the Vite
+        // build, so it isn't in the precache — without this denylist the SW would
+        // hijack /slides/ and serve the app shell instead of the deck. Let those
+        // navigations hit the network (Pages serves the real deck).
+        navigateFallback: "index.html",
+        navigateFallbackDenylist: [/^\/slides(\/|$)/],
         // Sounds stream from public CDNs (CORS-enabled). Cache each fetched sample
         // so anything played/downloaded works offline. The user manages this via
         // the Offline-sounds picker; no expiration so downloads persist until removed.
