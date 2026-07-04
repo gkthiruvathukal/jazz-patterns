@@ -114,6 +114,8 @@ const stopButton = el<HTMLButtonElement>("stop");
 const loopButton = el<HTMLButtonElement>("loop");
 const offlineToggle = el<HTMLButtonElement>("offline-toggle");
 const offlineDialog = el<HTMLDialogElement>("offline-dialog");
+const aboutBtn = el<HTMLButtonElement>("about-btn");
+const aboutDialog = el<HTMLDialogElement>("about-dialog");
 const offlineList = el<HTMLDivElement>("offline-list");
 const offlineUsage = el<HTMLSpanElement>("offline-usage");
 const downloadAllBtn = el<HTMLButtonElement>("offline-download-all");
@@ -474,6 +476,11 @@ offlineToggle.addEventListener("click", async () => {
 });
 offlineDialog.addEventListener("click", (event) => {
   if (event.target === offlineDialog) offlineDialog.close(); // click the backdrop to close
+});
+
+aboutBtn.addEventListener("click", () => aboutDialog.showModal());
+aboutDialog.addEventListener("click", (event) => {
+  if (event.target === aboutDialog) aboutDialog.close();
 });
 downloadAllBtn.addEventListener("click", async () => {
   if (!navigator.onLine) return;

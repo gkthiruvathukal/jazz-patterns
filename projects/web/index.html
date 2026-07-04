@@ -70,7 +70,24 @@
       .buttons button:disabled { opacity: 0.45; cursor: default; }
       #loop.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
       #theme-toggle { padding: 0.3rem 0.7rem; font-size: 0.95rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); margin-left: auto; align-self: center; }
-      #offline-toggle, #install-btn { padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); align-self: center; }
+      #offline-toggle, #install-btn, #about-btn { padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); border-radius: 4px; background: var(--control-bg); color: var(--fg); align-self: center; }
+      /* About dialog */
+      .about-dialog { width: min(32rem, 92vw); border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); border-radius: 10px; background: var(--bg); color: var(--fg); padding: 1rem 1.1rem 1.2rem; }
+      .about-dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+      .about-head { display: flex; align-items: center; justify-content: space-between; margin: 0 0 0.6rem; }
+      .about-head h2 { font-size: 1.1rem; margin: 0; }
+      .about-close { border: none; background: none; color: var(--fg); font-size: 1.1rem; cursor: pointer; padding: 0.2rem 0.4rem; }
+      .about-body { font-size: 0.875rem; line-height: 1.55; }
+      .about-body p { margin: 0 0 0.75rem; }
+      .about-body a { color: inherit; }
+      .about-section { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.6; margin: 0.9rem 0 0.5rem; font-weight: 600; }
+      .about-links { display: flex; flex-direction: column; gap: 0.4rem; }
+      .about-link { display: block; padding: 0.55rem 0.8rem; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); border-radius: 6px; background: var(--control-bg); color: var(--fg); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+      .about-link:hover { border-color: color-mix(in srgb, var(--fg) 55%, transparent); }
+      .about-qr { display: flex; gap: 1.25rem; justify-content: center; margin-top: 0.9rem; }
+      .about-qr-item { margin: 0; text-align: center; }
+      .about-qr-item img { display: block; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--fg) 15%, transparent); }
+      .about-qr-item figcaption { font-size: 0.75rem; opacity: 0.7; margin-top: 0.35rem; }
       .install-hint { font-size: 0.85rem; line-height: 1.45; background: color-mix(in srgb, #f2b53e 14%, var(--bg)); border: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); border-left: 4px solid #f2b53e; border-radius: 6px; padding: 0.65rem 0.85rem; margin: 0 0 1rem; }
       .install-hint ol { margin: 0.35rem 0 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.15rem; }
       .install-hint-dismiss { border: none; background: none; color: var(--fg); cursor: pointer; float: right; font-size: 1rem; line-height: 1; margin-left: 0.5rem; }
@@ -110,6 +127,7 @@
       <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode">☀️</button>
       <button id="install-btn" type="button" hidden aria-label="Install app">Install</button>
       <button id="offline-toggle" type="button" aria-label="Offline sounds" title="Manage offline sounds">Offline</button>
+      <button id="about-btn" type="button" aria-label="About this app" title="About">About</button>
     </h1>
     <p id="install-hint" class="install-hint" hidden></p>
 
@@ -200,6 +218,40 @@
       <div class="offline-foot">
         <button id="offline-download-all" type="button">Download all (~50&nbsp;MB)</button>
         <span id="offline-usage"></span>
+      </div>
+    </dialog>
+
+    <dialog id="about-dialog" class="about-dialog">
+      <form method="dialog" class="about-head">
+        <h2>About</h2>
+        <button class="about-close" value="close" aria-label="Close">✕</button>
+      </form>
+      <div class="about-body">
+        <p><strong>Jazz Scales Practice</strong> is free for anyone — students, teachers, and musicians at any institution, anywhere in the world. There is no cost, no account, and no catch.</p>
+        <p>If this app helps your practice, we only ask two things: acknowledge the work when you share or reference it, and help spread the word to other musicians who might benefit.</p>
+        <p>We have no plans to monetize this project for profit. If you'd like to support the ongoing development and the research behind it, donations are warmly welcome.</p>
+        <p>Created by <a href="https://gkt.sh" target="_blank" rel="noopener">George K. Thiruvathukal</a>, Professor of Computer Science at Loyola University Chicago. <a href="https://github.com/gkthiruvathukal/jazz-patterns" target="_blank" rel="noopener">Source on GitHub</a> · <a href="/slides/" target="_blank" rel="noopener">Slides (WIP)</a></p>
+        <p class="about-section">Support this work</p>
+        <div class="about-links">
+          <a class="about-link" href="https://github.com/sponsors/gkthiruvathukal" target="_blank" rel="noopener">Sponsor me on GitHub</a>
+          <a class="about-link" href="https://loyolauniversitychicago3.my.site.com/ascendportal/s/give?dsgt=CSFUND&amp;appeal=26Y02" target="_blank" rel="noopener">Give to Loyola Computer Science</a>
+          <a class="about-link" href="https://ssl.cs.luc.edu" target="_blank" rel="noopener">Software &amp; Systems Laboratory</a>
+        </div>
+        <div class="about-qr">
+          <figure class="about-qr-item">
+            <a href="https://github.com/sponsors/gkthiruvathukal" target="_blank" rel="noopener">
+              <img src="/qr-sponsor.svg" alt="QR code: Sponsor me on GitHub" width="120" height="120" />
+            </a>
+            <figcaption>Sponsor on GitHub</figcaption>
+          </figure>
+          <figure class="about-qr-item">
+            <a href="https://loyolauniversitychicago3.my.site.com/ascendportal/s/give?dsgt=CSFUND&amp;appeal=26Y02" target="_blank" rel="noopener">
+              <img src="/qr-loyola.svg" alt="QR code: Give to Loyola Computer Science" width="120" height="120" />
+            </a>
+            <figcaption>Give to Loyola CS</figcaption>
+          </figure>
+        </div>
+        <p style="margin-top:0.85rem;font-size:0.8rem;opacity:0.7"><a href="https://github.com/gkthiruvathukal/jazz-patterns#acknowledgments" target="_blank" rel="noopener">Full acknowledgments →</a></p>
       </div>
     </dialog>
 
