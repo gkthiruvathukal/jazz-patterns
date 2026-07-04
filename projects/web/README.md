@@ -52,6 +52,10 @@ M3 step labels written under each note — matching the Python/Abjad book.
   Screen* / *Add to Dock*). The app shell (UI + notation) works fully offline.
 - **Offline sounds** — an **Offline** panel downloads the instruments you choose
   for offline use (cache, see total usage, remove later) or **Download all (~50 MB)**.
+- **About** — an **About** dialog (header button) describes the project, states
+  that it is free for anyone worldwide with no account required, and provides
+  links and scannable QR codes for the GitHub Sponsors page and the Loyola
+  Computer Science giving page.
 
 ## Offline & install (PWA)
 
@@ -87,8 +91,8 @@ grand piano), **Octave** (playback transpose), **Tempo (BPM)**, **Accidentals**,
 **Intervals** (Steps / Seconds / Thirds … Sevenths practice patterns), and
 **Feel** (swing-ratio preset + off-beat accent + down-beat level, the last two
 active for any swung feel). Transport: icon **Play/Pause · Stop · Loop**. The
-header also carries **Offline** (the sound-cache picker), **Install**, the theme
-toggle, and the version pill.
+header also carries **Offline** (the sound-cache picker), **Install**, **About**
+(project info + support links + QR codes), the theme toggle, and the version pill.
 
 ## Build / check
 
