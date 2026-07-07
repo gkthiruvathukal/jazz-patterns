@@ -76,6 +76,17 @@ I've learned so much from all of them these past few years — this work would n
 - **[Michael Nearpass](https://www.oldtownschool.org/teachers/Michael-Nearpass/)** — my current mentor (Old Town School of Folk Music).
 - **[David B. Wetzel](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/davidwetzeldma.shtml)** — teaching collaborator in digital and electronic music (Loyola University Chicago).
 
+### Loyola University Chicago colleagues
+
+- **[Konstantin Läufer](https://www.luc.edu/cs/aboutus/people/profiles/lauferkonstantin.shtml)** — Professor of Computer Science.
+- **[Neil Klingensmith](https://neilklingensmith.com)** — Associate Professor of Computer Science.
+- **[David B. Wetzel](https://www.luc.edu/dfpa/facultyandstaffdirectory/profiles/davidwetzeldma.shtml)** — Teaching Assistant Professor of Computer Science.
+
+### Purdue University colleagues
+
+- **[Yung-Hsiang Lu](https://engineering.purdue.edu/ECE/People/ptProfile?resource_id=3355)** — Professor of Computer Engineering.
+- **[James C. Davis](https://engineering.purdue.edu/ECE/People/ptProfile?resource_id=242045)** — Assistant Professor of Computer Engineering.
+
 ### Argonne National Laboratory
 
 Beyond the music — the colleagues who back my (sometimes crazy) ideas and help turn them into great research.

@@ -288,7 +288,7 @@ const velocity = offbeat ? Math.min(127, downbeat + accent) : downbeat;
 
 ## Thank you
 
-To my mentors, colleagues, and collaborators at **Loyola University Chicago** and **Argonne National Laboratory** — thank you. This work would not exist without you. *(Full acknowledgments in the [README](https://github.com/gkthiruvathukal/jazz-patterns#acknowledgments).)*
+To my mentors, colleagues, and collaborators at **Loyola University Chicago**, **Purdue University**, and **Argonne National Laboratory** — thank you. This work would not exist without you. *(Full acknowledgments in the [README](https://github.com/gkthiruvathukal/jazz-patterns#acknowledgments).)*
 
 <div style="display:flex;gap:2.5rem;justify-content:center;align-items:flex-start;margin-top:1.1rem">
 <figure style="margin:0;text-align:center">
